@@ -1,0 +1,43 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { resourceLinks } from '../../data/resources';
+
+const activeResources = resourceLinks.filter((resource) => resource.enabled !== false);
+const upcomingResources = resourceLinks.filter((resource) => resource.enabled === false);
+---
+
+<SiteLayout
+  title="Resources | Pondering Silver"
+  description="Helpful resources and materials curated to support your practice and exploration."
+>
+  <article class="mx-auto flex max-w-5xl flex-col gap-12">
+    <header class="space-y-4 text-center">
+      <h1 class="text-4xl font-bold text-gray-900">Resources</h1>
+      <p class="text-lg text-gray-600">
+        Dive into curated collections of channels, prompts, and tools that nurture your spiritual and creative journey.
+      </p>
+    </header>
+
+    <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {activeResources.map((resource) => (
+        <a
+          href={resource.path}
+          class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+        >
+          <h2 class="mb-3 text-2xl font-semibold text-purple-600">{resource.title}</h2>
+          <p class="text-gray-600">{resource.description}</p>
+        </a>
+      ))}
+
+      {upcomingResources.map((resource) => (
+        <div
+          class="block rounded-2xl border border-dashed border-purple-200 bg-white/70 p-6 text-gray-500 shadow-sm"
+        >
+          <h2 class="mb-3 text-2xl font-semibold text-purple-400">{resource.title}</h2>
+          <p>{resource.description}</p>
+          <p class="mt-4 text-sm font-medium text-purple-400">Coming soon</p>
+        </div>
+      ))}
+    </section>
+  </article>
+</SiteLayout>

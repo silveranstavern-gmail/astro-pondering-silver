@@ -1,0 +1,215 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import DonationButton from '../components/DonationButton.astro';
+import ShareButton from '../components/ShareButton.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Sidebar from '../components/Sidebar.astro';
+import type { ImageMetadata } from 'astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: ImageMetadata;
+  hideSidebar?: boolean;
+}
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar = false } = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+    {hideSidebar ? null : (
+      <script is:inline>
+        (function () {
+          try {
+            const stored = localStorage.getItem('sidebarOpen');
+            const isOpen = stored === null ? true : JSON.parse(stored) === true;
+            const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+
+            if (!isOpen && isDesktop) {
+              document.documentElement.classList.add('sidebar-collapsed-initial');
+            }
+          } catch {}
+        })();
+      </script>
+    )}
+  </head>
+  <body class="flex min-h-screen flex-col bg-gray-100">
+    <Header />
+    <div class="layout__main">
+      {hideSidebar ? null : (
+        <>
+          <Sidebar />
+          <div
+            class="pointer-events-none fixed inset-0 z-20 bg-black/40 opacity-0 transition-opacity duration-200 lg:hidden"
+            data-sidebar-overlay
+            hidden
+          ></div>
+        </>
+      )}
+      <main class="flex-1 px-4 py-10 sm:px-6 lg:px-10" id="main-content">
+        <slot />
+      </main>
+    </div>
+    {hideSidebar ? null : (
+      <>
+        <div transition:persist="share-button">
+          <ShareButton title={title} />
+        </div>
+        <div transition:persist="donation-button">
+          <DonationButton />
+        </div>
+      </>
+    )}
+    <Footer />
+
+    {hideSidebar ? null : (
+      <script is:inline>
+        (() => {
+          const STORAGE_KEY = 'sidebarOpen';
+
+          const readPreference = () => {
+            try {
+              const value = localStorage.getItem(STORAGE_KEY);
+              if (value === null) return null;
+              return JSON.parse(value) === true;
+            } catch {
+              return null;
+            }
+          };
+
+          const writePreference = (isOpen) => {
+            try {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(isOpen));
+            } catch {}
+          };
+
+          const applyStateToDocument = (doc, isOpen, isDesktop) => {
+            const docElement = doc.documentElement ?? document.documentElement;
+            docElement.classList.remove('sidebar-collapsed-initial');
+
+            if (isDesktop) {
+              doc.body.classList.toggle('sidebar-collapsed', !isOpen);
+              doc.body.classList.remove('sidebar-open');
+            } else {
+              doc.body.classList.toggle('sidebar-open', isOpen);
+              doc.body.classList.remove('sidebar-collapsed');
+            }
+
+            const docSidebar = doc.getElementById('site-sidebar');
+            if (docSidebar) {
+              docSidebar.dataset.state = isDesktop ? 'open' : isOpen ? 'open' : 'closed';
+            }
+
+            const overlay = doc.querySelector('[data-sidebar-overlay]');
+            if (overlay) {
+              const shouldHideOverlay = !isOpen || isDesktop;
+              overlay.hidden = shouldHideOverlay;
+              overlay.classList.toggle('opacity-0', shouldHideOverlay);
+              overlay.classList.toggle('pointer-events-none', shouldHideOverlay);
+            }
+
+            doc.querySelectorAll('[data-sidebar-toggle]').forEach((btn) => {
+              btn.setAttribute('aria-expanded', String(isOpen));
+            });
+          };
+
+          const setupSidebar = () => {
+            window.__sidebarCleanup?.();
+
+            const body = document.body;
+            const sidebar = document.getElementById('site-sidebar');
+            const overlay = document.querySelector('[data-sidebar-overlay]');
+            const toggleButtons = Array.from(document.querySelectorAll('[data-sidebar-toggle]'));
+            const navLinks = sidebar?.querySelectorAll('[data-sidebar-link]') ?? [];
+
+            if (!sidebar || !overlay || toggleButtons.length === 0) return;
+
+            const desktopQuery = window.matchMedia('(min-width: 1024px)');
+
+            const setSidebarState = (isOpen, { persist = true } = {}) => {
+              document.documentElement.classList.remove('sidebar-collapsed-initial');
+
+              if (desktopQuery.matches) {
+                body.classList.toggle('sidebar-collapsed', !isOpen);
+                body.classList.remove('sidebar-open');
+                sidebar.dataset.state = 'open';
+              } else {
+                body.classList.toggle('sidebar-open', isOpen);
+                sidebar.dataset.state = isOpen ? 'open' : 'closed';
+              }
+              toggleButtons.forEach((btn) => btn.setAttribute('aria-expanded', String(isOpen)));
+
+              const shouldHideOverlay = !isOpen || desktopQuery.matches;
+              overlay.hidden = shouldHideOverlay;
+              overlay.classList.toggle('opacity-0', shouldHideOverlay);
+              overlay.classList.toggle('pointer-events-none', shouldHideOverlay);
+
+              if (persist && desktopQuery.matches) {
+                writePreference(isOpen);
+              }
+            };
+
+            const initialDesktopState = () => {
+              const stored = readPreference();
+              return stored ?? true;
+            };
+
+            const syncStateOnLoadOrResize = () => {
+              const isOpen = desktopQuery.matches ? initialDesktopState() : false;
+              setSidebarState(isOpen, { persist: false });
+            };
+
+            const handleBeforeSwap = (event) => {
+              const isDesktop = desktopQuery.matches;
+              const isOpen = isDesktop ? initialDesktopState() : false;
+              applyStateToDocument(event.detail.newDocument, isOpen, isDesktop);
+            };
+
+            const toggleSidebar = () => {
+              const isCurrentlyOpen = desktopQuery.matches
+                ? !body.classList.contains('sidebar-collapsed')
+                : body.classList.contains('sidebar-open');
+              setSidebarState(!isCurrentlyOpen);
+            };
+
+            const closeMobileSidebar = () => {
+              if (!desktopQuery.matches) {
+                setSidebarState(false, { persist: false });
+              }
+            };
+
+            toggleButtons.forEach((button) => button.addEventListener('click', toggleSidebar));
+            overlay.addEventListener('click', closeMobileSidebar);
+            navLinks.forEach((link) => link.addEventListener('click', closeMobileSidebar));
+
+            desktopQuery.addEventListener('change', syncStateOnLoadOrResize);
+            document.addEventListener('astro:before-swap', handleBeforeSwap);
+
+            syncStateOnLoadOrResize();
+
+            window.__sidebarCleanup = () => {
+              toggleButtons.forEach((button) => button.removeEventListener('click', toggleSidebar));
+              overlay.removeEventListener('click', closeMobileSidebar);
+              navLinks.forEach((link) => link.removeEventListener('click', closeMobileSidebar));
+              desktopQuery.removeEventListener('change', syncStateOnLoadOrResize);
+              document.removeEventListener('astro:before-swap', handleBeforeSwap);
+              window.__sidebarCleanup = undefined;
+            };
+          };
+
+          document.addEventListener('astro:page-load', setupSidebar);
+          document.addEventListener('astro:after-swap', setupSidebar);
+          document.addEventListener('astro:before-preparation', () => {
+            window.__sidebarCleanup?.();
+          });
+          setupSidebar();
+        })();
+      </script>
+    )}
+  </body>
+</html>

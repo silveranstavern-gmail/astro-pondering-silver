@@ -1,0 +1,244 @@
+---
+import { Icon } from 'astro-icon/components';
+import { SITE_URL, SITE_TITLE } from '../consts';
+
+const currentUrl = `${SITE_URL}${Astro.url.pathname}`;
+const pageTitle = Astro.props.title || SITE_TITLE;
+
+const shareLinks = {
+  whatsapp: `https://wa.me/?text=${encodeURIComponent(`${pageTitle} - ${currentUrl}`)}`,
+  twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}`,
+  telegram: `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}`,
+  messenger: `fb-messenger://share?link=${encodeURIComponent(currentUrl)}`,
+};
+---
+
+<div class="share-button" data-share-widget data-state="closed">
+  <button
+    type="button"
+    class="fixed right-4 bottom-[120px] flex flex-col items-center transition-transform duration-200 sm:right-8"
+    data-share-open
+    aria-haspopup="dialog"
+    aria-controls="share-modal"
+  >
+    <div class="relative h-12 w-12">
+      <div class="absolute inset-0 rounded-full bg-purple-500 opacity-0"></div>
+      <div class="relative z-10 flex h-full w-full items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-purple-700">
+        <Icon name="heroicons:share-solid" class="h-6 w-6" aria-hidden="true" />
+      </div>
+    </div>
+    <span class="mt-1 text-xs font-medium text-gray-700 sm:mt-2 sm:text-sm">Share</span>
+  </button>
+
+  <div
+    id="share-overlay"
+    class="fixed inset-0 z-40 bg-black/50 transition-opacity duration-200"
+    data-share-overlay
+  ></div>
+
+  <div
+    id="share-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="share-modal-title"
+    class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 transition-opacity duration-200"
+    data-share-modal
+  >
+    <div class="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
+      <h2 id="share-modal-title" class="mb-4 text-xl font-bold text-gray-900">Share this page</h2>
+      <div class="space-y-3">
+        <a
+          href={shareLinks.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#20ba5a]"
+        >
+          <Icon name="simple-icons:whatsapp" class="h-4 w-4" />
+          Share on WhatsApp
+        </a>
+        <a
+          href={shareLinks.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#1DA1F2] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#1a8cd8]"
+        >
+          <Icon name="simple-icons:x" class="h-4 w-4" />
+          Share on X (Twitter)
+        </a>
+        <a
+          href={shareLinks.telegram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0088cc] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#006699]"
+        >
+          <Icon name="simple-icons:telegram" class="h-4 w-4" />
+          Share on Telegram
+        </a>
+        <a
+          href={shareLinks.messenger}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0084FF] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#0066cc]"
+        >
+          <Icon name="simple-icons:messenger" class="h-4 w-4" />
+          Share on Messenger
+        </a>
+        <button
+          type="button"
+          data-copy-link
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-600 px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-700"
+        >
+          <Icon name="heroicons:link" class="h-4 w-4" />
+          <span data-copy-text>Copy link</span>
+        </button>
+      </div>
+      <button
+        type="button"
+        class="mt-5 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-100"
+        data-share-close
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ currentUrl }}>
+  const previousCleanup = window.__shareWidgetCleanup;
+  if (typeof previousCleanup === 'function') {
+    previousCleanup();
+  }
+
+  function setupShareWidget() {
+    const root = document.querySelector('[data-share-widget]');
+    if (!root) {
+      window.__shareWidgetCleanup = undefined;
+      return;
+    }
+
+    const openBtn = root.querySelector('[data-share-open]');
+    const closeBtn = root.querySelector('[data-share-close]');
+    const overlay = root.querySelector('[data-share-overlay]');
+    const modal = root.querySelector('[data-share-modal]');
+    const copyBtn = root.querySelector('[data-copy-link]');
+    const copyText = root.querySelector('[data-copy-text]');
+    const shareButton = openBtn;
+    const floatingClassList = shareButton?.classList;
+    if (!openBtn || !closeBtn || !overlay || !modal) return;
+
+    const focusableSelectors = 'a[href], button:not([disabled])';
+
+    const openModal = () => {
+      root.dataset.state = 'open';
+      modal.addEventListener(
+        'transitionend',
+        () => {
+          const firstFocusable = modal.querySelector(focusableSelectors);
+          if (firstFocusable instanceof HTMLElement) {
+            firstFocusable.focus();
+          }
+        },
+        { once: true },
+      );
+      modal.addEventListener(
+        'transitioncancel',
+        () => {
+          const firstFocusable = modal.querySelector(focusableSelectors);
+          if (firstFocusable instanceof HTMLElement) {
+            firstFocusable.focus();
+          }
+        },
+        { once: true },
+      );
+    };
+
+    const closeModal = () => {
+      root.dataset.state = 'closed';
+      shareButton?.focus();
+    };
+
+    const handleCopyLink = async () => {
+      try {
+        await navigator.clipboard.writeText(currentUrl);
+        if (copyText) {
+          const originalText = copyText.textContent;
+          copyText.textContent = 'Copied!';
+          setTimeout(() => {
+            copyText.textContent = originalText;
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Failed to copy link:', err);
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key !== 'Tab' || root.dataset.state !== 'open') return;
+
+      const focusable = Array.from(modal.querySelectorAll(focusableSelectors));
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    const updateButtonOffset = () => {
+      if (!floatingClassList) return;
+      const nearBottom =
+        document.documentElement.scrollHeight - (window.scrollY + window.innerHeight) <= 84;
+      floatingClassList.toggle('bottom-[120px]', !nearBottom);
+      floatingClassList.toggle('bottom-[168px]', nearBottom);
+    };
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+    if (copyBtn) copyBtn.addEventListener('click', handleCopyLink);
+    document.addEventListener('keydown', handleKeyDown);
+
+    window.addEventListener('scroll', updateButtonOffset, { passive: true });
+    updateButtonOffset();
+
+    window.__shareWidgetCleanup = () => {
+      openBtn.removeEventListener('click', openModal);
+      closeBtn.removeEventListener('click', closeModal);
+      overlay.removeEventListener('click', closeModal);
+      if (copyBtn) copyBtn.removeEventListener('click', handleCopyLink);
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('scroll', updateButtonOffset);
+    };
+  }
+
+  setupShareWidget();
+  document.addEventListener('astro:after-swap', setupShareWidget);
+</script>
+
+<style>
+  [data-share-widget][data-state='closed'] [data-share-modal],
+  [data-share-widget][data-state='closed'] [data-share-overlay] {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  [data-share-widget][data-state='open'] [data-share-modal],
+  [data-share-widget][data-state='open'] [data-share-overlay] {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+</style>

@@ -1,0 +1,225 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const donationLinks = {
+  stripe: 'https://donate.stripe.com/eVa4hvd8sfNx0Pm4gg',
+  paypal: 'https://www.paypal.com/donate/?business=5XBKNVSRQXEYU&no_recurring=0&currency_code=USD',
+  kofi: 'https://ko-fi.com/W7W715WXFP',
+};
+---
+
+<div class="donation-button" data-donation-widget data-state="closed">
+  <button
+    type="button"
+    class="fixed right-4 bottom-4 flex flex-col items-center transition-transform duration-200 sm:right-8"
+    data-donation-open
+    aria-haspopup="dialog"
+    aria-controls="donation-modal"
+  >
+    <div class="relative h-12 w-12">
+      <div class="animate-pulse-glow absolute inset-0 rounded-full bg-purple-500 opacity-0"></div>
+      <div class="relative z-10 flex h-full w-full items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-purple-700">
+        <Icon name="heroicons:heart-solid" class="h-6 w-6" aria-hidden="true" />
+      </div>
+    </div>
+    <span class="mt-1 text-xs font-medium text-gray-700 sm:mt-2 sm:text-sm">Donate</span>
+  </button>
+
+  <div
+    id="donation-overlay"
+    class="fixed inset-0 z-40 bg-black/50 transition-opacity duration-200"
+    data-donation-overlay
+  ></div>
+
+  <div
+    id="donation-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="donation-modal-title"
+    class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 transition-opacity duration-200"
+    data-donation-modal
+  >
+    <div class="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
+      <h2 id="donation-modal-title" class="mb-4 text-xl font-bold text-gray-900">Support My Work</h2>
+      <div class="space-y-3">
+        <a
+          href={donationLinks.stripe}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-500 px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-600"
+        >
+          Donate with Stripe
+        </a>
+        <a
+          href={donationLinks.paypal}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#003087] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#002367]"
+        >
+          Donate with PayPal
+        </a>
+        <a
+          href={donationLinks.kofi}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#29abe0] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#2795c4]"
+        >
+          Support me on Ko-fi
+        </a>
+      </div>
+      <button
+        type="button"
+        class="mt-5 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-100"
+        data-donation-close
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const previousCleanup = window.__donationWidgetCleanup;
+  if (typeof previousCleanup === 'function') {
+    previousCleanup();
+  }
+
+  function setupDonationWidget() {
+    const root = document.querySelector('[data-donation-widget]');
+    if (!root) {
+      window.__donationWidgetCleanup = undefined;
+      return;
+    }
+
+    const openBtn = root.querySelector('[data-donation-open]');
+    const closeBtn = root.querySelector('[data-donation-close]');
+    const overlay = root.querySelector('[data-donation-overlay]');
+    const modal = root.querySelector('[data-donation-modal]');
+    const donationButton = openBtn;
+    const floatingClassList = donationButton?.classList;
+    if (!openBtn || !closeBtn || !overlay || !modal) return;
+
+    const focusableSelectors = 'a[href], button:not([disabled])';
+
+    const openModal = () => {
+      root.dataset.state = 'open';
+      modal.addEventListener(
+        'transitionend',
+        () => {
+          const firstFocusable = modal.querySelector(focusableSelectors);
+          if (firstFocusable instanceof HTMLElement) {
+            firstFocusable.focus();
+          }
+        },
+        { once: true },
+      );
+      modal.addEventListener(
+        'transitioncancel',
+        () => {
+          const firstFocusable = modal.querySelector(focusableSelectors);
+          if (firstFocusable instanceof HTMLElement) {
+            firstFocusable.focus();
+          }
+        },
+        { once: true },
+      );
+    };
+
+    const closeModal = () => {
+      root.dataset.state = 'closed';
+      donationButton?.focus();
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key !== 'Tab' || root.dataset.state !== 'open') return;
+
+      const focusable = Array.from(modal.querySelectorAll(focusableSelectors));
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    const updateButtonOffset = () => {
+      if (!floatingClassList) return;
+      const nearBottom =
+        document.documentElement.scrollHeight - (window.scrollY + window.innerHeight) <= 84; // matches footer height + desired margin to avoid overlap near page end
+      floatingClassList.toggle('bottom-4', !nearBottom);
+      floatingClassList.toggle('bottom-16', nearBottom);
+    };
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', handleKeyDown);
+
+    window.addEventListener('scroll', updateButtonOffset, { passive: true });
+    updateButtonOffset();
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      document.querySelectorAll('.animate-pulse-glow').forEach((el) => {
+        el.classList.remove('animate-pulse-glow');
+      });
+    }
+
+    window.__donationWidgetCleanup = () => {
+      openBtn.removeEventListener('click', openModal);
+      closeBtn.removeEventListener('click', closeModal);
+      overlay.removeEventListener('click', closeModal);
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('scroll', updateButtonOffset);
+    };
+  }
+
+  setupDonationWidget();
+  document.addEventListener('astro:after-swap', setupDonationWidget);
+</script>
+
+<style>
+  @keyframes donation-glow {
+    0%,
+    98%,
+    100% {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+    1% {
+      opacity: 1;
+      transform: scale(1.5);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: donation-glow 5s ease-in-out infinite;
+    filter: blur(8px);
+  }
+
+  [data-donation-widget][data-state='closed'] [data-donation-modal],
+  [data-donation-widget][data-state='closed'] [data-donation-overlay] {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  [data-donation-widget][data-state='open'] [data-donation-modal],
+  [data-donation-widget][data-state='open'] [data-donation-overlay] {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+</style>

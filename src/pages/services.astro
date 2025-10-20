@@ -1,0 +1,87 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { bookingUrl, faqs, services } from '../data/services';
+---
+
+<SiteLayout
+  title="Services & Offerings | Pondering Silver"
+  description="Explore personalized coaching, consultations, and mentorship designed to support your spiritual growth and intentional living."
+>
+  <article class="mx-auto flex max-w-4xl flex-col gap-12">
+    <header class="text-center">
+      <h1 class="mb-6 text-4xl font-bold text-gray-900">Services &amp; Offerings</h1>
+      <p class="text-lg text-gray-600">
+        Discover the right support for your journey of personal growth, spiritual development, and intentional living.
+      </p>
+    </header>
+
+    <section class="space-y-10">
+      {services.map((service) => (
+        <div class="relative overflow-hidden rounded-2xl border border-gray-200 border-l-4 border-l-purple-600 bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl">
+          <div class="p-8">
+            <h2 class="mb-4 text-2xl font-bold text-purple-700">{service.title}</h2>
+            <p class="leading-relaxed text-gray-600">{service.description}</p>
+            <div class="mt-8">
+              <a
+                href={bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:bg-purple-700 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+              >
+                <span aria-hidden="true">📅</span>
+                <span>Schedule a Session</span>
+              </a>
+            </div>
+          </div>
+          <div class="absolute -right-4 -top-4 h-20 w-20 -rotate-12 rounded-lg bg-purple-100/80"></div>
+        </div>
+      ))}
+    </section>
+
+    <section class="rounded-2xl border border-purple-100 bg-gradient-to-r from-purple-50 to-indigo-50 p-10 text-center shadow-sm">
+      <h2 class="mb-4 text-2xl font-bold text-purple-800">Ready to Begin Your Journey?</h2>
+      <p class="mb-8 text-gray-700">
+        All sessions are personalized to your unique needs and circumstances. Take the first step toward transformation today.
+      </p>
+      <a
+        href={bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-8 py-4 text-base font-medium text-white shadow-md transition hover:bg-purple-700 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+      >
+        <span aria-hidden="true">✨</span>
+        <span>Book Your Session</span>
+      </a>
+    </section>
+
+    <section class="space-y-6">
+      <h2 class="text-center text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left text-lg font-medium text-gray-800 transition-colors duration-200 group-open:bg-gray-50">
+              <span class="flex-1">{faq.question}</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-purple-100 text-purple-600" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 group-open:hidden">
+                  <path d="M12 4a1 1 0 011 1v6h6a1 1 0 110 2h-6v6a1 1 0 11-2 0v-6H5a1 1 0 110-2h6V5a1 1 0 011-1z" />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="hidden h-5 w-5 group-open:block">
+                  <path d="M5 11a1 1 0 100 2h14a1 1 0 100-2H5z" />
+                </svg>
+              </span>
+            </summary>
+            <div class="border-t border-gray-100 px-6 py-4 text-gray-600">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+  </article>
+</SiteLayout>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

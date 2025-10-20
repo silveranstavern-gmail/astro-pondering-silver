@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { PurchaseDecisionHelper } from '../../components/tools/PurchaseDecisionHelper';
+---
+
+<SiteLayout
+  title="Purchase Decision Helper | Pondering Silver"
+  description="Compare purchase options by balancing cost with desirability and keep notes saved locally."
+>
+  <article class="mx-auto flex max-w-4xl flex-col gap-10 text-gray-700">
+    <header class="space-y-4 text-center">
+      <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">Purchase Decision Helper</h1>
+      <p class="text-base sm:text-lg">
+        Track potential purchases, balance your budget against how much each item lights you up, and sort by what matters most.
+        All data stays in your browser so you can refine choices over time.
+      </p>
+    </header>
+
+    <PurchaseDecisionHelper client:load />
+  </article>
+</SiteLayout>

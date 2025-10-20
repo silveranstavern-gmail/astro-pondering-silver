@@ -1,0 +1,27 @@
+---
+import { SITE_TITLE } from '../consts';
+---
+
+<header class="sticky top-0 z-40 bg-white shadow-sm" transition:persist="header">
+	<div class="flex items-center h-16 px-4 sm:px-6">
+		<button
+			type="button"
+			class="flex items-center justify-center w-10 h-10 mr-4 rounded-full text-gray-600 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+			aria-label="Toggle navigation menu"
+			aria-controls="site-sidebar"
+			aria-expanded="false"
+			data-sidebar-toggle
+		>
+			<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+				<line x1="4" y1="6" x2="20" y2="6" />
+				<line x1="4" y1="12" x2="20" y2="12" />
+				<line x1="4" y1="18" x2="20" y2="18" />
+			</svg>
+		</button>
+		<a href="/" class="text-3xl font-semibold tracking-wide text-gray-900 transition-colors duration-200 hover:text-gray-700">
+			<span class="inline-block pr-1 -translate-y-[0.2em]">P</span>
+			<span class="inline-block">s</span>
+			<span class="ml-3 text-base font-medium uppercase tracking-[0.3em] text-gray-500 hidden sm:inline">{SITE_TITLE}</span>
+		</a>
+	</div>
+</header>

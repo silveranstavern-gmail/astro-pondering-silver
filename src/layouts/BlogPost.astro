@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import FormattedDate from '../components/FormattedDate.astro';
+import SiteLayout from './SiteLayout.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, date, updatedDate, keywords = [], heroImage, author } = Astro.props as Props;
+const formattedTitle = `${title} | Pondering Silver`;
+const extraKeywords = keywords.length > 4 ? keywords.length - 4 : 0;
+const displayKeywords = keywords.slice(0, 4);
+// Only show updated date if it differs from the original date (same-day updates are hidden)
+const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== date.toDateString());
+---
+
+<SiteLayout title={formattedTitle} description={description}>
+  <article class="mx-auto flex max-w-3xl flex-col gap-12">
+    <header class="space-y-5">
+      <div class="space-y-2 text-sm text-gray-500">
+        <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+          <FormattedDate date={date} />
+          {showUpdatedDate && (
+            <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+              Updated <FormattedDate date={updatedDate} />
+            </span>
+          )}
+          {author && <span class="text-gray-500">by {author}</span>}
+        </div>
+        {keywords.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {displayKeywords.map((keyword) => (
+              <span class="rounded-full bg-purple-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700">
+                {keyword}
+              </span>
+            ))}
+            {extraKeywords > 0 && (
+              <span class="text-xs text-gray-400">+{extraKeywords} more</span>
+            )}
+          </div>
+        )}
+      </div>
+
+      <h1 class="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl">{title}</h1>
+      <p class="text-base text-gray-600 sm:text-lg">{description}</p>
+      <hr class="border-gray-200" />
+    </header>
+
+    {heroImage && (
+      <figure class="overflow-hidden rounded-3xl border border-gray-200 shadow-sm">
+        <Image src={heroImage} alt="" class="h-full w-full object-cover" />
+      </figure>
+    )}
+
+    <div class="prose prose-lg prose-gray max-w-none">
+      <slot />
+    </div>
+
+    <div class="flex justify-center mt-12">
+      <a
+        href="https://discord.gg/Z7pVmpdx3R"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      >
+        <Icon name="simple-icons:discord" class="h-5 w-5" />
+        Talk about it on Discord
+      </a>
+    </div>
+  </article>
+</SiteLayout>

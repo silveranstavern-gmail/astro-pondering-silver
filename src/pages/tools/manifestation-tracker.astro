@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { ManifestationTracker } from '../../components/tools/ManifestationTracker';
+---
+
+<SiteLayout
+  title="7-Day Manifestation Tracker | Pondering Silver"
+  description="Track your affirmations, log daily repetitions, and practice with a built-in virtual mala, all from your browser."
+>
+  <article class="mx-auto flex max-w-5xl flex-col gap-10 text-gray-700">
+    <header class="space-y-4 text-center">
+      <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">7-Day Manifestation Tracker</h1>
+      <p class="text-base sm:text-lg">
+        Design a consistent manifestation practice with guided repetition modes, daily progress tracking, and a virtual mala to
+        pace your affirmations. Everything stays on your device for complete privacy.
+      </p>
+    </header>
+
+    <section class="space-y-6">
+      <ManifestationTracker client:load />
+      <p class="text-sm text-gray-500">
+        Tip: data is stored in your browser&apos;s local storage. Clearing it will reset your affirmations and progress.
+      </p>
+    </section>
+  </article>
+</SiteLayout>

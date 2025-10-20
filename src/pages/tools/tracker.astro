@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { ListTracker } from '../../components/tools/ListTracker';
+---
+
+<SiteLayout
+  title="List Tracker | Pondering Silver"
+  description="Create and organize multiple lists with drag-and-drop flexibility and offline persistence."
+>
+  <article class="mx-auto flex max-w-6xl flex-col gap-10 text-gray-700">
+    <header class="space-y-4 text-center">
+      <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">List Tracker</h1>
+      <p class="text-base sm:text-lg">
+        Capture ideas, tasks, and resources across as many lists as you need. Drag items between lists, reorder on the fly, and
+        keep everything stored privately in your browser.
+      </p>
+    </header>
+
+    <section class="space-y-6">
+      <ListTracker client:load />
+      <p class="text-sm text-gray-500">
+        Tip: lists and items live in your browser&apos;s local storage. Clearing it will wipe the tracker clean.
+      </p>
+    </section>
+  </article>
+</SiteLayout>

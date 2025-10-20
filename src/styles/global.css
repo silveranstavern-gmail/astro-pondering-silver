@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sidebar-width-open: 16rem;
+  --sidebar-width-closed: 5rem;
+}
+
+@layer base {
+  body {
+    @apply min-h-screen bg-gray-100 text-gray-900 font-sans antialiased;
+  }
+
+  main {
+    @apply w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10;
+  }
+
+  a {
+    @apply text-brand transition-colors duration-200;
+  }
+
+  a:hover {
+    @apply text-brand-dark;
+  }
+}
+
+@layer components {
+  @media (min-width: 1024px) {
+    .layout__main {
+      display: grid;
+      grid-template-columns: var(--sidebar-width-open) 1fr;
+      transition: grid-template-columns 0.3s ease;
+    }
+
+    html.sidebar-collapsed-initial .layout__main {
+      grid-template-columns: var(--sidebar-width-closed) 1fr;
+    }
+
+    body.sidebar-collapsed .layout__main {
+      grid-template-columns: var(--sidebar-width-closed) 1fr;
+    }
+
+    #site-sidebar {
+      position: sticky;
+      top: 4rem;
+      height: calc(100vh - 4rem);
+      width: auto;
+      transition: width 0.3s ease;
+    }
+
+    html.sidebar-collapsed-initial .sidebar__label {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+    }
+
+    body.sidebar-collapsed .sidebar__label {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+    }
+  }
+
+  body.sidebar-open {
+    @apply overflow-hidden;
+  }
+}
+
+@layer utilities {
+  .hydration-transition {
+    transition-property: opacity, transform, width;
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

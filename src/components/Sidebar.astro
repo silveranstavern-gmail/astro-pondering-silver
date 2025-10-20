@@ -1,0 +1,92 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface NavItem {
+  href: string;
+  label: string;
+  ariaLabel?: string;
+  icon: string;
+}
+
+const navItems: NavItem[] = [
+  {
+    href: '/',
+    label: 'Home',
+    ariaLabel: 'Navigate to Home page',
+    icon: 'heroicons:home',
+  },
+  {
+    href: '/services',
+    label: 'Services',
+    ariaLabel: 'Navigate to Services page',
+    icon: 'heroicons:sparkles',
+  },
+  {
+    href: '/resources',
+    label: 'Resources',
+    ariaLabel: 'Navigate to Resources page',
+    icon: 'heroicons:book-open',
+  },
+  {
+    href: '/tools',
+    label: 'Tools',
+    ariaLabel: 'Navigate to Tools page',
+    icon: 'heroicons:wrench-screwdriver',
+  },
+  {
+    href: '/blog',
+    label: 'Blog',
+    ariaLabel: 'Navigate to Blog page',
+    icon: 'heroicons:pencil-square',
+  },
+  {
+    href: '/privacy',
+    label: 'Privacy & Terms',
+    ariaLabel: 'Navigate to Privacy and Terms page',
+    icon: 'heroicons:shield-check',
+  },
+];
+
+const pathname = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+};
+---
+
+<aside
+  id="site-sidebar"
+  transition:persist="sidebar"
+  data-state="open"
+  class="fixed lg:sticky top-16 h-[calc(100vh-4rem)] z-30 flex flex-col overflow-y-auto border-r border-gray-100 bg-white p-4 shadow-lg transition-all duration-300 hydration-transition data-[state=closed]:-translate-x-full"
+  role="navigation"
+  aria-label="Main navigation"
+>
+  <nav class="space-y-2" role="menu">
+    {navItems.map((item) => {
+      const active = isActive(item.href);
+      return (
+        <a
+          href={item.href}
+          role="menuitem"
+          aria-label={item.ariaLabel ?? item.label}
+          class:list={[
+            'flex items-center rounded-xl px-3 py-2 text-sm font-medium transition-colors duration-200',
+            active
+              ? 'bg-purple-100 text-purple-700'
+              : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
+          ]}
+          data-sidebar-link
+        >
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-50 text-purple-600">
+            <Icon name={item.icon} class="h-5 w-5" aria-hidden="true" />
+          </span>
+          <span class="sidebar__label ml-3 whitespace-nowrap text-sm font-medium transition-opacity duration-200">
+            {item.label}
+          </span>
+        </a>
+      );
+    })}
+  </nav>
+</aside>

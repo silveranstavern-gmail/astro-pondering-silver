@@ -1,0 +1,107 @@
+---
+import FormattedDate from '../../components/FormattedDate.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getSortedAndFilteredPosts, resolvePostLink } from '../../utils/blog';
+
+const posts = await getSortedAndFilteredPosts();
+
+const featuredSlugs = new Set([
+  '/blog/fractals-of-the-divine',
+  '/blog/reflections-in-a-mirror-2025-03-15',
+]);
+const featuredPosts = posts.filter((post) => featuredSlugs.has(resolvePostLink(post)));
+---
+
+<SiteLayout title="Blog | Pondering Silver" description="Recent writings, reflections, and transmissions from the Pondering Silver archive.">
+  <header class="space-y-4">
+    <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700">
+      Blog
+    </span>
+    <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">Depth Notes &amp; Devotional Essays</h1>
+    <p class="max-w-2xl text-sm text-gray-600 sm:text-base">
+      Explore the full body of posts brought over from the Nuxt build. Featured pieces sit up front, and you can search the archive below by theme, title, or keyword.
+    </p>
+  </header>
+
+  {featuredPosts.length > 0 && (
+    <section class="mt-10 space-y-6">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-xl font-semibold text-gray-900">Featured articles</h2>
+        <span class="text-sm text-gray-500">{featuredPosts.length} highlighted</span>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        {featuredPosts.map((post) => {
+          const link = resolvePostLink(post);
+          const keywords = post.data.keywords ?? [];
+          const previewKeywords = keywords.slice(0, 3);
+          const extraKeywords = Math.max(0, keywords.length - previewKeywords.length);
+          return (
+            <a
+              href={link}
+              class="group flex h-full flex-col rounded-2xl border border-purple-100 bg-white p-6 shadow-sm transition hover:border-purple-200 hover:shadow-md"
+            >
+              <h3 class="text-lg font-semibold text-gray-900 transition-colors duration-200 group-hover:text-purple-700">
+                {post.data.title}
+              </h3>
+              <p class="mt-3 flex-1 text-sm text-gray-600">{post.data.description}</p>
+              <div class="mt-5 space-y-3 text-sm text-gray-500">
+                <div class="flex flex-wrap gap-2">
+                  {previewKeywords.map((keyword) => (
+                    <span class="rounded-full bg-purple-50 px-2.5 py-1 text-xs font-medium text-purple-700" aria-hidden="true">
+                      {keyword}
+                    </span>
+                  ))}
+                  {extraKeywords > 0 && (
+                    <span class="text-xs text-gray-400">+{extraKeywords} more</span>
+                  )}
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span>
+                    <FormattedDate date={post.data.date} />
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-purple-600 group-hover:text-purple-800">
+                    Read more
+                    <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 18l6-6-6-6"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  <section class="mt-12 space-y-6" data-search-container>
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <h2 class="text-xl font-semibold text-gray-900">Search the archive</h2>
+      <label class="relative flex w-full sm:w-80">
+        <span class="sr-only">Search blog posts</span>
+        <input
+          type="search"
+          placeholder="Search by title, description, or keyword..."
+          class="w-full rounded-xl border border-gray-300 bg-white py-2 pl-4 pr-10 text-sm text-gray-700 shadow-sm transition focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-100"
+          data-search-input
+        />
+        <svg class="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </label>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2" data-search-results>
+      {posts.map((post) => <BlogPostCard post={post} />)}
+    </div>
+    <p class="text-sm text-gray-500" data-empty-state hidden>
+      No posts match that search yet. Try a different phrase or explore the featured pieces above.
+    </p>
+  </section>
+  <script>
+    import '../../scripts/search.js';
+  </script>
+
+</SiteLayout>

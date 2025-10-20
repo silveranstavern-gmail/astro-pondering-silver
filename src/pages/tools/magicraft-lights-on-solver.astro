@@ -1,0 +1,32 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { LightsOnSolver } from '../../components/tools/LightsOnSolver';
+---
+
+<SiteLayout
+  title="Magicraft Lights On Solver | Pondering Silver"
+  description="Interactive solver for the Magicraft Lights On puzzle with step-by-step instructions."
+>
+  <article class="mx-auto flex max-w-4xl flex-col gap-10 text-gray-700">
+    <header class="space-y-4 text-center">
+      <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">Magicraft Lights On Solver</h1>
+      <p class="text-base sm:text-lg">
+        Set up the initial board, experiment with the in-game toggle behaviour, and generate the shortest path to light every
+        tile. Everything runs locally so you can mirror puzzles from Magicraft without leaving your browser.
+      </p>
+    </header>
+
+    <section class="space-y-6">
+      <div class="space-y-3 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-gray-900">Quick steps</h2>
+        <ol class="list-decimal space-y-2 pl-5 text-sm text-gray-600">
+          <li>Switch to <strong>Set State</strong> and click the tiles to match your in-game puzzle.</li>
+          <li>Try <strong>Solve Mode</strong> to mimic how toggles affect neighbouring tiles.</li>
+          <li>Hit <strong>Solve</strong> to generate the optimal sequence of moves.</li>
+        </ol>
+      </div>
+
+      <LightsOnSolver client:load />
+    </section>
+  </article>
+</SiteLayout>

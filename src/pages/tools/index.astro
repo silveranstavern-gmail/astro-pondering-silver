@@ -1,0 +1,52 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { toolCategories } from '../../data/tools';
+
+const categories = toolCategories
+  .map((category) => {
+    const active = category.tools.filter((tool) => tool.enabled !== false);
+    const upcoming = category.tools.filter((tool) => tool.enabled === false);
+    return { ...category, active, upcoming };
+  })
+  .filter((category) => category.active.length || category.upcoming.length);
+---
+
+<SiteLayout
+  title="Tools | Pondering Silver"
+  description="Explore utilities crafted to support your personal growth, mindfulness practices, and curiosity."
+>
+  <article class="mx-auto flex max-w-6xl flex-col gap-12">
+    <header class="space-y-4 text-center">
+      <h1 class="text-4xl font-bold text-gray-900">Tools</h1>
+      <p class="text-lg text-gray-600">
+        Explore a growing collection of experiences that support spiritual practice, productivity, and play.
+      </p>
+    </header>
+
+    <div class="space-y-12">
+      {categories.map((category) => (
+        <section class="space-y-6">
+          <h2 class={`text-2xl font-semibold ${category.accent}`}>{category.title}</h2>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {category.active.map((tool) => (
+              <a
+                href={tool.path}
+                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+              >
+                <h3 class="mb-2 text-xl font-semibold text-gray-900">{tool.title}</h3>
+                <p class="text-gray-600">{tool.description}</p>
+              </a>
+            ))}
+            {category.upcoming.map((tool) => (
+              <div class="rounded-2xl border border-dashed border-purple-200 bg-white/70 p-6 text-gray-500 shadow-sm">
+                <h3 class="mb-2 text-xl font-semibold text-purple-400">{tool.title}</h3>
+                <p>{tool.description}</p>
+                <p class="mt-4 text-sm font-medium text-purple-400">Coming soon</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </article>
+</SiteLayout>

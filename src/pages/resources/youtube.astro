@@ -1,0 +1,45 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { youtubeResources } from '../../data/resources';
+---
+
+<SiteLayout
+  title="YouTube Resources | Pondering Silver"
+  description="Curated YouTube channels focused on Light Language, high vibrational music, and spiritual growth."
+>
+  <article class="mx-auto flex max-w-6xl flex-col gap-12">
+    <header class="space-y-4">
+      <a href="/resources" class="inline-flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-700">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+          <path d="M15.78 4.22a.75.75 0 010 1.06L10.06 11l5.72 5.72a.75.75 0 11-1.06 1.06l-6.25-6.25a.75.75 0 010-1.06l6.25-6.25a.75.75 0 011.06 0z" />
+        </svg>
+        Back to Resources
+      </a>
+      <h1 class="text-4xl font-bold text-gray-900">YouTube Resources</h1>
+      <p class="text-lg text-gray-600">
+        Explore hand-picked channels sharing Light Language transmissions, meditative music, and spiritual teachings.
+      </p>
+    </header>
+
+    <div class="space-y-12">
+      {youtubeResources.map((category) => (
+        <section>
+          <h2 class="mb-6 text-2xl font-semibold text-gray-800">{category.title}</h2>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {category.channels.map((channel) => (
+              <a
+                href={channel.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+              >
+                <h3 class="mb-2 text-xl font-medium text-gray-900">{channel.name}</h3>
+                {channel.description ? <p class="text-gray-600">{channel.description}</p> : null}
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </article>
+</SiteLayout>

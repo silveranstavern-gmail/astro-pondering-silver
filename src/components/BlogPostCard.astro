@@ -1,0 +1,75 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+import { resolvePostLink } from '../utils/blog';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const link = resolvePostLink(post);
+const keywords = post.data.keywords ?? [];
+const previewKeywords = keywords.slice(0, 3);
+const hiddenKeywords = keywords.slice(3);
+const extraKeywords = hiddenKeywords.length;
+const searchText = [post.data.title, post.data.description, keywords.join(' ')].join(' ').toLowerCase();
+---
+
+<article
+  data-search-card
+  data-search-text={searchText}
+  class="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-purple-200 hover:shadow-md"
+>
+  <div class="flex-1 space-y-3">
+    <h3 class="text-lg font-semibold text-gray-900">
+      <a href={link} class="transition-colors duration-200 hover:text-purple-700">{post.data.title}</a>
+    </h3>
+    <p class="text-sm text-gray-600">{post.data.description}</p>
+  </div>
+  <div class="mt-5 space-y-3 pt-0">
+    <div class="flex flex-wrap gap-2" data-tags-container>
+      {previewKeywords.map((keyword) => (
+        <button
+          type="button"
+          data-search-tag={keyword}
+          class="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700 transition hover:bg-gray-200 hover:text-gray-900"
+          title={`Filter by ${keyword}`}
+        >
+          {keyword}
+        </button>
+      ))}
+      {hiddenKeywords.map((keyword) => (
+        <button
+          type="button"
+          data-search-tag={keyword}
+          data-hidden-tag
+          class="hidden rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700 transition hover:bg-gray-200 hover:text-gray-900"
+          title={`Filter by ${keyword}`}
+        >
+          {keyword}
+        </button>
+      ))}
+      {extraKeywords > 0 && (
+        <button
+          type="button"
+          data-expand-tags
+          class="text-xs text-gray-400 transition hover:text-gray-600 hover:underline"
+          title="Show all tags"
+        >
+          <span data-expand-text>+{extraKeywords} more</span>
+          <span data-collapse-text class="hidden">show less</span>
+        </button>
+      )}
+    </div>
+    <div class="flex items-center justify-between text-xs text-gray-500">
+      <FormattedDate date={post.data.date} />
+      <a href={link} class="inline-flex items-center gap-1 text-purple-600 transition-colors duration-200 hover:text-purple-800">
+        Read
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
