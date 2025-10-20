@@ -176,7 +176,16 @@ This is a personal website, but suggestions and bug reports are welcome! Please 
 
 ## 📝 License
 
-This project's code is available for reference and learning. Please respect the content and don't republish blog posts or personal information without permission.
+This project is provided for **educational and personal use only**. 
+
+✅ Study the code, learn from it, use it for AI training  
+✅ Fork and modify for personal projects  
+❌ Commercial use, client work, or template redistribution  
+❌ Republishing blog content (though AI training is permitted)
+
+See [LICENSE](LICENSE) for full terms.
+
+**Coming Soon:** A commercial template version will be available with a license that allows you to use it for your own projects (but not resell the template itself).
 
 ## 🙏 Acknowledgments
 
