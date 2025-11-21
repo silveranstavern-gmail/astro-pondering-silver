@@ -57,6 +57,12 @@ interface SkillCategory {
     items: string[];
 }
 
+interface Project {
+    title: string;
+    description: string;
+    url: string;
+}
+
 interface ContactInfo {
     email: string;
     whatsapp: string;
@@ -75,6 +81,7 @@ interface ResumeData {
     highlights: Highlight[];
     metrics: Metric[];
     experiences: Experience[];
+    projects: Project[];
     education: EducationItem[];
     skills: SkillCategory[];
 }
@@ -338,6 +345,13 @@ const resumeData: ResumeData = {
             ],
         },
     ],
+    projects: [
+        {
+            title: 'Conversations Woven',
+            description: 'Chat interface for Open Router, requires API key from Open Router to work. Hosted on Vercel hobby tier',
+            url: 'https://conversations-woven.vercel.app/chat',
+        },
+    ],
     education: [
         {
             institution: 'Florida Institute of Technology',
@@ -529,6 +543,7 @@ const RoleCard = ({
 const sections = [
     { id: 'overview', label: 'Overview' },
     { id: 'experience', label: 'Experience' },
+    { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' },
     { id: 'education', label: 'Education' },
 ];
@@ -716,6 +731,41 @@ export default function Resume() {
                                     })}
                                 </div>
                             </article>
+                        ))}
+                    </div>
+                </section>
+
+                {/* --- Projects Section --- */}
+                <section id="projects" className="space-y-6">
+                    <header className="space-y-2">
+                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Projects</h2>
+                        <p className="text-sm text-slate-600">
+                            Personal projects and side work demonstrating technical capabilities and creative problem-solving.
+                        </p>
+                    </header>
+
+                    <div className="space-y-4">
+                        {resumeData.projects.map((project) => (
+                            <div
+                                key={project.title}
+                                className="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-md transition hover:-translate-y-1 hover:shadow-lg print:border-slate-200 print:shadow-none"
+                            >
+                                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                                    <div className="space-y-2">
+                                        <h3 className="text-lg font-semibold text-slate-900">{project.title}</h3>
+                                        <p className="text-sm leading-relaxed text-slate-700">{project.description}</p>
+                                    </div>
+                                    <a
+                                        href={project.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 print:hidden"
+                                    >
+                                        <span aria-hidden>🔗</span>
+                                        Visit Project
+                                    </a>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </section>
