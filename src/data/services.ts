@@ -29,7 +29,7 @@ export const services: ServiceOffering[] = [
   {
     title: 'Inner Resonance Guidance',
     description:
-      "Inner Resonance Guidance invites you into an intimate exploration of your inner world to reconnect deeply with your internal compass—your heartsong. Together, we'll tune into your unique frequency, gently uncovering clarity about your desires, purpose, and next steps. By aligning more clearly with your internal resonance, you'll find yourself naturally guided toward decisions, actions, and experiences that feel deeply authentic and nourishing. This transformative process not only clarifies your path forward but enriches your overall sense of well-being and alignment with life's greater flow.",
+      "Inner Resonance Guidance invites you into an intimate exploration of your inner world to reconnect deeply with your internal compass – your heartsong. Together, we'll tune into your unique frequency, gently uncovering clarity about your desires, purpose, and next steps. By aligning more clearly with your internal resonance, you'll find yourself naturally guided toward decisions, actions, and experiences that feel deeply authentic and nourishing. This transformative process not only clarifies your path forward but enriches your overall sense of well-being and alignment with life's greater flow.",
   },
   {
     title: 'Manifestation Coaching & Mentorship',

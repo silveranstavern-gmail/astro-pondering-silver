@@ -208,7 +208,7 @@ deploy: true
 
 * Trust is a frequency.
 
-  * Tune to it, and life starts harmonizing around you—same notes, less noise.
+  * Tune to it, and life starts harmonizing around you – same notes, less noise.
 
 * Attention is consecration. Action is spell-casting.
 
@@ -255,7 +255,7 @@ deploy: true
 
 * Service is how the One enjoys being many.
 
-  * Your gifts are circuits. Let them carry current. Don’t hoard the light—use it to light more lamps.
+  * Your gifts are circuits. Let them carry current. Don’t hoard the light – use it to light more lamps.
 
 * A tiny practice that opens large doors (Three Knots → Three Keys):
 
@@ -281,7 +281,7 @@ deploy: true
     and river is the rumor of rain
 
     open as if opening were your first language
-    (remember—it is)
+    (remember – it is)
 
     let the old names fall like husks
     and wear the quiet that fits you
@@ -290,7 +290,7 @@ deploy: true
     where you walk, let the floor feel seen
 
     choose beauty until beauty chooses you back
-    and when the dark arrives—sing anyway
+    and when the dark arrives – sing anyway
 
     you are the garden and the gardener
     seed, blossom, and the patient sun

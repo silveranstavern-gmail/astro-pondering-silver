@@ -512,7 +512,7 @@ export function ManifestationTracker() {
             <h4 className="font-medium">The Significance of Repetition Numbers</h4>
             <div className="space-y-2">
               <p>
-                <strong>36 Repetitions:</strong> blends the energies of numbers <strong>3</strong> and <strong>6</strong>, representing creativity, harmony, compassion, and growth—ideal for focused, goal-oriented affirmations.
+                <strong>36 Repetitions:</strong> blends the energies of numbers <strong>3</strong> and <strong>6</strong>, representing creativity, harmony, compassion, and growth – ideal for focused, goal-oriented affirmations.
               </p>
               <p>
                 <strong>108 Repetitions:</strong> carries profound spiritual resonance across traditions, reflecting completeness and universal harmony. Mala beads traditionally include 108 beads for mindful counting.

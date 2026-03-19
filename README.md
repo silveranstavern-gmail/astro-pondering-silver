@@ -4,7 +4,7 @@ A personal website featuring spiritual reflections, interactive tools, and resou
 
 ## 🌟 Overview
 
-Pondering Silver is a space for depth work and luminous play—combining essays, transmissions, and soul tools for seekers navigating between introspection and adventure. Built with Astro, the site offers a fast, accessible experience with rich interactive components powered by React.
+Pondering Silver is a space for depth work and luminous play – combining essays, transmissions, and soul tools for seekers navigating between introspection and adventure. Built with Astro, the site offers a fast, accessible experience with rich interactive components powered by React.
 
 ## ✨ Features
 

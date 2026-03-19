@@ -784,7 +784,7 @@ export default function Resume() {
                     <header className="space-y-2">
                         <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Skills & Focus Areas</h2>
                         <p className="text-sm text-slate-600">
-                            Curated to reflect how I operate day-to-day—frontend leadership grounded in strong platform awareness and collaborative habits.
+                            Curated to reflect how I operate day-to-day – frontend leadership grounded in strong platform awareness and collaborative habits.
                         </p>
                     </header>
 
