@@ -76,11 +76,21 @@ export const tantraResources: ExternalResourceSection[] = [
         url: 'https://www.audible.com/pd/Tantra-Illuminated-The-Philosophy-History-and-Practice-of-a-Timeless-Tradition-Audiobook/B01ACM9BMI',
         description: 'Christopher Wallis explores the philosophy, history, and practice of the Tantric tradition.',
       },
+      {
+        name: 'The Recognition Sutras Audiobook',
+        url: 'https://www.audible.com/pd/The-Recognition-Sutras-Audiobook/B076ZQM87M',
+        description: 'Christopher Wallis presents a practical and philosophical guide to recognition in the nondual Shaiva tradition.',
+      },
     ],
   },
   {
     title: 'YouTube',
     resources: [
+      {
+        name: 'Christopher Wallis',
+        url: 'https://www.youtube.com/@christopherwallis751',
+        description: 'Christopher Wallis channel with teachings and discussions on Tantra, nondual Shaiva philosophy, and practice.',
+      },
       {
         name: 'Readings in the Tantraloka with Prof. Alexis Sanderson',
         url: 'https://www.youtube.com/playlist?list=PLJyd721t3kqHzaR581kzR_FNHXzbB2jYw',
@@ -91,6 +101,11 @@ export const tantraResources: ExternalResourceSection[] = [
   {
     title: 'Misc',
     resources: [
+      {
+        name: 'Geography of Conciousness',
+        url: 'https://serj-sxhx.github.io/geography-of-conciousness/',
+        description: 'Interactive visual study aid for Tantra and contemplative exploration.',
+      },
       {
         name: 'Tantra 112 App',
         url: 'https://tantra112.app/',
