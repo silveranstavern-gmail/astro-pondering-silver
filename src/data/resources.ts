@@ -11,6 +11,17 @@ export interface YouTubeChannel {
   description?: string;
 }
 
+export interface ExternalResource {
+  name: string;
+  url: string;
+  description?: string;
+}
+
+export interface ExternalResourceSection {
+  title: string;
+  resources: ExternalResource[];
+}
+
 export interface ResourceCategory {
   title: string;
   channels: YouTubeChannel[];
@@ -22,6 +33,12 @@ export const resourceLinks: ResourceLink[] = [
     description:
       'Curated collection of spiritual YouTube channels including Light Language and meditation resources.',
     path: '/resources/youtube',
+  },
+  {
+    title: 'Tantra',
+    description:
+      'Selected Tantra resources including Christopher Wallis on Audible and the Tantra 112 app and full text.',
+    path: '/resources/tantra',
   },
 ];
 
@@ -46,6 +63,49 @@ export const youtubeResources: ResourceCategory[] = [
       { name: 'Liquid Bloom', url: 'https://youtu.be/us5NzvhdXqA?si=64YFDroiiNAI20fG' },
       { name: 'Porangui', url: 'https://www.youtube.com/@porangui' },
       { name: 'Meditative Mind', url: 'https://www.youtube.com/@meditativemind' },
+    ],
+  },
+];
+
+export const tantraResources: ExternalResourceSection[] = [
+  {
+    title: 'Audible',
+    resources: [
+      {
+        name: 'Tantra Illuminated Audiobook',
+        url: 'https://www.audible.com/pd/Tantra-Illuminated-The-Philosophy-History-and-Practice-of-a-Timeless-Tradition-Audiobook/B01ACM9BMI',
+        description: 'Christopher Wallis explores the philosophy, history, and practice of the Tantric tradition.',
+      },
+    ],
+  },
+  {
+    title: 'YouTube',
+    resources: [
+      {
+        name: 'Readings in the Tantraloka with Prof. Alexis Sanderson',
+        url: 'https://www.youtube.com/playlist?list=PLJyd721t3kqHzaR581kzR_FNHXzbB2jYw',
+        description: 'Oxford Centre for Hindu Studies playlist covering Tantraloka readings across nine videos and later sessions.',
+      },
+    ],
+  },
+  {
+    title: 'Misc',
+    resources: [
+      {
+        name: 'Tantra 112 App',
+        url: 'https://tantra112.app/',
+        description: 'Interactive app centered on the 112 meditation methods drawn from the Vijnana Bhairava Tantra.',
+      },
+      {
+        name: 'Tantra 112 Full Text',
+        url: 'https://tantra112.app/full-text',
+        description: 'Read the full text presentation alongside the app-based exploration of the 112 methods.',
+      },
+      {
+        name: 'Tantraloka Full Text and Translation',
+        url: 'https://www.sanskrit-trikashaivism.com/en/tantraloka-introduction-trika-scriptures-non-dual-shaivism-of-kashmir/581',
+        description: 'Online source text with translation for Tantraloka within the Trika Shaivism tradition of Kashmir.',
+      },
     ],
   },
 ];
