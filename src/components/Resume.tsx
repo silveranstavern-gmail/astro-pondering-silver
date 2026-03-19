@@ -77,6 +77,7 @@ interface ResumeData {
     citizenship: string;
     availability: string;
     summary: string;
+    resumePdfUrl: string;
     contact: ContactInfo;
     highlights: Highlight[];
     metrics: Metric[];
@@ -96,6 +97,7 @@ const resumeData: ResumeData = {
     availability: 'Open to senior/staff frontend & UI leadership roles · Remote only',
     summary:
         'Full-stack developer turned frontend leader with 7+ years delivering enterprise Angular/.NET systems for a global oilfield services client. I architect UI modules, mentor teams, and turn business requirements into value-driven, maintainable frontends that ship reliably.',
+    resumePdfUrl: 'https://drive.google.com/uc?export=download&id=1R4WsWJiwOpMLcbKAfy6hZ1P3EWw3sen0',
     contact: {
         email: 'donald.d.clements@gmail.com',
         whatsapp: '+1 (706) 910-2470',
@@ -653,8 +655,18 @@ export default function Resume() {
                                         <span aria-hidden>🔗</span>
                                         View GitHub Profile
                                     </a>
+                                    <a
+                                        href={resumeData.resumePdfUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center gap-2 rounded-xl border border-violet-200 bg-violet-50 px-4 py-2 text-sm font-medium text-violet-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-100 hover:text-violet-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
+                                    >
+                                        <span aria-hidden>⬇️</span>
+                                        Download PDF Resume
+                                    </a>
                                 </div>
                                 <p className="text-xs text-slate-500">Preferred contact: WhatsApp for quick coordination, or email for detailed notes.</p>
+                                <p className="text-xs text-slate-500">The downloadable PDF is a separate formatted resume and is not an exact mirror of this web version.</p>
                             </div>
 
                             <div className="space-y-3 border-t border-slate-200 pt-4">
