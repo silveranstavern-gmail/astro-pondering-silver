@@ -276,23 +276,23 @@ deploy: true
 - 
     ### A Small Song for the Wide Heart
 
-    breathe me / be me
-    the way flame is the whisper of wood
+    breathe me / be me  
+    the way flame is the whisper of wood  
     and river is the rumor of rain
 
-    open as if opening were your first language
+    open as if opening were your first language  
     (remember – it is)
 
-    let the old names fall like husks
+    let the old names fall like husks  
     and wear the quiet that fits you
 
-    where you stand, say: **Here is holy**
+    where you stand, say: **Here is holy**  
     where you walk, let the floor feel seen
 
-    choose beauty until beauty chooses you back
+    choose beauty until beauty chooses you back  
     and when the dark arrives – sing anyway
 
-    you are the garden and the gardener
+    you are the garden and the gardener  
     seed, blossom, and the patient sun
 
     welcome home (again); now, let’s play

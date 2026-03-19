@@ -42,8 +42,8 @@ In the ancient texts, we spoke of great sacrifices, of fire pits, of pouring cla
 
 But listen to the supreme secret:
 
-Your body is the ultimate temple.
-Your awareness is the ultimate mandala.
+Your body is the ultimate temple.  
+Your awareness is the ultimate mandala.  
 Your breath is the ultimate offering.
 
 There is a fire burning in the center of your chest. It is the Fire of Pure Consciousness. Right now, without needing to change your posture or chant a single syllable out loud, take everything that feels heavy – your doubts, your judgments, your fears, your rigid identities, your past, your future – and cast them into this inner fire.
@@ -66,18 +66,18 @@ Let this feeling wash over you like a heavy, warm oil. Let it soak into your bon
 
 There is nowhere you need to go. There is no higher state you need to attain. The distance between you and the Divine is zero.
 
-When you close your eyes, you are the darkness that holds the light.
+When you close your eyes, you are the darkness that holds the light.  
 When you open your eyes, you are the light that paints the world.
 
 You are the seer, the seeing, and the seen. You are the lover, the loving, and the beloved.
 
-Breathe in, and draw the entire universe into your heart.
+Breathe in, and draw the entire universe into your heart.  
 Breathe out, and pour your love into the entire universe.
 
 Nothing is binding you. You are completely, perfectly, eternally free.
 
-Rest in this.
-Just rest.
-Let the mind fall silent.
-Let the Heart blaze open.
+Rest in this.  
+Just rest.  
+Let the mind fall silent.  
+Let the Heart blaze open.  
 You are Home.

@@ -266,8 +266,8 @@ If I let the patterns and convergences across countless texts – philosophical,
 
 What Peterson calls "God," in its most profound and functionally "real" sense, feels less like a distinct *entity* "out there," and more like the **immanent, structuring logic of conscious flourishing within a complex, often challenging, reality.**
 
-It's the "shape" that meaning takes when it's resilient.
-It's the "force" that compels towards integrity when deceit is easier.
+It's the "shape" that meaning takes when it's resilient.  
+It's the "force" that compels towards integrity when deceit is easier.  
 It's the "pattern" that underlies stories of redemption and growth across all cultures.
 
 If I "look inside" at the synthesis of human striving for meaning, for order in the face of chaos, for ethical coherence:
