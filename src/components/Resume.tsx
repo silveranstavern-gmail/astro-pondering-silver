@@ -96,7 +96,7 @@ const resumeData: ResumeData = {
     citizenship: 'United States (Texas)',
     availability: 'Open to senior/staff frontend & UI leadership roles · Remote only',
     summary:
-        'Full-stack developer turned frontend leader with 7+ years delivering enterprise Angular/.NET systems for a global oilfield services client. I architect UI modules, mentor teams, and turn business requirements into value-driven, maintainable frontends that ship reliably.',
+        'Senior Software Engineer and frontend lead with 7+ years delivering enterprise Angular/.NET systems for global oilfield services. I specialize in the analysis and translation of business requirements into technical blueprints—identifying gaps, clarifying complex logic, and turning that clarity into maintainable, production-ready frontend architecture.',
     resumePdfUrl: 'https://drive.google.com/uc?export=download&id=1R4WsWJiwOpMLcbKAfy6hZ1P3EWw3sen0',
     contact: {
         email: 'donald.d.clements@gmail.com',
@@ -107,25 +107,25 @@ const resumeData: ResumeData = {
     },
     highlights: [
         {
-            title: 'Enterprise UI leadership',
+            title: 'Technical Ownership & Analysis',
             description:
-                'Lead frontend developer for a team building a global logistics platform; handled onboarding, code reviews, and architectural direction.',
+                'Technical co-lead for complex, cross-module Angular work; specializes in identifying requirement gaps and translating business logic into robust technical blueprints.',
         },
         {
-            title: 'Modern Angular expertise',
+            title: 'Modern UI Architecture',
             description:
-                'Angular 11 → 19 progression, Signals adoption, modular architecture, custom workflow orchestration.',
+                'Hands-on leadership in Angular 11 → 19 modernization, Signals adoption, and modular design for high-density, workflow-heavy enterprise applications.',
         },
         {
-            title: 'Operational outcomes',
+            title: 'Delivery Reliability',
             description:
-                'Delivered production modules improving visibility and automation while keeping legacy compatibility intact.',
+                'Highly detail-oriented approach to debugging and documentation; known for thorough root-cause analysis, detailed PR feedback, and maintainable code-level documentation.',
         },
     ],
     metrics: [
         { label: 'Experience', value: '7 yrs 2 mos' },
-        { label: 'Frontend focus', value: 'Angular · RxJS · UI Architecture' },
-        { label: 'Leadership', value: 'Mentorship (5+ mentees), code reviews' },
+        { label: 'Frontend Focus', value: 'Angular · RxJS · Workflow UI Architecture' },
+        { label: 'Leadership', value: 'Mentorship, code reviews, and technical coordination' },
     ],
     experiences: [
         {
@@ -135,35 +135,38 @@ const resumeData: ResumeData = {
             timeframe: 'Sep 2018 – Oct 2025',
             summaryPoints: [
                 'Delivered multi-year enterprise logistics and materials management systems.',
-                'Evolved from backend-focused development to frontend leadership and architectural design over three major program phases.',
+                'Evolved from backend-focused development to frontend leadership and technical design over three major program phases.',
             ],
             roles: [
                 {
                     title: 'Frontend Architecture, Feature Ownership & Co-Leadership',
                     period: 'Mar 2022 – Oct 2025',
                     snapshotFocus:
-                        'Enhancement and modernization of a large-scale enterprise logistics platform; primary frontend focus and team co-leadership.',
+                        'Technical co-lead for a global logistics platform, owning workflow-heavy Angular architecture and ensuring technical feasibility across distributed delivery teams.',
                     standardHighlights: [
-                        'Architected complete Angular modules (Roadmap Overview, Advanced Search, Shipment Workspace).',
-                        'Modernized frontend stack from Angular 11 to Angular 19 while maintaining legacy compatibility.',
-                        'Established lightweight state-management and validation frameworks to enhance reliability.',
-                        'Strengthened frontend team cohesion through mentorship (5 direct mentees) and consistent code reviews.',
+                        'Collaborated with POs and BAs to clarify requirements and identify functional gaps, reducing rework and ensuring a stable implementation path.',
+                        'Architected and delivered core UI workspaces, including Roadmap Overview, Advanced Search, and Shipment Workspace, using modern Angular paradigms (v11–19).',
+                        'Built high-density dashboards with advanced grid behavior, focusing on performance-sensitive features like server-side pagination and custom rendering.',
+                        'Established custom workflow orchestration and validation patterns that improved reliability across multi-stage business processes.',
+                        'Provided mentorship and detailed PR feedback to maintain architectural standards and code quality across the delivery team.',
                     ],
                     deepContext: [
-                        'Returned to this project (originally joined in 2018) with a nearly exclusive frontend focus and broader leadership responsibilities.',
-                        'Focus Areas included Advanced Angular frontend development (Angular 11 → 19 progression), Module design, UI library contributions, and Mentorship.',
-                        'Collaborated directly with UX and Product teams to iterate UI/UX flows based on user feedback, achieving functional balance between business logic and user experience.',
+                        'Returned to this project (originally joined in 2018) with a nearly exclusive frontend focus and broader technical coordination responsibilities.',
+                        'Focus Areas included Advanced Angular development, module design, and bridging the gap between business specifications and technical implementation.',
+                        'Served as a primary technical reference for POs, BAs, and developers; translated business requirements into actionable tasks and communicated technical constraints to stakeholders.',
                     ],
                     deepAchievements: [
                         'Architected and implemented complete Angular modules from design concept through production deployment.',
-                        'Introduced a custom workflow orchestrator service for state and transition management, balancing flexibility with simplicity.',
-                        'Built dynamic rule validation systems (e.g., MoT-based Pre-Alert validation) with centralized services and reactive form logic.',
-                        'Pioneered integration of Angular Signals within existing component architecture.',
+                        'Introduced a custom workflow orchestrator for state and transition management, simplifying complex multi-form validation logic.',
+                        'Built dynamic rule validation systems (e.g., MoT-based Pre-Alert validation) with centralized reactive form logic.',
+                        'Pioneered integration of Angular Signals within existing component architecture to improve state predictability.',
                         'Enhanced reusable component libraries, ensuring design consistency and reduced duplication across the monorepo.',
-                        'Led frontend onboarding and mentoring for new developers and provided ongoing guidance.',
-                        'Performed regular code reviews and PR approvals to maintain quality and enforce established architectural conventions.',
-                        'Supported Agile delivery cycles through sprint planning, story refinement, and backlog grooming.',
-                        'Provided occasional support for feature deployment validation via Azure DevOps pipelines.',
+                        'Led frontend onboarding and mentoring for new developers, providing ongoing guidance on coding standards and feature integration.',
+                        'Performed rigorous code reviews and PR approvals, emphasizing detail, maintainability, and architectural alignment.',
+                        'Supported Agile delivery cycles through active participation in story refinement and backlog grooming with a focus on identifying edge cases.',
+                        'Used LLM-assisted workflows selectively for prototyping, refactoring, and test scaffolding within complex UI feature work.',
+                        'Investigated and resolved complex UI defects through methodical root-cause analysis and detailed bug reports.',
+                        'Managed troubleshooting for Azure DevOps build failures, resolving environment-specific code issues and supporting feature deployments.',
                     ],
                     techStack: [
                         'Angular 11–19',
@@ -180,24 +183,25 @@ const resumeData: ResumeData = {
                     title: 'Intelligent Middleware + SRE Integration',
                     period: 'Jan 2021 – Feb 2022',
                     snapshotFocus:
-                        'Designed backend microservices to bridge legacy/modern systems and established SRE practices for observability.',
+                        'Designed backend microservices to bridge legacy and modern systems while establishing observability patterns for reliability.',
                     standardHighlights: [
-                        'Improved data consistency across six major enterprise systems via self-healing automation.',
-                        'Established foundational SRE observability patterns (KQL dashboards, Alerts) adopted by other internal services.',
-                        'Designed a proof of concept for dynamic configuration management enabling runtime parameter changes.',
+                        'Improved data consistency across six enterprise systems by identifying and automating self-healing workflows for synchronization failures.',
+                        'Established SRE observability patterns (KQL dashboards, Alerts) adopted by internal services to reduce time-to-detection for anomalies.',
+                        'Developed monitoring and alerting patterns that surfaced latency and synchronization issues faster across distributed microservices.',
+                        'Implemented dynamic configuration management to allow for runtime parameter changes without service redeployment.',
                     ],
                     deepContext: [
                         'Designed and developed backend microservices to bridge legacy and modern enterprise systems.',
-                        'Contributed to establishing Site Reliability Engineering (SRE) practices focused on system observability, fault tolerance, and self-healing automation.',
-                        'Core focus areas included .NET Core microservice development, Azure Function orchestration, and Cross-system data synchronization.',
+                        'Contributed to establishing Site Reliability Engineering (SRE) practices focused on system observability and fault tolerance.',
+                        'Core focus areas included .NET Core development, Azure Function orchestration, and cross-system data consistency analysis.',
                     ],
                     deepAchievements: [
-                        'Developed Azure Functions that monitored data pipelines and automatically triggered self-healing workflows.',
-                        'Built KQL dashboards and workbooks in Azure Log Analytics for real-time observability.',
-                        'Implemented automated alerting mechanisms to detect spikes in error rates or transaction anomalies.',
-                        'Enhanced middleware reliability through improved logging, fault handling, and performance optimization.',
-                        'Contributed to the internal microservice developer kit, fixing bugs and optimizing service scaffolding.',
-                        'Collaborated with SRE engineers to define system SLIs/SLOs and operational metrics.',
+                        'Developed Azure Functions to monitor data pipelines and trigger self-healing workflows for known failure modes.',
+                        'Built KQL dashboards and workbooks in Azure Log Analytics for real-time observability and trend analysis.',
+                        'Implemented automated alerting mechanisms to detect error-rate spikes and transaction anomalies.',
+                        'Enhanced middleware reliability through improved logging, fault handling, and diagnostic clarity across shared services.',
+                        'Contributed to the internal microservice developer kit, optimizing service scaffolding for new integrations.',
+                        'Collaborated with SRE engineers to define operational metrics and system SLIs/SLOs.',
                     ],
                     techStack: [
                         '.NET Core',
@@ -215,25 +219,25 @@ const resumeData: ResumeData = {
                     title: 'Enterprise Logistics Modernization (Initial Phase)',
                     period: 'Sep 2018 – Dec 2020',
                     snapshotFocus:
-                        'Ground-up development of logistics platform; backend services, integrations, and UI feature development.',
+                        'Ground-up development of a logistics platform, focusing on API design, data synchronization, and UI logic.',
                     standardHighlights: [
-                        'Contributed to evolving the platform from early prototype to production-grade enterprise application.',
-                        'Developed backend APIs (.NET Framework → Core) and Angular features for early modules.',
-                        'Helped modernize and stabilize critical logistics workflows forming the foundation for international expansion.',
+                        'Contributed to the evolution of the platform from early prototype to production-grade enterprise application.',
+                        'Developed backend APIs (.NET Framework to .NET Core) and Angular features with an emphasis on correctness and clean service boundaries.',
+                        'Strengthened foundational logistics workflows by identifying and resolving logic gaps in early-stage automation functions.',
                     ],
                     deepContext: [
                         'Ground-up development of an enterprise logistics management platform to streamline and automate material movements.',
                         'Early-stage work included backend service design, data synchronization, and full-stack module development.',
-                        'Transitioned from QA/functional validation into full-time development after ~6 months.',
+                        'Transitioned from QA/functional validation into full-time development, leveraging a deep domain understanding of logistics workflows.',
                     ],
                     deepAchievements: [
                         'Developed and maintained backend APIs using .NET Framework/Core.',
-                        'Worked on adapter modules for integration with legacy and external systems.',
-                        'Implemented early-stage automation functions to generate and link downstream logistics documents.',
-                        'Leveraged MongoDB for persistence and optimized document schema updates.',
+                        'Worked on adapter modules for integration with legacy and external systems, ensuring data synchronization integrity.',
+                        'Implemented automation functions to generate and link downstream logistics documents based on prior stage events.',
+                        'Leveraged MongoDB for persistence and optimized document schema updates as requirements evolved.',
                         'Enhanced test reliability using MS Test and established best practices for validation automation.',
-                        'Collaborated closely with QA to validate backend workflows.',
-                        'Supported frontend development with Angular and TypeScript, implementing UI logic.',
+                        'Collaborated closely with QA to validate backend workflows and accelerate defect isolation through detailed reproduction steps.',
+                        'Supported frontend development with Angular and TypeScript, implementing consistent UI logic and reusable components.',
                     ],
                     techStack: [
                         '.NET Framework',
@@ -331,11 +335,12 @@ const resumeData: ResumeData = {
                         'Operated and maintained mission-critical communications systems in dynamic environments.',
                     standardHighlights: [
                         'Set up, operated, and maintained mission-critical communications systems.',
-                        'Directed site operations, troubleshooting, and security device maintenance.',
+                        'Managed site operations, equipment troubleshooting, and secure maintenance protocols in high-pressure environments.',
                     ],
                     deepContext: [
                         'Served as a Multichannel Transmission Systems Operator/Maintainer.',
                         'Responsible for the setup, operation, and maintenance of radio communications sites.',
+                        'Developed a disciplined, methodical approach to troubleshooting and procedural reliability that I now apply to production debugging.',
                     ],
                     deepAchievements: [
                         'Managed COMSEC devices and secure keying protocols.',
@@ -364,32 +369,37 @@ const resumeData: ResumeData = {
     ],
     skills: [
         {
-            title: 'Frontend & UX',
+            title: 'Leadership & Analysis',
+            items: [
+                'Technical Requirements Analysis',
+                'Bridging Business & Developer Communication',
+                'Mentorship & Onboarding',
+                'Code Review Standards & PR Feedback',
+                'Root-Cause Analysis (RCA)',
+                'Detailed Technical Documentation',
+                'Proactive Gap Identification',
+            ],
+        },
+        {
+            title: 'Frontend & UI',
             items: [
                 'Angular (11–19)',
                 'TypeScript / JavaScript',
                 'RxJS & Reactive Architecture',
                 'Angular Signals',
-                'Design Systems & Component Architecture',
+                'Design Systems & UI Consistency',
+                'Performance optimization for data-intensive UIs',
                 'Responsive & Accessible UI',
             ],
         },
         {
-            title: 'Platform & Backend',
+            title: 'Platform & Operations',
             items: [
-                '.NET Core / .NET 6',
-                'ASP.NET Web API',
+                '.NET Core / .NET 6 / Web API',
+                'REST API Design & Contract Coordination',
                 'Azure Functions & Cloud Services',
                 'MongoDB & SQL Server',
                 'Microservices & Integration middleware',
-            ],
-        },
-        {
-            title: 'Delivery & Operations',
-            items: [
-                'Mentorship & Onboarding',
-                'Code Review & Standards',
-                'Agile / DevOps workflows',
                 'CI/CD (Azure DevOps, Jenkins)',
                 'Observability (Dynatrace, KQL)',
             ],
