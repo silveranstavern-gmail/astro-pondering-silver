@@ -1,0 +1,9 @@
+root = true
+
+[*.{js,jsx,ts,tsx,mjs,cjs,json,astro,css,md,mdx,html,xml,svg,yml,yaml}]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+[*.{jpg,jpeg,png,gif,webp,woff,woff2,ico}]
+insert_final_newline = false
