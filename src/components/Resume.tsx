@@ -118,7 +118,7 @@ const resumeData: ResumeData = {
     title: 'Senior Full Stack Angular/.NET Web Developer',
     location: 'Remote (Global)',
     citizenship: 'United States (Texas)',
-    availability: 'Open to senior/staff frontend & UI leadership roles · Remote only',
+    availability: 'Open to Senior/Staff Full Stack or Frontend leadership roles · Remote only',
     summary:
         'Senior Software Engineer and frontend lead with 7+ years delivering enterprise Angular/.NET systems for global oilfield services. I specialize in the analysis and translation of business requirements into technical blueprints – identifying gaps, clarifying complex logic, and turning that clarity into maintainable, production-ready frontend architecture.',
     resumePdfUrl: 'https://drive.google.com/uc?export=download&id=1R4WsWJiwOpMLcbKAfy6hZ1P3EWw3sen0',
