@@ -205,7 +205,8 @@ const resumeData: ResumeData = {
                         'RxJS',
                         'Angular Signals',
                         'Sass',
-                        'MongoDB',
+                        'SignalR',
+                        'MongoDB Atlas',
                         '.NET Core / C#',
                         'Azure Functions',
                         'MSTest',
@@ -387,8 +388,13 @@ const resumeData: ResumeData = {
     projects: [
         {
             title: 'Conversations Woven',
-            description: 'Chat interface for Open Router, requires API key from Open Router to work. Hosted on Vercel hobby tier',
+            description: 'Architected a privacy-focused, local-first LLM workspace. Implemented Zero-Trust security via Web Crypto API (PBKDF2 + AES-GCM) for client-side API key encryption and local-first persistence using IndexedDB (Dexie.js). Built with Angular 19 and Zoneless change detection.',
             url: 'https://conversations-woven.vercel.app/chat',
+        },
+        {
+            title: 'PonderingSilver.com',
+            description: 'Engineering portfolio demonstrating React 19 competency within an Astro "Islands Architecture" environment. Features a complex, stateful resume builder with nested expansion logic and print-optimized UI.',
+            url: 'https://ponderingsilver.com/resume/',
         },
     ],
     education: [
