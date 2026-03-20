@@ -167,6 +167,8 @@ const resumeData: ResumeData = {
                         'Used LLM-assisted workflows selectively for prototyping, refactoring, and test scaffolding within complex UI feature work.',
                         'Investigated and resolved complex UI defects through methodical root-cause analysis and detailed bug reports.',
                         'Managed troubleshooting for Azure DevOps build failures, resolving environment-specific code issues and supporting feature deployments.',
+                        'Collaborated with the backend team to strengthen test coverage, contributing to the development and maintenance of MSTest suites for core services.',
+                        'Maintained full-stack flexibility by occasionally owning backend stories, delivering .NET Core and Azure Function updates to support frontend feature requirements.',
                     ],
                     techStack: [
                         'Angular 11–19',
@@ -175,6 +177,9 @@ const resumeData: ResumeData = {
                         'Angular Signals',
                         'Sass',
                         'MongoDB',
+                        '.NET Core / C#',
+                        'Azure Functions',
+                        'MSTest',
                         'Azure DevOps (CI/CD)',
                         'Collaborative Design Review (UX/UI)',
                         'Agile',
@@ -212,8 +217,6 @@ const resumeData: ResumeData = {
                         'SQL Server',
                         'KQL (Kusto)',
                         'Azure Log Analytics',
-                        'Docker',
-                        'Kubernetes',
                     ],
                 },
                 {
