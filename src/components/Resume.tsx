@@ -469,7 +469,7 @@ const DetailButton = ({
 );
 
 const TenetCard = ({ tenet }: { tenet: Tenet }) => (
-    <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm ring-1 ring-slate-900/5 transition hover:shadow-md">
+    <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-md ring-1 ring-slate-900/5 transition hover:shadow-lg">
         <div className="flex items-center gap-3">
             <span className="text-2xl" aria-hidden>{tenet.icon}</span>
             <h3 className="text-sm font-bold uppercase tracking-wide text-slate-800">{tenet.title}</h3>
@@ -596,6 +596,7 @@ const RoleCard = ({
 
 const sections = [
     { id: 'overview', label: 'Overview' },
+    { id: 'tenets', label: 'Tenets' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' },
@@ -738,7 +739,7 @@ export default function Resume() {
                 </header>
 
                 <nav className="sticky top-4 z-30 hidden items-center justify-center print:hidden lg:flex">
-                    <div className="flex max-w-3xl flex-wrap items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-2 text-sm shadow backdrop-blur">
+                    <div className="flex max-w-4xl flex-wrap items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-2 text-sm shadow backdrop-blur">
                         {quickNav.map((item) => (
                             <button
                                 key={item.id}
@@ -768,7 +769,7 @@ export default function Resume() {
                 </section>
 
                 {/* --- Experience Section --- */}
-                <section id="experience" className="space-y-10">
+                <section id="experience" className="space-y-8">
                     <header className="space-y-2">
                         <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Experience</h2>
                         <p className="text-sm text-slate-600">
@@ -780,7 +781,7 @@ export default function Resume() {
                         {resumeData.experiences.map((experience, experienceIndex) => (
                             <article
                                 key={`${experience.company}-${experienceIndex}`}
-                                className="space-y-6 rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl print:border-slate-200 print:shadow-none"
+                                className="space-y-6 rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-lg ring-1 ring-slate-900/5 transition hover:-translate-y-1 hover:shadow-2xl print:border-slate-200 print:shadow-none"
                             >
                                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                                     <div className="space-y-2">
@@ -832,11 +833,11 @@ export default function Resume() {
                         </p>
                     </header>
 
-                    <div className="space-y-4">
+                    <div className="grid gap-6">
                         {resumeData.projects.map((project) => (
                             <div
                                 key={project.title}
-                                className="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-md transition hover:-translate-y-1 hover:shadow-lg print:border-slate-200 print:shadow-none"
+                                className="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-md ring-1 ring-slate-900/5 transition hover:-translate-y-1 hover:shadow-lg print:border-slate-200 print:shadow-none"
                             >
                                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                                     <div className="space-y-2">
@@ -871,7 +872,7 @@ export default function Resume() {
                         {resumeData.skills.map((category) => (
                             <div
                                 key={category.title}
-                                className="space-y-4 rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-lg print:border-slate-200 print:shadow-none"
+                                className="space-y-4 rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-lg ring-1 ring-slate-900/5 print:border-slate-200 print:shadow-none"
                             >
                                 <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">{category.title}</h3>
                                 <ul className="space-y-2 text-sm text-slate-700">
@@ -893,11 +894,11 @@ export default function Resume() {
                         <p className="text-sm text-slate-600">Academic foundation underpinning systems thinking and applied technology leadership.</p>
                     </header>
 
-                    <div className="space-y-4">
+                    <div className="grid gap-6">
                         {resumeData.education.map((education) => (
                             <div
                                 key={education.institution}
-                                className="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-md print:border-slate-200 print:shadow-none"
+                                className="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-md ring-1 ring-slate-900/5 print:border-slate-200 print:shadow-none"
                             >
                                 <h3 className="text-lg font-semibold text-slate-900">{education.institution}</h3>
                                 <p className="text-sm font-medium uppercase tracking-wide text-emerald-500">{education.degree}</p>
@@ -915,7 +916,7 @@ export default function Resume() {
                     body {
                         background: white !important;
                     }
-                    nav, footer, .print\\:hidden {
+                    nav, .print\\:hidden {
                         display: none !important;
                     }
                     .print\\:show {
