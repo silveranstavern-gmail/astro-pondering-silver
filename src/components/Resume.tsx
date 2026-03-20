@@ -208,6 +208,7 @@ const resumeData: ResumeData = {
                         'SignalR',
                         'MongoDB Atlas',
                         '.NET Core / C#',
+                        'Entity Framework Core',
                         'Azure Functions',
                         'MSTest',
                         'Azure DevOps (CI/CD)',
@@ -242,11 +243,13 @@ const resumeData: ResumeData = {
                     techStack: [
                         '.NET Core',
                         'C#',
+                        'Entity Framework Core',
                         'Azure Functions',
                         'MongoDB',
                         'SQL Server',
                         'KQL (Kusto)',
                         'Azure Log Analytics',
+                        'Dynatrace',
                     ],
                 },
                 {
@@ -300,7 +303,8 @@ const resumeData: ResumeData = {
                     snapshotFocus:
                         'Intensive project-based training in full-stack .NET development, resulting in immediate contract buyout.',
                     standardHighlights: [
-                        'Developed full-stack web applications using C#, ASP.NET MVC, and Angular.',
+                        'Developed loosely coupled full-stack web applications using C#, ASP.NET MVC, and Angular.',
+                        'Engineered and exposed RESTful services (SOA) built in ASP.NET Web API to support modular client interactions.',
                         'Configured CI/CD pipelines using Jenkins, automating build/deploy to AWS.',
                         'Applied SOLID and OOP principles to design clean, extensible back-end services.',
                     ],
@@ -394,7 +398,7 @@ const resumeData: ResumeData = {
         {
             title: 'PonderingSilver.com',
             description: 'Engineering portfolio demonstrating React 19 competency within an Astro "Islands Architecture" environment. Features a complex, stateful resume builder with nested expansion logic and print-optimized UI.',
-            url: 'https://ponderingsilver.com/resume/',
+            url: 'https://ponderingsilver.com/',
         },
     ],
     education: [
