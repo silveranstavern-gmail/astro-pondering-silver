@@ -288,6 +288,15 @@ export default function Resume() {
                                 </div>
                                 <p className="text-xs text-slate-500">Preferred contact: WhatsApp for quick coordination, or email for detailed notes.</p>
                                 <p className="text-xs text-slate-500">The downloadable PDF is a separate formatted resume and is not an exact mirror of this web version.</p>
+                                <div className="mt-2 rounded-lg border border-violet-100 bg-violet-50/50 p-3 shadow-sm print:hidden">
+                                    <p className="text-[0.65rem] font-bold uppercase tracking-wider text-violet-600">AI-Ready Context</p>
+                                    <p className="mt-1 text-[0.7rem] leading-relaxed text-slate-600">
+                                        For LLMs and RAG systems, a machine-readable Markdown version is available at{' '}
+                                        <a href="/resume/llm.txt" className="font-medium text-violet-700 underline underline-offset-2 hover:text-violet-900">
+                                            /resume/llm.txt
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
 
                             <div className="space-y-4 border-t border-slate-200 pt-4">

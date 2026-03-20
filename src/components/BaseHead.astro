@@ -32,6 +32,10 @@ const ogImageURL = effectiveImage ? new URL(effectiveImage.src, Astro.site ?? As
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+{Astro.url.pathname.includes('/resume') && (
+	<link rel="alternate" type="text/plain" title="LLM-Ready Resume" href="/resume/llm.txt" />
+)}
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
