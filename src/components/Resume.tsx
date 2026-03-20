@@ -854,11 +854,6 @@ export default function Resume() {
                     </div>
                 </section>
 
-                <footer className="rounded-3xl border border-slate-200 bg-white/70 p-6 text-sm text-slate-500 shadow-md print:hidden">
-                    <p>
-                        Need a tailored PDF or have a specific brief? Message me on WhatsApp or email me directly and I can share a focused case study or deeper project walk-through.
-                    </p>
-                </footer>
             </article>
 
             <style>{`
