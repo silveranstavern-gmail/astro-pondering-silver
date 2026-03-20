@@ -161,7 +161,7 @@ const resumeData: ResumeData = {
             company: 'Infosys – Major Oilfield Services Client',
             location: 'Remote (Houston, TX base)',
             employmentType: 'Full-time Contract',
-            timeframe: 'Sep 2018 – Oct 2025',
+            timeframe: 'Sep 2018 – Dec 2025',
             summaryPoints: [
                 'Delivered multi-year enterprise logistics and materials management systems.',
                 'Evolved from backend-focused development to frontend leadership and technical design over three major program phases.',
@@ -169,7 +169,7 @@ const resumeData: ResumeData = {
             roles: [
                 {
                     title: 'Frontend Architecture, Feature Ownership & Co-Leadership',
-                    period: 'Mar 2022 – Oct 2025',
+                    period: 'Mar 2022 – Dec 2025',
                     snapshotFocus:
                         'Technical co-lead for a global logistics platform, owning workflow-heavy Angular architecture and ensuring technical feasibility across distributed delivery teams.',
                     standardHighlights: [
