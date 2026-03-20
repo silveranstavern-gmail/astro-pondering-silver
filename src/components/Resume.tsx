@@ -103,7 +103,7 @@ const resumeData: ResumeData = {
     citizenship: 'United States (Texas)',
     availability: 'Open to senior/staff frontend & UI leadership roles · Remote only',
     summary:
-        'Senior Software Engineer and frontend lead with 7+ years delivering enterprise Angular/.NET systems for global oilfield services. I specialize in the analysis and translation of business requirements into technical blueprints—identifying gaps, clarifying complex logic, and turning that clarity into maintainable, production-ready frontend architecture.',
+        'Senior Software Engineer and frontend lead with 7+ years delivering enterprise Angular/.NET systems for global oilfield services. I specialize in the analysis and translation of business requirements into technical blueprints – identifying gaps, clarifying complex logic, and turning that clarity into maintainable, production-ready frontend architecture.',
     resumePdfUrl: 'https://drive.google.com/uc?export=download&id=1R4WsWJiwOpMLcbKAfy6hZ1P3EWw3sen0',
     contact: {
         email: 'donald.d.clements@gmail.com',
@@ -138,7 +138,7 @@ const resumeData: ResumeData = {
         {
             title: 'Right-Sized Complexity',
             icon: '⚖️',
-            content: 'Good engineering is contextual. I favor solutions that are proportionate to the problem—avoiding the drag of over-engineering while ensuring the system is robust enough to last. I value clarity over cleverness every time.',
+            content: 'Good engineering is contextual. I favor solutions that are proportionate to the problem – avoiding the drag of over-engineering while ensuring the system is robust enough to last. I value clarity over cleverness every time.',
         },
         {
             title: 'Developer Empathy',
@@ -174,7 +174,7 @@ const resumeData: ResumeData = {
                         'Technical co-lead for a global logistics platform, owning workflow-heavy Angular architecture and ensuring technical feasibility across distributed delivery teams.',
                     standardHighlights: [
                         'Collaborated with POs and BAs to clarify requirements and identify functional gaps, reducing rework and ensuring a stable implementation path.',
-                        'Architected and delivered core UI workspaces, including Roadmap Overview, Advanced Search, and Shipment Workspace, using modern Angular paradigms (v11–19).',
+                        'Architected and delivered core UI workspaces, including Roadmap Overview, Advanced Search, and Shipment Workspace, using modern Angular paradigms (v11 – 19).',
                         'Built high-density dashboards with advanced grid behavior, focusing on performance-sensitive features like server-side pagination and custom rendering.',
                         'Established custom workflow orchestration and validation patterns that improved reliability across multi-stage business processes.',
                         'Provided mentorship and detailed PR feedback to maintain architectural standards and code quality across the delivery team.',
@@ -200,7 +200,7 @@ const resumeData: ResumeData = {
                         'Maintained full-stack flexibility by occasionally owning backend stories, delivering .NET Core and Azure Function updates to support frontend feature requirements.',
                     ],
                     techStack: [
-                        'Angular 11–19',
+                        'Angular 11 – 19',
                         'TypeScript',
                         'RxJS',
                         'Angular Signals',
@@ -415,7 +415,7 @@ const resumeData: ResumeData = {
         {
             title: 'Frontend & UI',
             items: [
-                'Angular (6–19)',
+                'Angular (6 – 19)',
                 'TypeScript / JavaScript',
                 'RxJS & Reactive Architecture',
                 'Angular Signals',
