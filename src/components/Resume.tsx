@@ -70,6 +70,12 @@ interface ContactInfo {
     linkedin: string;
 }
 
+interface Tenet {
+    title: string;
+    content: string;
+    icon: string;
+}
+
 interface ResumeData {
     name: string;
     title: string;
@@ -81,6 +87,7 @@ interface ResumeData {
     contact: ContactInfo;
     highlights: Highlight[];
     metrics: Metric[];
+    tenets: Tenet[];
     experiences: Experience[];
     projects: Project[];
     education: EducationItem[];
@@ -126,6 +133,28 @@ const resumeData: ResumeData = {
         { label: 'Experience', value: '7 yrs 2 mos' },
         { label: 'Frontend Focus', value: 'Angular · RxJS · Workflow UI Architecture' },
         { label: 'Leadership', value: 'Mentorship, code reviews, and technical coordination' },
+    ],
+    tenets: [
+        {
+            title: 'Right-Sized Complexity',
+            icon: '⚖️',
+            content: 'Good engineering is contextual. I favor solutions that are proportionate to the problem—avoiding the drag of over-engineering while ensuring the system is robust enough to last. I value clarity over cleverness every time.',
+        },
+        {
+            title: 'Developer Empathy',
+            icon: '🤝',
+            content: 'Maintainability is an act of empathy. I push for clear naming, sensible structure, and meaningful commit hygiene because I know what it’s like to debug opaque code. I build for the person who comes after me.',
+        },
+        {
+            title: 'AI-Augmented Craft',
+            icon: '🤖',
+            content: 'I use AI as a force multiplier for research and implementation, freeing up more attention for high-value judgment and refinement. It accelerates my delivery without compromising my responsibility for the final result.',
+        },
+        {
+            title: 'High-Trust Autonomy',
+            icon: '🌊',
+            content: 'I thrive when given clear goals and the freedom to determine the implementation path. I favor outcomes over visibility and purposeful, grounded communication over constant meetings.',
+        },
     ],
     experiences: [
         {
@@ -439,6 +468,16 @@ const DetailButton = ({
     </button>
 );
 
+const TenetCard = ({ tenet }: { tenet: Tenet }) => (
+    <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm ring-1 ring-slate-900/5 transition hover:shadow-md">
+        <div className="flex items-center gap-3">
+            <span className="text-2xl" aria-hidden>{tenet.icon}</span>
+            <h3 className="text-sm font-bold uppercase tracking-wide text-slate-800">{tenet.title}</h3>
+        </div>
+        <p className="text-sm leading-relaxed text-slate-600">{tenet.content}</p>
+    </div>
+);
+
 const RoleCard = ({
                       role,
                       cardDetailLevel,
@@ -712,6 +751,21 @@ export default function Resume() {
                         ))}
                     </div>
                 </nav>
+
+                {/* --- Core Tenets --- */}
+                <section id="tenets" className="space-y-6">
+                    <header className="space-y-2">
+                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Professional Tenets</h2>
+                        <p className="text-sm text-slate-600">
+                            The principles that guide my approach to engineering and collaboration.
+                        </p>
+                    </header>
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {resumeData.tenets.map((tenet) => (
+                            <TenetCard key={tenet.title} tenet={tenet} />
+                        ))}
+                    </div>
+                </section>
 
                 {/* --- Experience Section --- */}
                 <section id="experience" className="space-y-10">
