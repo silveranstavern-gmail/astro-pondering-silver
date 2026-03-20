@@ -9,33 +9,6 @@ import {
 
 // --- Components ---
 
-const DetailButton = ({
-                          isActive,
-                          onClick,
-                          label,
-                          description,
-                      }: {
-    isActive: boolean;
-    onClick: () => void;
-    label: string;
-    description: string;
-}) => (
-    <button
-        type="button"
-        onClick={onClick}
-        className={`flex flex-col rounded-xl border px-4 py-2 text-left text-xs shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 sm:text-sm ${
-            isActive
-                ? 'border-violet-500 bg-violet-50 text-violet-700 ring-1 ring-violet-500/20'
-                : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50'
-        }`}
-    >
-        <span className="font-bold uppercase tracking-wide">{label}</span>
-        <span className="mt-0.5 text-[0.7rem] font-normal leading-relaxed text-slate-500 sm:text-xs">
-      {description}
-    </span>
-    </button>
-);
-
 const TenetCard = ({ tenet }: { tenet: Tenet }) => (
     <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-md ring-1 ring-slate-900/5 transition hover:shadow-lg">
         <div className="flex items-center gap-3">
@@ -350,7 +323,7 @@ export default function Resume() {
                     <header className="space-y-2">
                         <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Experience</h2>
                         <p className="text-sm text-slate-600">
-                            Layered for rapid scanning: skim the summary in seconds, expand any role for delivery specifics, or switch to Deep Dive to view everything at once.
+                            Layered for rapid scanning: skim summaries in seconds, or expand any role for granular delivery specifics and deeper technical context.
                         </p>
                     </header>
 
