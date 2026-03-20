@@ -174,6 +174,7 @@ const resumeData: ResumeData = {
                         'RxJS',
                         'Angular Signals',
                         'Sass',
+                        'MongoDB',
                         'Azure DevOps (CI/CD)',
                         'Collaborative Design Review (UX/UI)',
                         'Agile',
