@@ -2,6 +2,23 @@ import React, { useMemo, useState } from 'react';
 
 // --- Types & Interfaces ---
 
+const EXPERIENCE_START_DATE = new Date('2018-04-01');
+const EXPERIENCE_END_DATE = new Date('2025-12-01');
+
+const calculateExperience = (start: Date, end: Date) => {
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    return `${years} yrs ${months} mos`;
+};
+
+const experienceTotal = calculateExperience(EXPERIENCE_START_DATE, EXPERIENCE_END_DATE);
+
 type DetailLevel = 'snapshot' | 'standard' | 'deep';
 
 interface Highlight {
@@ -130,7 +147,7 @@ const resumeData: ResumeData = {
         },
     ],
     metrics: [
-        { label: 'Experience', value: '7 yrs 2 mos' },
+        { label: 'Experience', value: experienceTotal },
         { label: 'Frontend Focus', value: 'Angular · RxJS · Workflow UI Architecture' },
         { label: 'Leadership', value: 'Mentorship, code reviews, and technical coordination' },
     ],
