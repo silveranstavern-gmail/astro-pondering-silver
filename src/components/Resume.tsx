@@ -749,13 +749,13 @@ export default function Resume() {
                                 <p className="text-xs text-slate-500">The downloadable PDF is a separate formatted resume and is not an exact mirror of this web version.</p>
                             </div>
 
-                            <div className="space-y-3 border-t border-slate-200 pt-4">
+                            <div className="space-y-4 border-t border-slate-200 pt-4">
                                 <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Snapshot</p>
-                                <ul className="space-y-2 text-sm text-slate-600">
+                                <ul className="space-y-3 text-sm text-slate-600">
                                     {resumeData.metrics.map((metric) => (
                                         <li key={metric.label} className="flex flex-col">
-                                            <span className="font-semibold text-slate-800">{metric.value}</span>
-                                            <span className="text-xs uppercase tracking-wide text-slate-500">{metric.label}</span>
+                                            <span className="text-[0.8rem] font-semibold leading-snug text-slate-800">{metric.value}</span>
+                                            <span className="mt-0.5 text-[0.65rem] uppercase tracking-wider text-slate-500">{metric.label}</span>
                                             {metric.helper && <span className="text-xs text-slate-400">{metric.helper}</span>}
                                         </li>
                                     ))}
