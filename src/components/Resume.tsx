@@ -251,7 +251,6 @@ const resumeData: ResumeData = {
                         'MongoDB',
                         'SQL Server',
                         'MSTest',
-                        'Azure DevOps (Workflows & CI/CD)',
                     ],
                 },
             ],
@@ -387,7 +386,7 @@ const resumeData: ResumeData = {
         {
             title: 'Frontend & UI',
             items: [
-                'Angular (11–19)',
+                'Angular (6–19)',
                 'TypeScript / JavaScript',
                 'RxJS & Reactive Architecture',
                 'Angular Signals',
