@@ -818,7 +818,6 @@ export default function Resume() {
                                     </div>
                                     <div className="text-sm text-slate-500 md:text-right">
                                         <p className="font-semibold text-slate-700">{experience.timeframe}</p>
-                                        <p>Primary role: {experience.summaryPoints[0]}</p>
                                     </div>
                                 </div>
 
