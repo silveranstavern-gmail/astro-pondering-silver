@@ -149,7 +149,7 @@ const resumeData: ResumeData = {
     metrics: [
         { label: 'Experience', value: experienceTotal },
         { label: 'Frontend Focus', value: 'Angular · RxJS · Workflow UI Architecture' },
-        { label: 'Leadership', value: 'Mentorship, code reviews, and technical coordination' },
+        { label: 'Leadership', value: 'Mentorship, PR Reviews, & Tech Coordination' },
     ],
     tenets: [
         {
