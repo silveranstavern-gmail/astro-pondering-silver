@@ -14,27 +14,27 @@ export const services: ServiceOffering[] = [
   {
     title: 'The Confessional',
     description:
-      "In The Confessional, you're welcomed into a sacred, judgment-free space designed purely for your emotional and spiritual liberation. Here, you may speak your truths openly, without reservation or self-censorship. Whether you're carrying burdens, seeking closure, or simply desiring to be genuinely seen and heard, this space offers you unconditional presence and compassionate witnessing. Through the gentle act of being authentically received, you'll experience profound relief, renewal, and a deeper reconnection with yourself.",
+      "A space to speak openly, without needing to organize, justify, or make sense of everything first. You bring what’s there: messy, unfinished, contradictory. I listen not just to what you’re saying, but to how it’s being said: where things tighten, where something repeats, and where something feels slightly off. There’s no pressure to fix anything. But when something is seen more clearly, without filtering or reshaping it, it often starts to move on its own.",
   },
   {
-    title: 'Heart-Centered Consultation',
+    title: 'Pattern Clarity (1:1 Sessions)',
     description:
-      "In a Heart-Centered Consultation, you'll step into a collaborative space grounded in deep listening, intuitive insight, and practical guidance. Together, we'll gently explore the challenges or questions you're facing, whether they pertain to spiritual development, personal relationships, career transitions, or everyday hurdles. With clarity, compassion, and actionable insights, we'll co-create solutions that resonate deeply with your heart's truth, empowering you to confidently move forward.",
+      "If you feel stuck in recurring situations, especially in relationships or emotional reactions, this is where we look at what’s actually creating that repetition. I don’t focus on giving advice. I pay attention to how your experience is structured as you describe it: what you focus on, what you avoid, and what keeps looping. Then I reflect that back to you, often in real time. At times this can feel confronting, not because anything is being pushed on you, but because you’re seeing something you were previously inside of. When a pattern becomes visible, it stops running automatically. From there, things tend to shift without needing to force change.",
   },
   {
-    title: 'Life Coaching & Mentorship',
+    title: 'Manifestation & Inner Mechanics',
     description:
-      "Life Coaching & Mentorship provides dedicated, ongoing support tailored precisely to your personal journey and ambitions. Whether you're navigating significant life transitions, encountering persistent obstacles, or striving toward meaningful, heart-aligned goals, this offering brings structure, accountability, and gentle encouragement to your process. Through reflective inquiry, practical guidance, and compassionate mentoring, you'll build momentum, discover new possibilities, and confidently chart a course toward a more fulfilling life.",
+      "I approach manifestation as a relationship between your internal state and what you experience. Your vibration isn’t abstract; it shows up directly in the body as tension or contraction, openness or ease. We look at where your attention is going, and what your system is holding at the same time. If those don’t match, there’s friction. Instead of trying to override that, we bring awareness to it, both mentally and physically. When that friction becomes clear, it usually starts to loosen. This isn’t about trying to think the right thoughts or force outcomes. It’s about noticing where you’re working against yourself, and letting that unwind.",
   },
   {
-    title: 'Inner Resonance Guidance',
+    title: 'Inner Resonance (Heartsong)',
     description:
-      "Inner Resonance Guidance invites you into an intimate exploration of your inner world to reconnect deeply with your internal compass – your heartsong. Together, we'll tune into your unique frequency, gently uncovering clarity about your desires, purpose, and next steps. By aligning more clearly with your internal resonance, you'll find yourself naturally guided toward decisions, actions, and experiences that feel deeply authentic and nourishing. This transformative process not only clarifies your path forward but enriches your overall sense of well-being and alignment with life's greater flow.",
+      "There’s a way of being that isn’t built from expectations, roles, or external pressure. Not something you create, but something you notice when the extra layers fall away. In this work, we look at the roles you’ve taken on, the internal rules you follow, and the parts of your identity that feel fixed. We question them, not to replace them, but to see what actually holds. What remains tends to feel simpler, more direct, and more natural. From there, decisions and direction don’t need as much effort; they follow that alignment.",
   },
   {
-    title: 'Manifestation Coaching & Mentorship',
+    title: 'Ongoing Work',
     description:
-      "Manifestation Coaching & Mentorship supports you in mastering the art of intentional creation. Together, we'll explore and refine your vision, identify and dissolve limiting beliefs, and cultivate empowering practices that align with your deepest desires. Through personalized guidance, practical tools, and energetic alignment techniques, you'll learn to harness your innate power to consciously shape your reality and manifest a life filled with joy, abundance, and fulfillment.",
+      "For those who want continuity over time. This becomes less about isolated sessions and more about tracking patterns as they unfold in real life. We revisit recurring dynamics, new situations as they arise, and subtle shifts in how you’re seeing things. The focus stays the same: seeing clearly, reducing unnecessary friction, and allowing your experience to reorganize from that.",
   },
 ];
 
@@ -42,26 +42,26 @@ export const faqs: ServiceFaq[] = [
   {
     question: 'How long are the sessions?',
     answer:
-      'Sessions typically last 60 minutes, though the exact duration can be discussed and adjusted based on your specific needs and the nature of our work together.',
+      'Sessions typically last 60 minutes, though the exact duration can be adjusted depending on the nature of the work.',
   },
   {
     question: 'How do we meet?',
     answer:
-      'Sessions are conducted virtually via video call, allowing for flexibility and convenience regardless of your location. A private link will be provided upon booking.',
+      'Sessions are held online by video call. Once you book, you’ll receive the link and details.',
   },
   {
     question: 'What should I prepare before our session?',
     answer:
-      "Simply come with an open mind and heart. You may wish to reflect on what you hope to gain from our time together, but there's no formal preparation required. If specific preparation would benefit our work, I'll let you know in advance.",
+      'You do not need to prepare anything formally. It helps to arrive willing to be honest about what is happening for you, even if it feels messy or unclear.',
   },
   {
     question: 'How many sessions will I need?',
     answer:
-      'This varies widely depending on your goals and circumstances. Some find significant value in even a single session, while others benefit from ongoing support. We can discuss what might be most supportive for you during our initial consultation.',
+      'That depends on what you are coming in with. Some people get a lot from a single session. Others prefer ongoing work so we can track patterns over time.',
   },
   {
-    question: 'Is this type of coaching right for me?',
+    question: 'Is this work right for me?',
     answer:
-      "My approach is best suited for those open to self-reflection, personal growth, and spiritual development. If you're uncertain, I welcome you to book an initial consultation where we can explore whether my offerings align with your needs.",
+      'This work tends to be most useful for people who are willing to look at their own patterns honestly. If you are mainly looking for reassurance or someone to take your side, this may not feel like the right fit. If you are open to seeing what is actually happening and working from there, it can be very useful.',
   },
 ];
