@@ -3,11 +3,14 @@ import BaseHead from '../components/BaseHead.astro';
 import DonationButton from '../components/DonationButton.astro';
 import SocialsButton from '../components/SocialsButton.astro';
 import ShareButton from '../components/ShareButton.astro';
+import { Icon } from 'astro-icon/components';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
+import { socialLinks } from '../data/socials';
+import { donationLinks } from '../data/support';
 import type { ImageMetadata } from 'astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../consts';
 
 interface Props {
   title?: string;
@@ -17,6 +20,13 @@ interface Props {
 }
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar = false } = Astro.props as Props;
+const currentUrl = `${SITE_URL}${Astro.url.pathname}`;
+const shareLinks = {
+  whatsapp: `https://wa.me/?text=${encodeURIComponent(`${title} - ${currentUrl}`)}`,
+  twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(title)}`,
+  telegram: `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(title)}`,
+  messenger: `fb-messenger://share?link=${encodeURIComponent(currentUrl)}`,
+};
 ---
 
 <!doctype html>
@@ -76,7 +86,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
                 <SocialsButton />
               </div>
               <div class="pointer-events-auto">
-                <ShareButton title={title} />
+                <ShareButton />
               </div>
             </div>
             <div class="pointer-events-auto">
@@ -96,6 +106,163 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
       </>
     )}
     <Footer />
+    {hideSidebar ? null : (
+      <div
+        id="site-overlay"
+        class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+        data-site-overlay-root
+        data-state="closed"
+        aria-hidden="true"
+        hidden
+      >
+        <button
+          type="button"
+          class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-200"
+          data-site-overlay-backdrop
+          data-overlay-close
+          aria-label="Close dialog"
+        ></button>
+        <div class="relative z-10 w-full max-w-sm">
+          <div
+            class="translate-y-4 opacity-0 transition-all duration-200 focus:outline-none"
+            data-site-overlay-surface
+            tabindex="-1"
+          >
+            <section
+              class="rounded-xl bg-white p-6 shadow-xl"
+              data-overlay-panel="donate"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="site-overlay-donate-title"
+              hidden
+            >
+              <h2 id="site-overlay-donate-title" class="mb-4 text-xl font-bold text-gray-900">Support My Work</h2>
+              <div class="space-y-3">
+                {donationLinks.map((link, index) => (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class:list={[
+                      'flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200',
+                      index === 0 && 'bg-blue-500 hover:bg-blue-600',
+                      index === 1 && 'bg-[#003087] hover:bg-[#002367]',
+                      index === 2 && 'bg-[#29abe0] hover:bg-[#2795c4]',
+                    ]}
+                  >
+                    {link.title}
+                  </a>
+                ))}
+              </div>
+              <button
+                type="button"
+                class="mt-5 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-100"
+                data-overlay-close
+              >
+                Close
+              </button>
+            </section>
+            <section
+              class="rounded-xl bg-white p-6 shadow-xl"
+              data-overlay-panel="socials"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="site-overlay-socials-title"
+              hidden
+            >
+              <h2 id="site-overlay-socials-title" class="mb-4 text-xl font-bold text-gray-900">Follow elsewhere</h2>
+              <div class="space-y-3">
+                {socialLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class:list={[
+                      'flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200',
+                      link.classes,
+                    ]}
+                  >
+                    <Icon name={link.icon} class="h-4 w-4" />
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+              <button
+                type="button"
+                class="mt-5 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-100"
+                data-overlay-close
+              >
+                Close
+              </button>
+            </section>
+            <section
+              class="rounded-xl bg-white p-6 shadow-xl"
+              data-overlay-panel="share"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="site-overlay-share-title"
+              hidden
+            >
+              <h2 id="site-overlay-share-title" class="mb-4 text-xl font-bold text-gray-900">Share this page</h2>
+              <div class="space-y-3">
+                <a
+                  href={shareLinks.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#20ba5a]"
+                >
+                  <Icon name="simple-icons:whatsapp" class="h-4 w-4" />
+                  Share on WhatsApp
+                </a>
+                <a
+                  href={shareLinks.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#1DA1F2] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#1a8cd8]"
+                >
+                  <Icon name="simple-icons:x" class="h-4 w-4" />
+                  Share on X (Twitter)
+                </a>
+                <a
+                  href={shareLinks.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0088cc] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#006699]"
+                >
+                  <Icon name="simple-icons:telegram" class="h-4 w-4" />
+                  Share on Telegram
+                </a>
+                <a
+                  href={shareLinks.messenger}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0084FF] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#0066cc]"
+                >
+                  <Icon name="simple-icons:messenger" class="h-4 w-4" />
+                  Share on Messenger
+                </a>
+                <button
+                  type="button"
+                  class="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-600 px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-700"
+                  data-share-copy-link
+                  data-share-copy-url={currentUrl}
+                >
+                  <Icon name="heroicons:link" class="h-4 w-4" />
+                  <span data-share-copy-text>Copy link</span>
+                </button>
+              </div>
+              <button
+                type="button"
+                class="mt-5 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-100"
+                data-overlay-close
+              >
+                Close
+              </button>
+            </section>
+          </div>
+        </div>
+      </div>
+    )}
 
     {hideSidebar ? null : (
       <script is:inline>
@@ -309,8 +476,6 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
             };
 
             const setSecondaryInteractivity = (isExpanded) => {
-              secondaryGroup.hidden = false;
-              secondaryGroup.style.display = isExpanded ? '' : 'none';
               secondaryGroup.setAttribute('aria-hidden', String(!isExpanded));
 
               if ('inert' in secondaryGroup) {
@@ -325,6 +490,8 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
                   toggle.focus();
                 }
               }
+
+              secondaryGroup.style.maxHeight = isExpanded ? `${secondaryGroup.scrollHeight}px` : '0px';
             };
 
             const applyState = (isExpanded) => {
@@ -338,6 +505,11 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
               const footerTop = footer.getBoundingClientRect().top;
               const overlap = Math.max(0, window.innerHeight - footerTop);
               wrapper.style.bottom = `${BASE_BOTTOM + overlap}px`;
+            };
+
+            const syncSecondaryHeight = () => {
+              const isExpanded = stack.dataset.floatingState !== 'collapsed';
+              secondaryGroup.style.maxHeight = isExpanded ? `${secondaryGroup.scrollHeight}px` : '0px';
             };
 
             const scheduleOffsetUpdate = () => {
@@ -360,7 +532,12 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
             window.addEventListener('resize', scheduleOffsetUpdate);
 
             const resizeObserver =
-              typeof ResizeObserver === 'function' ? new ResizeObserver(scheduleOffsetUpdate) : null;
+              typeof ResizeObserver === 'function'
+                ? new ResizeObserver(() => {
+                    syncSecondaryHeight();
+                    scheduleOffsetUpdate();
+                  })
+                : null;
             resizeObserver?.observe(footer);
             resizeObserver?.observe(wrapper);
             resizeObserver?.observe(stack);
@@ -369,6 +546,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
             toggle.addEventListener('click', toggleExpanded);
 
             applyState(readPreference());
+            syncSecondaryHeight();
             scheduleOffsetUpdate();
 
             window.__floatingActionsCleanup = () => {
@@ -380,7 +558,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
                 window.cancelAnimationFrame(frameId);
                 frameId = 0;
               }
-              secondaryGroup.style.display = '';
+              secondaryGroup.style.maxHeight = '';
               wrapper.style.bottom = '';
               window.__floatingActionsCleanup = undefined;
             };
@@ -395,5 +573,319 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
         })();
       </script>
     )}
+    {hideSidebar ? null : (
+      <script is:inline>
+        (() => {
+          const setupSiteOverlay = () => {
+            window.__siteOverlayCleanup?.();
+
+            const root = document.querySelector('[data-site-overlay-root]');
+            const surface = root?.querySelector('[data-site-overlay-surface]');
+            const panels = Array.from(root?.querySelectorAll('[data-overlay-panel]') ?? []);
+            if (!(root instanceof HTMLElement) || !(surface instanceof HTMLElement) || panels.length === 0) {
+              return;
+            }
+
+            const panelMap = new Map(
+              panels
+                .map((panel) => {
+                  if (!(panel instanceof HTMLElement) || !panel.dataset.overlayPanel) return null;
+                  return [panel.dataset.overlayPanel, panel];
+                })
+                .filter(Boolean),
+            );
+
+            const TRANSITION_MS =
+              typeof window.matchMedia === 'function' &&
+              window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 0
+                : 200;
+            const focusableSelectors =
+              'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+            let activePanelKind = '';
+            let activeTrigger = null;
+            let closeTimer = 0;
+            let rafId = 0;
+            let copyResetTimer = 0;
+
+            const clearTimers = () => {
+              if (closeTimer !== 0) {
+                window.clearTimeout(closeTimer);
+                closeTimer = 0;
+              }
+              if (rafId !== 0) {
+                window.cancelAnimationFrame(rafId);
+                rafId = 0;
+              }
+              if (copyResetTimer !== 0) {
+                window.clearTimeout(copyResetTimer);
+                copyResetTimer = 0;
+              }
+            };
+
+            const getActivePanel = () => {
+              const panel = panelMap.get(activePanelKind);
+              return panel instanceof HTMLElement ? panel : null;
+            };
+
+            const getFocusableElements = () => {
+              const panel = getActivePanel();
+              if (!panel) return [];
+
+              return Array.from(panel.querySelectorAll(focusableSelectors)).filter(
+                (node) =>
+                  node instanceof HTMLElement &&
+                  !node.hasAttribute('hidden') &&
+                  !node.closest('[hidden]') &&
+                  !node.hasAttribute('disabled'),
+              );
+            };
+
+            const focusInitialTarget = () => {
+              const [firstFocusable] = getFocusableElements();
+              (firstFocusable ?? surface).focus();
+            };
+
+            const setCopyButtonLabel = (label) => {
+              const panel = panelMap.get('share');
+              const labelNode = panel?.querySelector('[data-share-copy-text]');
+              if (labelNode instanceof HTMLElement) {
+                labelNode.textContent = label;
+              }
+            };
+
+            const fallbackCopyText = (text) => {
+              const textArea = document.createElement('textarea');
+              textArea.value = text;
+              textArea.setAttribute('readonly', '');
+              textArea.style.position = 'fixed';
+              textArea.style.opacity = '0';
+              textArea.style.pointerEvents = 'none';
+              document.body.append(textArea);
+              textArea.select();
+              textArea.setSelectionRange(0, textArea.value.length);
+
+              let copied = false;
+              try {
+                copied = typeof document.execCommand === 'function' && document.execCommand('copy');
+              } finally {
+                textArea.remove();
+              }
+
+              if (!copied) {
+                throw new Error('Copy command unavailable');
+              }
+            };
+
+            const handleCopyLink = async (button) => {
+              if (!(button instanceof HTMLButtonElement)) return;
+
+              const url = button.dataset.shareCopyUrl ?? '';
+              if (!url) return;
+
+              clearTimers();
+
+              try {
+                if (navigator.clipboard?.writeText) {
+                  await navigator.clipboard.writeText(url);
+                } else {
+                  fallbackCopyText(url);
+                }
+                setCopyButtonLabel('Copied!');
+              } catch (error) {
+                setCopyButtonLabel('Copy failed');
+                console.error('Failed to copy link:', error);
+              }
+
+              copyResetTimer = window.setTimeout(() => {
+                setCopyButtonLabel('Copy link');
+                copyResetTimer = 0;
+              }, 2000);
+            };
+
+            const showPanel = (kind) => {
+              panels.forEach((panel) => {
+                if (!(panel instanceof HTMLElement)) return;
+                panel.hidden = panel.dataset.overlayPanel !== kind;
+              });
+              activePanelKind = kind;
+            };
+
+            const finalizeClosed = ({ restoreFocus = true } = {}) => {
+              clearTimers();
+              root.dataset.state = 'closed';
+              root.setAttribute('aria-hidden', 'true');
+              root.hidden = true;
+              panels.forEach((panel) => {
+                if (panel instanceof HTMLElement) {
+                  panel.hidden = true;
+                }
+              });
+              const focusTarget = activeTrigger;
+              activePanelKind = '';
+              activeTrigger = null;
+              setCopyButtonLabel('Copy link');
+
+              if (restoreFocus && focusTarget instanceof HTMLElement && focusTarget.isConnected) {
+                focusTarget.focus();
+              }
+            };
+
+            const openOverlay = (kind, trigger) => {
+              if (!kind || !panelMap.has(kind)) return;
+
+              clearTimers();
+              activeTrigger = trigger instanceof HTMLElement ? trigger : activeTrigger;
+              showPanel(kind);
+              root.hidden = false;
+              root.setAttribute('aria-hidden', 'false');
+
+              rafId = window.requestAnimationFrame(() => {
+                rafId = 0;
+                root.dataset.state = 'open';
+                focusInitialTarget();
+              });
+            };
+
+            const closeOverlay = ({ restoreFocus = true } = {}) => {
+              if (root.hidden) return;
+
+              clearTimers();
+              root.dataset.state = 'closed';
+              root.setAttribute('aria-hidden', 'true');
+
+              if (TRANSITION_MS === 0) {
+                finalizeClosed({ restoreFocus });
+                return;
+              }
+
+              closeTimer = window.setTimeout(() => {
+                closeTimer = 0;
+                finalizeClosed({ restoreFocus });
+              }, TRANSITION_MS);
+            };
+
+            const handleDocumentClick = (event) => {
+              const target = event.target;
+              if (!(target instanceof Element)) return;
+
+              const trigger = target.closest('[data-overlay-trigger]');
+              if (trigger instanceof HTMLElement) {
+                event.preventDefault();
+                openOverlay(trigger.dataset.overlayTrigger ?? '', trigger);
+                return;
+              }
+
+              const closeButton = target.closest('[data-overlay-close]');
+              if (closeButton instanceof HTMLElement && root.contains(closeButton)) {
+                event.preventDefault();
+                closeOverlay();
+                return;
+              }
+
+              const copyButton = target.closest('[data-share-copy-link]');
+              if (copyButton instanceof HTMLButtonElement && root.contains(copyButton)) {
+                event.preventDefault();
+                handleCopyLink(copyButton);
+              }
+            };
+
+            const handleKeyDown = (event) => {
+              if (root.hidden) return;
+
+              if (event.key === 'Escape') {
+                event.preventDefault();
+                closeOverlay();
+                return;
+              }
+
+              if (event.key !== 'Tab') return;
+
+              const panel = getActivePanel();
+              if (!panel) {
+                event.preventDefault();
+                surface.focus();
+                return;
+              }
+
+              const focusable = getFocusableElements();
+              if (focusable.length === 0) {
+                event.preventDefault();
+                surface.focus();
+                return;
+              }
+
+              const first = focusable[0];
+              const last = focusable[focusable.length - 1];
+              const activeElement = document.activeElement;
+              const activeInsidePanel = activeElement instanceof Node && panel.contains(activeElement);
+
+              if (event.shiftKey) {
+                if (activeElement === first || !activeInsidePanel) {
+                  event.preventDefault();
+                  last.focus();
+                }
+                return;
+              }
+
+              if (activeElement === last || !activeInsidePanel) {
+                event.preventDefault();
+                first.focus();
+              }
+            };
+
+            document.addEventListener('click', handleDocumentClick);
+            document.addEventListener('keydown', handleKeyDown);
+
+            window.__siteOverlayCleanup = () => {
+              document.removeEventListener('click', handleDocumentClick);
+              document.removeEventListener('keydown', handleKeyDown);
+              finalizeClosed({ restoreFocus: false });
+              window.__siteOverlayCleanup = undefined;
+            };
+          };
+
+          document.addEventListener('astro:page-load', setupSiteOverlay);
+          document.addEventListener('astro:after-swap', setupSiteOverlay);
+          document.addEventListener('astro:before-preparation', () => {
+            window.__siteOverlayCleanup?.();
+          });
+          setupSiteOverlay();
+        })();
+      </script>
+    )}
+    <style is:inline>
+      [data-floating-secondary-group] {
+        overflow: hidden;
+        opacity: 1;
+        transform: translateY(0);
+        transition: max-height 0.24s ease, opacity 0.2s ease, transform 0.24s ease;
+        will-change: max-height, opacity, transform;
+      }
+
+      [data-floating-actions][data-floating-state='collapsed'] [data-floating-secondary-group] {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(1rem);
+      }
+
+      [data-site-overlay-root] {
+        pointer-events: none;
+      }
+
+      [data-site-overlay-root][data-state='open'] {
+        pointer-events: auto;
+      }
+
+      [data-site-overlay-root][data-state='open'] [data-site-overlay-backdrop] {
+        opacity: 1;
+      }
+
+      [data-site-overlay-root][data-state='open'] [data-site-overlay-surface] {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
   </body>
 </html>
