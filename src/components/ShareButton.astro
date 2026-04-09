@@ -104,114 +104,127 @@ const shareLinks = {
 </div>
 
 <script is:inline define:vars={{ currentUrl }}>
-  const previousCleanup = window.__shareWidgetCleanup;
-  if (typeof previousCleanup === 'function') {
-    previousCleanup();
-  }
+  (() => {
+    const script = document.currentScript;
+    const root = script?.previousElementSibling;
 
-  function setupShareWidget() {
-    const root = document.querySelector('[data-share-widget]');
-    if (!root) {
-      window.__shareWidgetCleanup = undefined;
-      return;
-    }
+    if (!(root instanceof HTMLElement)) return;
 
-    const openBtn = root.querySelector('[data-share-open]');
-    const closeBtn = root.querySelector('[data-share-close]');
-    const overlay = root.querySelector('[data-share-overlay]');
-    const modal = root.querySelector('[data-share-modal]');
-    const copyBtn = root.querySelector('[data-copy-link]');
-    const copyText = root.querySelector('[data-copy-text]');
-    const shareButton = openBtn;
-    if (!openBtn || !closeBtn || !overlay || !modal) return;
+    let cleanup = () => {};
 
-    const focusableSelectors = 'a[href], button:not([disabled])';
+    const setupShareWidget = () => {
+      cleanup();
 
-    const openModal = () => {
-      root.dataset.state = 'open';
-      modal.addEventListener(
-        'transitionend',
-        () => {
-          const firstFocusable = modal.querySelector(focusableSelectors);
-          if (firstFocusable instanceof HTMLElement) {
-            firstFocusable.focus();
-          }
-        },
-        { once: true },
-      );
-      modal.addEventListener(
-        'transitioncancel',
-        () => {
-          const firstFocusable = modal.querySelector(focusableSelectors);
-          if (firstFocusable instanceof HTMLElement) {
-            firstFocusable.focus();
-          }
-        },
-        { once: true },
-      );
-    };
+      if (!root.isConnected) return;
 
-    const closeModal = () => {
-      root.dataset.state = 'closed';
-      shareButton?.focus();
-    };
-
-    const handleCopyLink = async () => {
-      try {
-        await navigator.clipboard.writeText(currentUrl);
-        if (copyText) {
-          const originalText = copyText.textContent;
-          copyText.textContent = 'Copied!';
-          setTimeout(() => {
-            copyText.textContent = originalText;
-          }, 2000);
-        }
-      } catch (err) {
-        console.error('Failed to copy link:', err);
-      }
-    };
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        closeModal();
+      const openBtn = root.querySelector('[data-share-open]');
+      const closeBtn = root.querySelector('[data-share-close]');
+      const overlay = root.querySelector('[data-share-overlay]');
+      const modal = root.querySelector('[data-share-modal]');
+      const copyBtn = root.querySelector('[data-copy-link]');
+      const copyText = root.querySelector('[data-copy-text]');
+      const shareButton = openBtn;
+      if (!openBtn || !closeBtn || !overlay || !modal) {
+        cleanup = () => {};
         return;
       }
 
-      if (event.key !== 'Tab' || root.dataset.state !== 'open') return;
+      const focusableSelectors = 'a[href], button:not([disabled])';
 
-      const focusable = Array.from(modal.querySelectorAll(focusableSelectors));
-      if (focusable.length === 0) return;
+      const focusFirstElement = () => {
+        const firstFocusable = modal.querySelector(focusableSelectors);
+        if (firstFocusable instanceof HTMLElement) {
+          firstFocusable.focus();
+        }
+      };
 
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
+      const openModal = () => {
+        root.dataset.state = 'open';
+        modal.addEventListener('transitionend', focusFirstElement, { once: true });
+        modal.addEventListener('transitioncancel', focusFirstElement, { once: true });
+      };
 
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+      const closeModal = () => {
+        root.dataset.state = 'closed';
+        shareButton?.focus();
+      };
+
+      const handleCopyLink = async () => {
+        if (!(copyText instanceof HTMLElement)) return;
+
+        const originalText = copyText.textContent;
+
+        try {
+          if (!navigator.clipboard?.writeText) {
+            throw new Error('Clipboard API unavailable');
+          }
+
+          await navigator.clipboard.writeText(currentUrl);
+          copyText.textContent = 'Copied!';
+        } catch (err) {
+          copyText.textContent = 'Copy failed';
+          console.error('Failed to copy link:', err);
+        }
+
+        window.setTimeout(() => {
+          copyText.textContent = originalText;
+        }, 2000);
+      };
+
+      const handleKeyDown = (event) => {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeModal();
+          return;
+        }
+
+        if (event.key !== 'Tab' || root.dataset.state !== 'open') return;
+
+        const focusable = Array.from(modal.querySelectorAll(focusableSelectors)).filter(
+          (node) => node instanceof HTMLElement,
+        );
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      };
+
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', closeModal);
+      if (copyBtn) copyBtn.addEventListener('click', handleCopyLink);
+      document.addEventListener('keydown', handleKeyDown);
+
+      cleanup = () => {
+        openBtn.removeEventListener('click', openModal);
+        closeBtn.removeEventListener('click', closeModal);
+        overlay.removeEventListener('click', closeModal);
+        if (copyBtn) copyBtn.removeEventListener('click', handleCopyLink);
+        document.removeEventListener('keydown', handleKeyDown);
+      };
+    };
+
+    const handleAfterSwap = () => {
+      if (!root.isConnected) {
+        cleanup();
+        document.removeEventListener('astro:after-swap', handleAfterSwap);
+        return;
       }
+
+      setupShareWidget();
     };
 
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
-    if (copyBtn) copyBtn.addEventListener('click', handleCopyLink);
-    document.addEventListener('keydown', handleKeyDown);
-
-    window.__shareWidgetCleanup = () => {
-      openBtn.removeEventListener('click', openModal);
-      closeBtn.removeEventListener('click', closeModal);
-      overlay.removeEventListener('click', closeModal);
-      if (copyBtn) copyBtn.removeEventListener('click', handleCopyLink);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }
-
-  setupShareWidget();
-  document.addEventListener('astro:after-swap', setupShareWidget);
+    setupShareWidget();
+    document.addEventListener('astro:after-swap', handleAfterSwap);
+  })();
 </script>
 
 <style>

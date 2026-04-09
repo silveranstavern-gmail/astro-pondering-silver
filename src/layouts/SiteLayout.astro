@@ -59,26 +59,36 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
     {hideSidebar ? null : (
       <>
         <div
-          class="floating-actions fixed right-4 bottom-4 z-30 flex flex-col items-center gap-4 transition-[bottom] duration-200 sm:right-8"
-          data-floating-actions
-          data-floating-state="expanded"
+          class="floating-actions-wrapper pointer-events-none fixed right-4 bottom-4 z-30 flex flex-col items-center gap-4 transition-[bottom] duration-200 sm:right-8"
+          data-floating-actions-wrapper
         >
-          <div class="flex flex-col items-center gap-4" data-floating-secondary-group>
-            <div transition:persist="socials-button">
-              <SocialsButton />
+          <div
+            class="floating-actions flex flex-col items-center gap-4"
+            data-floating-actions
+            data-floating-state="expanded"
+          >
+            <div
+              id="floating-secondary-actions"
+              class="flex flex-col items-center gap-4"
+              data-floating-secondary-group
+            >
+              <div class="pointer-events-auto">
+                <SocialsButton />
+              </div>
+              <div class="pointer-events-auto">
+                <ShareButton title={title} />
+              </div>
             </div>
-            <div transition:persist="share-button">
-              <ShareButton title={title} />
+            <div class="pointer-events-auto">
+              <DonationButton />
             </div>
-          </div>
-          <div transition:persist="donation-button">
-            <DonationButton />
           </div>
           <button
             type="button"
-            class="text-xs font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
+            class="pointer-events-auto inline-flex min-h-7 items-center justify-center px-2 py-1 text-xs font-medium leading-none text-gray-600 transition-colors duration-200 hover:text-gray-900"
             data-floating-toggle
             aria-expanded="true"
+            aria-controls="floating-secondary-actions"
           >
             Hide
           </button>
@@ -238,13 +248,25 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
             window.__floatingActionsCleanup?.();
 
             const stack = document.querySelector('[data-floating-actions]');
+            const wrapper = document.querySelector('[data-floating-actions-wrapper]');
             const footer = document.querySelector('[data-site-footer]');
-            const toggle = stack?.querySelector('[data-floating-toggle]');
+            const toggle = document.querySelector('[data-floating-toggle]');
             const secondaryGroup = stack?.querySelector('[data-floating-secondary-group]');
-            if (!stack || !footer || !toggle) return;
+            if (
+              !stack ||
+              !wrapper ||
+              !footer ||
+              !toggle ||
+              !(toggle instanceof HTMLButtonElement) ||
+              !(secondaryGroup instanceof HTMLElement)
+            ) {
+              return;
+            }
 
             const BASE_BOTTOM = 16;
             const STORAGE_KEY = 'floatingActionsExpanded';
+            const TAB_GUARD_SELECTOR = 'a[href], button:not([disabled]), [tabindex]';
+            let frameId = 0;
 
             const readPreference = () => {
               try {
@@ -262,16 +284,68 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
               } catch {}
             };
 
+            const setSecondaryTabState = (isExpanded) => {
+              secondaryGroup.querySelectorAll(TAB_GUARD_SELECTOR).forEach((node) => {
+                if (!(node instanceof HTMLElement)) return;
+
+                if (!isExpanded) {
+                  if (!Object.prototype.hasOwnProperty.call(node.dataset, 'floatingPrevTabindex')) {
+                    node.dataset.floatingPrevTabindex = node.getAttribute('tabindex') ?? '';
+                  }
+                  node.setAttribute('tabindex', '-1');
+                  return;
+                }
+
+                if (!Object.prototype.hasOwnProperty.call(node.dataset, 'floatingPrevTabindex')) return;
+
+                const previousTabindex = node.dataset.floatingPrevTabindex ?? '';
+                if (previousTabindex === '') {
+                  node.removeAttribute('tabindex');
+                } else {
+                  node.setAttribute('tabindex', previousTabindex);
+                }
+                delete node.dataset.floatingPrevTabindex;
+              });
+            };
+
+            const setSecondaryInteractivity = (isExpanded) => {
+              secondaryGroup.hidden = false;
+              secondaryGroup.style.display = isExpanded ? '' : 'none';
+              secondaryGroup.setAttribute('aria-hidden', String(!isExpanded));
+
+              if ('inert' in secondaryGroup) {
+                secondaryGroup.inert = !isExpanded;
+              } else {
+                setSecondaryTabState(isExpanded);
+              }
+
+              if (!isExpanded) {
+                const activeElement = document.activeElement;
+                if (activeElement instanceof Node && secondaryGroup.contains(activeElement)) {
+                  toggle.focus();
+                }
+              }
+            };
+
             const applyState = (isExpanded) => {
               stack.dataset.floatingState = isExpanded ? 'expanded' : 'collapsed';
               toggle.textContent = isExpanded ? 'Hide' : 'More';
               toggle.setAttribute('aria-expanded', String(isExpanded));
+              setSecondaryInteractivity(isExpanded);
             };
 
             const updateOffset = () => {
               const footerTop = footer.getBoundingClientRect().top;
               const overlap = Math.max(0, window.innerHeight - footerTop);
-              stack.style.bottom = `${BASE_BOTTOM + overlap}px`;
+              wrapper.style.bottom = `${BASE_BOTTOM + overlap}px`;
+            };
+
+            const scheduleOffsetUpdate = () => {
+              if (frameId !== 0) return;
+              frameId = window.requestAnimationFrame(() => {
+                frameId = 0;
+                updateOffset();
+              });
             };
 
             const toggleExpanded = () => {
@@ -279,28 +353,35 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
               const nextState = !isExpanded;
               applyState(nextState);
               writePreference(nextState);
-              updateOffset();
+              scheduleOffsetUpdate();
             };
 
-            window.addEventListener('scroll', updateOffset, { passive: true });
-            window.addEventListener('resize', updateOffset);
+            window.addEventListener('scroll', scheduleOffsetUpdate, { passive: true });
+            window.addEventListener('resize', scheduleOffsetUpdate);
 
-            const resizeObserver = new ResizeObserver(updateOffset);
-            resizeObserver.observe(footer);
-            resizeObserver.observe(stack);
-            if (secondaryGroup) resizeObserver.observe(secondaryGroup);
+            const resizeObserver =
+              typeof ResizeObserver === 'function' ? new ResizeObserver(scheduleOffsetUpdate) : null;
+            resizeObserver?.observe(footer);
+            resizeObserver?.observe(wrapper);
+            resizeObserver?.observe(stack);
+            resizeObserver?.observe(secondaryGroup);
 
             toggle.addEventListener('click', toggleExpanded);
 
             applyState(readPreference());
-            updateOffset();
+            scheduleOffsetUpdate();
 
             window.__floatingActionsCleanup = () => {
-              window.removeEventListener('scroll', updateOffset);
-              window.removeEventListener('resize', updateOffset);
-              resizeObserver.disconnect();
+              window.removeEventListener('scroll', scheduleOffsetUpdate);
+              window.removeEventListener('resize', scheduleOffsetUpdate);
+              resizeObserver?.disconnect();
               toggle.removeEventListener('click', toggleExpanded);
-              stack.style.bottom = '';
+              if (frameId !== 0) {
+                window.cancelAnimationFrame(frameId);
+                frameId = 0;
+              }
+              secondaryGroup.style.display = '';
+              wrapper.style.bottom = '';
               window.__floatingActionsCleanup = undefined;
             };
           };
@@ -314,19 +395,5 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
         })();
       </script>
     )}
-    <style is:inline>
-      [data-floating-secondary-group] {
-        transition: opacity 0.2s ease, transform 0.2s ease, max-height 0.2s ease;
-        max-height: 240px;
-        overflow: hidden;
-      }
-
-      [data-floating-actions][data-floating-state='collapsed'] [data-floating-secondary-group] {
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(10px);
-        max-height: 0;
-      }
-    </style>
   </body>
 </html>

@@ -74,102 +74,110 @@ import { donationLinks } from '../data/support';
 </div>
 
 <script is:inline>
-  const previousCleanup = window.__donationWidgetCleanup;
-  if (typeof previousCleanup === 'function') {
-    previousCleanup();
-  }
+  (() => {
+    const script = document.currentScript;
+    const root = script?.previousElementSibling;
 
-  function setupDonationWidget() {
-    const root = document.querySelector('[data-donation-widget]');
-    if (!root) {
-      window.__donationWidgetCleanup = undefined;
-      return;
-    }
+    if (!(root instanceof HTMLElement)) return;
 
-    const openBtn = root.querySelector('[data-donation-open]');
-    const closeBtn = root.querySelector('[data-donation-close]');
-    const overlay = root.querySelector('[data-donation-overlay]');
-    const modal = root.querySelector('[data-donation-modal]');
-    const donationButton = openBtn;
-    if (!openBtn || !closeBtn || !overlay || !modal) return;
+    let cleanup = () => {};
 
-    const focusableSelectors = 'a[href], button:not([disabled])';
+    const setupDonationWidget = () => {
+      cleanup();
 
-    const openModal = () => {
-      root.dataset.state = 'open';
-      modal.addEventListener(
-        'transitionend',
-        () => {
-          const firstFocusable = modal.querySelector(focusableSelectors);
-          if (firstFocusable instanceof HTMLElement) {
-            firstFocusable.focus();
-          }
-        },
-        { once: true },
-      );
-      modal.addEventListener(
-        'transitioncancel',
-        () => {
-          const firstFocusable = modal.querySelector(focusableSelectors);
-          if (firstFocusable instanceof HTMLElement) {
-            firstFocusable.focus();
-          }
-        },
-        { once: true },
-      );
-    };
+      if (!root.isConnected) return;
 
-    const closeModal = () => {
-      root.dataset.state = 'closed';
-      donationButton?.focus();
-    };
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        closeModal();
+      const openBtn = root.querySelector('[data-donation-open]');
+      const closeBtn = root.querySelector('[data-donation-close]');
+      const overlay = root.querySelector('[data-donation-overlay]');
+      const modal = root.querySelector('[data-donation-modal]');
+      const donationButton = openBtn;
+      if (!openBtn || !closeBtn || !overlay || !modal) {
+        cleanup = () => {};
         return;
       }
 
-      if (event.key !== 'Tab' || root.dataset.state !== 'open') return;
+      const focusableSelectors = 'a[href], button:not([disabled])';
 
-      const focusable = Array.from(modal.querySelectorAll(focusableSelectors));
-      if (focusable.length === 0) return;
+      const focusFirstElement = () => {
+        const firstFocusable = modal.querySelector(focusableSelectors);
+        if (firstFocusable instanceof HTMLElement) {
+          firstFocusable.focus();
+        }
+      };
 
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
+      const openModal = () => {
+        root.dataset.state = 'open';
+        modal.addEventListener('transitionend', focusFirstElement, { once: true });
+        modal.addEventListener('transitioncancel', focusFirstElement, { once: true });
+      };
 
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+      const closeModal = () => {
+        root.dataset.state = 'closed';
+        donationButton?.focus();
+      };
+
+      const handleKeyDown = (event) => {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeModal();
+          return;
+        }
+
+        if (event.key !== 'Tab' || root.dataset.state !== 'open') return;
+
+        const focusable = Array.from(modal.querySelectorAll(focusableSelectors)).filter(
+          (node) => node instanceof HTMLElement,
+        );
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      };
+
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', closeModal);
+      document.addEventListener('keydown', handleKeyDown);
+
+      const prefersReducedMotion =
+        typeof window.matchMedia === 'function' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        root.querySelectorAll('.animate-pulse-glow').forEach((el) => {
+          el.classList.remove('animate-pulse-glow');
+        });
       }
+
+      cleanup = () => {
+        openBtn.removeEventListener('click', openModal);
+        closeBtn.removeEventListener('click', closeModal);
+        overlay.removeEventListener('click', closeModal);
+        document.removeEventListener('keydown', handleKeyDown);
+      };
     };
 
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
-    document.addEventListener('keydown', handleKeyDown);
+    const handleAfterSwap = () => {
+      if (!root.isConnected) {
+        cleanup();
+        document.removeEventListener('astro:after-swap', handleAfterSwap);
+        return;
+      }
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      document.querySelectorAll('.animate-pulse-glow').forEach((el) => {
-        el.classList.remove('animate-pulse-glow');
-      });
-    }
-
-    window.__donationWidgetCleanup = () => {
-      openBtn.removeEventListener('click', openModal);
-      closeBtn.removeEventListener('click', closeModal);
-      overlay.removeEventListener('click', closeModal);
-      document.removeEventListener('keydown', handleKeyDown);
+      setupDonationWidget();
     };
-  }
 
-  setupDonationWidget();
-  document.addEventListener('astro:after-swap', setupDonationWidget);
+    setupDonationWidget();
+    document.addEventListener('astro:after-swap', handleAfterSwap);
+  })();
 </script>
 
 <style>
