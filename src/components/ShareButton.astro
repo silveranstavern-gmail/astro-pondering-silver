@@ -16,7 +16,7 @@ const shareLinks = {
 <div class="share-button" data-share-widget data-state="closed">
   <button
     type="button"
-    class="fixed right-4 bottom-[120px] flex flex-col items-center transition-transform duration-200 sm:right-8"
+    class="flex flex-col items-center transition-transform duration-200"
     data-share-open
     aria-haspopup="dialog"
     aria-controls="share-modal"
@@ -123,7 +123,6 @@ const shareLinks = {
     const copyBtn = root.querySelector('[data-copy-link]');
     const copyText = root.querySelector('[data-copy-text]');
     const shareButton = openBtn;
-    const floatingClassList = shareButton?.classList;
     if (!openBtn || !closeBtn || !overlay || !modal) return;
 
     const focusableSelectors = 'a[href], button:not([disabled])';
@@ -196,22 +195,11 @@ const shareLinks = {
       }
     };
 
-    const updateButtonOffset = () => {
-      if (!floatingClassList) return;
-      const nearBottom =
-        document.documentElement.scrollHeight - (window.scrollY + window.innerHeight) <= 84;
-      floatingClassList.toggle('bottom-[120px]', !nearBottom);
-      floatingClassList.toggle('bottom-[168px]', nearBottom);
-    };
-
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', closeModal);
     if (copyBtn) copyBtn.addEventListener('click', handleCopyLink);
     document.addEventListener('keydown', handleKeyDown);
-
-    window.addEventListener('scroll', updateButtonOffset, { passive: true });
-    updateButtonOffset();
 
     window.__shareWidgetCleanup = () => {
       openBtn.removeEventListener('click', openModal);
@@ -219,7 +207,6 @@ const shareLinks = {
       overlay.removeEventListener('click', closeModal);
       if (copyBtn) copyBtn.removeEventListener('click', handleCopyLink);
       document.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('scroll', updateButtonOffset);
     };
   }
 

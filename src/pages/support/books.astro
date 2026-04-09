@@ -1,0 +1,64 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { books } from '../../data/support';
+---
+
+<SiteLayout
+  title="Books | Support | Pondering Silver"
+  description="Books by Silver available to purchase in support of Pondering Silver."
+>
+  <article class="mx-auto flex max-w-6xl flex-col gap-12">
+    <header class="space-y-4">
+      <a href="/support" class="inline-flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-700">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+          <path d="M15.78 4.22a.75.75 0 010 1.06L10.06 11l5.72 5.72a.75.75 0 11-1.06 1.06l-6.25-6.25a.75.75 0 010-1.06l6.25-6.25a.75.75 0 011.06 0z" />
+        </svg>
+        Back to Support
+      </a>
+      <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700">
+        Books
+      </span>
+      <h1 class="text-4xl font-bold text-gray-900">Books by Silver</h1>
+      <p class="max-w-3xl text-lg text-gray-600">
+        Writings you can bring off the screen and into your hands. This page will expand if more books are published.
+      </p>
+    </header>
+
+    <div class="space-y-10">
+      {books.map((book) => {
+        const descriptionParagraphs = book.description.split('\n\n');
+        return (
+          <section class="grid gap-8 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm lg:grid-cols-[360px_1fr]">
+            <div class="mx-auto w-full max-w-[360px]">
+              <img
+                src={book.image}
+                alt={`Cover of ${book.title}`}
+                class="w-full rounded-2xl border border-gray-200 object-cover shadow-md"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="flex flex-col">
+              <h2 class="text-3xl font-bold text-gray-900">{book.title}</h2>
+              <div class="mt-5 space-y-4 text-gray-700">
+                {descriptionParagraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+              <div class="mt-8">
+                <a
+                  href={book.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:bg-purple-700"
+                >
+                  Buy on Amazon
+                </a>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </article>
+</SiteLayout>

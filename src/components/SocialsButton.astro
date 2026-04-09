@@ -1,71 +1,80 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { donationLinks } from '../data/support';
+
+const socialLinks = [
+  {
+    href: 'https://discord.gg/Z7pVmpdx3R',
+    label: 'Discord',
+    icon: 'simple-icons:discord',
+    classes: 'bg-[#5865F2] hover:bg-[#4752c4]',
+  },
+  {
+    href: 'https://www.youtube.com/@pondering-silver',
+    label: 'YouTube',
+    icon: 'simple-icons:youtube',
+    classes: 'bg-[#FF0000] hover:bg-[#d90000]',
+  },
+  {
+    href: 'https://x.com/ponderingsilver',
+    label: 'X',
+    icon: 'simple-icons:x',
+    classes: 'bg-[#111111] hover:bg-black',
+  },
+];
 ---
 
-<div class="donation-button" data-donation-widget data-state="closed">
+<div class="socials-button" data-socials-widget data-state="closed">
   <button
     type="button"
     class="flex flex-col items-center transition-transform duration-200"
-    data-donation-open
+    data-socials-open
     aria-haspopup="dialog"
-    aria-controls="donation-modal"
+    aria-controls="socials-modal"
   >
     <div class="relative h-12 w-12">
-      <div class="animate-pulse-glow absolute inset-0 rounded-full bg-purple-500 opacity-0"></div>
       <div class="relative z-10 flex h-full w-full items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-purple-700">
-        <Icon name="heroicons:heart-solid" class="h-6 w-6" aria-hidden="true" />
+        <Icon name="heroicons:users-solid" class="h-6 w-6" aria-hidden="true" />
       </div>
     </div>
-    <span class="mt-1 text-xs font-medium text-gray-700 sm:mt-2 sm:text-sm">Donate</span>
+    <span class="mt-1 text-xs font-medium text-gray-700 sm:mt-2 sm:text-sm">Socials</span>
   </button>
 
   <div
-    id="donation-overlay"
+    id="socials-overlay"
     class="fixed inset-0 z-40 bg-black/50 transition-opacity duration-200"
-    data-donation-overlay
+    data-socials-overlay
   ></div>
 
   <div
-    id="donation-modal"
+    id="socials-modal"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="donation-modal-title"
+    aria-labelledby="socials-modal-title"
     class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 transition-opacity duration-200"
-    data-donation-modal
+    data-socials-modal
   >
     <div class="w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
-      <h2 id="donation-modal-title" class="mb-4 text-xl font-bold text-gray-900">Support My Work</h2>
+      <h2 id="socials-modal-title" class="mb-4 text-xl font-bold text-gray-900">Follow elsewhere</h2>
       <div class="space-y-3">
-        <a
-          href={donationLinks[0].href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-500 px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-600"
-        >
-          Donate with Stripe
-        </a>
-        <a
-          href={donationLinks[1].href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#003087] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#002367]"
-        >
-          Donate with PayPal
-        </a>
-        <a
-          href={donationLinks[2].href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#29abe0] px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#2795c4]"
-        >
-          Support me on Ko-fi
-        </a>
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              'flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200',
+              link.classes,
+            ]}
+          >
+            <Icon name={link.icon} class="h-4 w-4" />
+            {link.label}
+          </a>
+        ))}
       </div>
       <button
         type="button"
         class="mt-5 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-100"
-        data-donation-close
+        data-socials-close
       >
         Close
       </button>
@@ -74,23 +83,23 @@ import { donationLinks } from '../data/support';
 </div>
 
 <script is:inline>
-  const previousCleanup = window.__donationWidgetCleanup;
+  const previousCleanup = window.__socialsWidgetCleanup;
   if (typeof previousCleanup === 'function') {
     previousCleanup();
   }
 
-  function setupDonationWidget() {
-    const root = document.querySelector('[data-donation-widget]');
+  function setupSocialsWidget() {
+    const root = document.querySelector('[data-socials-widget]');
     if (!root) {
-      window.__donationWidgetCleanup = undefined;
+      window.__socialsWidgetCleanup = undefined;
       return;
     }
 
-    const openBtn = root.querySelector('[data-donation-open]');
-    const closeBtn = root.querySelector('[data-donation-close]');
-    const overlay = root.querySelector('[data-donation-overlay]');
-    const modal = root.querySelector('[data-donation-modal]');
-    const donationButton = openBtn;
+    const openBtn = root.querySelector('[data-socials-open]');
+    const closeBtn = root.querySelector('[data-socials-close]');
+    const overlay = root.querySelector('[data-socials-overlay]');
+    const modal = root.querySelector('[data-socials-modal]');
+    const socialsButton = openBtn;
     if (!openBtn || !closeBtn || !overlay || !modal) return;
 
     const focusableSelectors = 'a[href], button:not([disabled])';
@@ -121,7 +130,7 @@ import { donationLinks } from '../data/support';
 
     const closeModal = () => {
       root.dataset.state = 'closed';
-      donationButton?.focus();
+      socialsButton?.focus();
     };
 
     const handleKeyDown = (event) => {
@@ -153,14 +162,7 @@ import { donationLinks } from '../data/support';
     overlay.addEventListener('click', closeModal);
     document.addEventListener('keydown', handleKeyDown);
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      document.querySelectorAll('.animate-pulse-glow').forEach((el) => {
-        el.classList.remove('animate-pulse-glow');
-      });
-    }
-
-    window.__donationWidgetCleanup = () => {
+    window.__socialsWidgetCleanup = () => {
       openBtn.removeEventListener('click', openModal);
       closeBtn.removeEventListener('click', closeModal);
       overlay.removeEventListener('click', closeModal);
@@ -168,38 +170,20 @@ import { donationLinks } from '../data/support';
     };
   }
 
-  setupDonationWidget();
-  document.addEventListener('astro:after-swap', setupDonationWidget);
+  setupSocialsWidget();
+  document.addEventListener('astro:after-swap', setupSocialsWidget);
 </script>
 
 <style>
-  @keyframes donation-glow {
-    0%,
-    98%,
-    100% {
-      opacity: 0;
-      transform: scale(1.2);
-    }
-    1% {
-      opacity: 1;
-      transform: scale(1.5);
-    }
-  }
-
-  .animate-pulse-glow {
-    animation: donation-glow 5s ease-in-out infinite;
-    filter: blur(8px);
-  }
-
-  [data-donation-widget][data-state='closed'] [data-donation-modal],
-  [data-donation-widget][data-state='closed'] [data-donation-overlay] {
+  [data-socials-widget][data-state='closed'] [data-socials-modal],
+  [data-socials-widget][data-state='closed'] [data-socials-overlay] {
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
   }
 
-  [data-donation-widget][data-state='open'] [data-donation-modal],
-  [data-donation-widget][data-state='open'] [data-donation-overlay] {
+  [data-socials-widget][data-state='open'] [data-socials-modal],
+  [data-socials-widget][data-state='open'] [data-socials-overlay] {
     opacity: 1;
     pointer-events: auto;
     visibility: visible;

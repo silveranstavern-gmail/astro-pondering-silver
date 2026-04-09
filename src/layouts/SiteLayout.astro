@@ -1,6 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import DonationButton from '../components/DonationButton.astro';
+import SocialsButton from '../components/SocialsButton.astro';
 import ShareButton from '../components/ShareButton.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
@@ -57,11 +58,16 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
     </div>
     {hideSidebar ? null : (
       <>
-        <div transition:persist="share-button">
-          <ShareButton title={title} />
-        </div>
-        <div transition:persist="donation-button">
-          <DonationButton />
+        <div class="floating-actions fixed right-4 bottom-4 z-30 flex flex-col items-center gap-4 transition-[bottom] duration-200 sm:right-8" data-floating-actions>
+          <div transition:persist="socials-button">
+            <SocialsButton />
+          </div>
+          <div transition:persist="share-button">
+            <ShareButton title={title} />
+          </div>
+          <div transition:persist="donation-button">
+            <DonationButton />
+          </div>
         </div>
       </>
     )}
@@ -208,6 +214,51 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
             window.__sidebarCleanup?.();
           });
           setupSidebar();
+        })();
+      </script>
+    )}
+    {hideSidebar ? null : (
+      <script is:inline>
+        (() => {
+          const setupFloatingActions = () => {
+            window.__floatingActionsCleanup?.();
+
+            const stack = document.querySelector('[data-floating-actions]');
+            const footer = document.querySelector('[data-site-footer]');
+            if (!stack || !footer) return;
+
+            const BASE_BOTTOM = 16;
+
+            const updateOffset = () => {
+              const footerTop = footer.getBoundingClientRect().top;
+              const overlap = Math.max(0, window.innerHeight - footerTop);
+              stack.style.bottom = `${BASE_BOTTOM + overlap}px`;
+            };
+
+            window.addEventListener('scroll', updateOffset, { passive: true });
+            window.addEventListener('resize', updateOffset);
+
+            const resizeObserver = new ResizeObserver(updateOffset);
+            resizeObserver.observe(footer);
+            resizeObserver.observe(stack);
+
+            updateOffset();
+
+            window.__floatingActionsCleanup = () => {
+              window.removeEventListener('scroll', updateOffset);
+              window.removeEventListener('resize', updateOffset);
+              resizeObserver.disconnect();
+              stack.style.bottom = '';
+              window.__floatingActionsCleanup = undefined;
+            };
+          };
+
+          document.addEventListener('astro:page-load', setupFloatingActions);
+          document.addEventListener('astro:after-swap', setupFloatingActions);
+          document.addEventListener('astro:before-preparation', () => {
+            window.__floatingActionsCleanup?.();
+          });
+          setupFloatingActions();
         })();
       </script>
     )}
