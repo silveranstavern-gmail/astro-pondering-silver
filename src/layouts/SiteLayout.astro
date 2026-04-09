@@ -58,16 +58,30 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
     </div>
     {hideSidebar ? null : (
       <>
-        <div class="floating-actions fixed right-4 bottom-4 z-30 flex flex-col items-center gap-4 transition-[bottom] duration-200 sm:right-8" data-floating-actions>
-          <div transition:persist="socials-button">
-            <SocialsButton />
-          </div>
-          <div transition:persist="share-button">
-            <ShareButton title={title} />
+        <div
+          class="floating-actions fixed right-4 bottom-4 z-30 flex flex-col items-center gap-4 transition-[bottom] duration-200 sm:right-8"
+          data-floating-actions
+          data-floating-state="expanded"
+        >
+          <div class="flex flex-col items-center gap-4" data-floating-secondary-group>
+            <div transition:persist="socials-button">
+              <SocialsButton />
+            </div>
+            <div transition:persist="share-button">
+              <ShareButton title={title} />
+            </div>
           </div>
           <div transition:persist="donation-button">
             <DonationButton />
           </div>
+          <button
+            type="button"
+            class="text-xs font-medium text-gray-600 transition-colors duration-200 hover:text-gray-900"
+            data-floating-toggle
+            aria-expanded="true"
+          >
+            Hide
+          </button>
         </div>
       </>
     )}
@@ -225,14 +239,47 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
 
             const stack = document.querySelector('[data-floating-actions]');
             const footer = document.querySelector('[data-site-footer]');
-            if (!stack || !footer) return;
+            const toggle = stack?.querySelector('[data-floating-toggle]');
+            const secondaryGroup = stack?.querySelector('[data-floating-secondary-group]');
+            if (!stack || !footer || !toggle) return;
 
             const BASE_BOTTOM = 16;
+            const STORAGE_KEY = 'floatingActionsExpanded';
+
+            const readPreference = () => {
+              try {
+                const value = localStorage.getItem(STORAGE_KEY);
+                if (value === null) return true;
+                return JSON.parse(value) === true;
+              } catch {
+                return true;
+              }
+            };
+
+            const writePreference = (isExpanded) => {
+              try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(isExpanded));
+              } catch {}
+            };
+
+            const applyState = (isExpanded) => {
+              stack.dataset.floatingState = isExpanded ? 'expanded' : 'collapsed';
+              toggle.textContent = isExpanded ? 'Hide' : 'More';
+              toggle.setAttribute('aria-expanded', String(isExpanded));
+            };
 
             const updateOffset = () => {
               const footerTop = footer.getBoundingClientRect().top;
               const overlap = Math.max(0, window.innerHeight - footerTop);
               stack.style.bottom = `${BASE_BOTTOM + overlap}px`;
+            };
+
+            const toggleExpanded = () => {
+              const isExpanded = stack.dataset.floatingState !== 'collapsed';
+              const nextState = !isExpanded;
+              applyState(nextState);
+              writePreference(nextState);
+              updateOffset();
             };
 
             window.addEventListener('scroll', updateOffset, { passive: true });
@@ -241,13 +288,18 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
             const resizeObserver = new ResizeObserver(updateOffset);
             resizeObserver.observe(footer);
             resizeObserver.observe(stack);
+            if (secondaryGroup) resizeObserver.observe(secondaryGroup);
 
+            toggle.addEventListener('click', toggleExpanded);
+
+            applyState(readPreference());
             updateOffset();
 
             window.__floatingActionsCleanup = () => {
               window.removeEventListener('scroll', updateOffset);
               window.removeEventListener('resize', updateOffset);
               resizeObserver.disconnect();
+              toggle.removeEventListener('click', toggleExpanded);
               stack.style.bottom = '';
               window.__floatingActionsCleanup = undefined;
             };
@@ -262,5 +314,19 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, hideSidebar =
         })();
       </script>
     )}
+    <style is:inline>
+      [data-floating-secondary-group] {
+        transition: opacity 0.2s ease, transform 0.2s ease, max-height 0.2s ease;
+        max-height: 240px;
+        overflow: hidden;
+      }
+
+      [data-floating-actions][data-floating-state='collapsed'] [data-floating-secondary-group] {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        max-height: 0;
+      }
+    </style>
   </body>
 </html>
