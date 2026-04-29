@@ -1,0 +1,49 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { nonDualityResources } from '../../data/resources';
+---
+
+<SiteLayout
+  title="Non-Duality Resources | Pondering Silver"
+  description="Curated non-duality resources across YouTubers, favorite videos, and books."
+>
+  <article class="mx-auto flex max-w-6xl flex-col gap-12">
+    <header class="space-y-4">
+      <a href="/resources" class="inline-flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-700">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+          <path d="M15.78 4.22a.75.75 0 010 1.06L10.06 11l5.72 5.72a.75.75 0 11-1.06 1.06l-6.25-6.25a.75.75 0 010-1.06l6.25-6.25a.75.75 0 011.06 0z" />
+        </svg>
+        Back to Resources
+      </a>
+      <h1 class="text-4xl font-bold text-gray-900">Non-Duality</h1>
+      <p class="text-lg text-gray-600">
+        A place for non-dual pointers, teachers, favorite talks, and books worth returning to.
+      </p>
+    </header>
+
+    <div class="space-y-12">
+      {nonDualityResources.map((section) => (
+        <section>
+          <h2 class="mb-6 text-2xl font-semibold text-gray-800">{section.title}</h2>
+          {section.resources.length ? (
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {section.resources.map((resource) => (
+                <a
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                >
+                  <h3 class="mb-2 text-xl font-medium text-gray-900">{resource.name}</h3>
+                  {resource.description ? <p class="text-gray-600">{resource.description}</p> : null}
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p class="text-gray-500">Resources coming soon.</p>
+          )}
+        </section>
+      ))}
+    </div>
+  </article>
+</SiteLayout>
