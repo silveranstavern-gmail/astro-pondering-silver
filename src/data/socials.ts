@@ -19,6 +19,12 @@ export const socialLinks: SocialLink[] = [
     classes: 'bg-[#FF0000] hover:bg-[#d90000]',
   },
   {
+    href: 'https://www.instagram.com/ponderingsilver144/',
+    label: 'Instagram',
+    icon: 'simple-icons:instagram',
+    classes: 'bg-[#E4405F] hover:bg-[#c93652]',
+  },
+  {
     href: 'https://x.com/ponderingsilver',
     label: 'X',
     icon: 'simple-icons:x',
