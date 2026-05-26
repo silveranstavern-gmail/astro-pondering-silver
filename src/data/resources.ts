@@ -46,6 +46,11 @@ export const resourceLinks: ResourceLink[] = [
       'A growing collection of non-dual resources across channels, favorite videos, and books.',
     path: '/resources/non-duality',
   },
+  {
+    title: 'External Apps Created By Silver',
+    description: 'Applications I\'ve built to help facilitate practice, focus, and meaning.',
+    path: '/resources/apps',
+  },
 ];
 
 export const youtubeResources: ResourceCategory[] = [

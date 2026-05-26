@@ -1,0 +1,139 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+  title="Apps | Resources | Pondering Silver"
+  description="External applications created by Silver."
+>
+  <article class="mx-auto flex max-w-6xl flex-col gap-12">
+    <header class="space-y-4">
+      <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700">
+        Resources
+      </span>
+      <h1 class="text-4xl font-bold text-gray-900">External Apps Created By Me</h1>
+      <p class="max-w-3xl text-lg text-gray-600">
+        Applications I've built to help facilitate practice, focus, and meaning.
+      </p>
+    </header>
+
+    <div class="space-y-10">
+      <section class="grid gap-8 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm lg:grid-cols-[360px_1fr]">
+        <div class="mx-auto w-full max-w-[360px] flex flex-col gap-6">
+          <img
+            src="https://media.discordapp.net/attachments/1342911924131725343/1508821431243247777/BreathStudioFeature.png?ex=6a16eef5&is=6a159d75&hm=1ff1840ce27ba719bc1d61d9e9b5ce41636c03b121f308d5f20e50001a6ad90b&=&format=webp&quality=lossless&width=1633&height=800"
+            alt="Breath Studio Feature Image"
+            class="w-full rounded-2xl border border-gray-200 object-cover shadow-md"
+            loading="lazy"
+          />
+          
+          <div class="rounded-2xl bg-purple-50 p-6 border border-purple-100">
+            <h3 class="text-lg font-bold text-purple-900 mb-3">Free, ad-free, and crafted with care</h3>
+            <p class="text-sm text-purple-800 mb-5">
+              While this app is free and doesn't use ads, we don't have UBI yet. Please consider supporting me if you found value in this app. I know many are struggling right now, so please give only if you're in a place of abundance right now.
+            </p>
+            <a
+              href="/support"
+              class="inline-flex w-full justify-center items-center gap-2 rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white shadow-md transition hover:bg-purple-700"
+            >
+              Support Options
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <div class="flex items-center gap-3">
+            <h2 class="text-3xl font-bold text-gray-900">Breath Studio</h2>
+            <span class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800">
+              Android
+            </span>
+          </div>
+          
+          <div class="mt-5 space-y-4 text-gray-700">
+            <p>
+              Breath Studio is a flexible breathwork and interval timer builder for people who want more control than a basic inhale / exhale timer can offer.
+            </p>
+            <p>
+              You can build full sessions out of stages, and each stage can contain its own steps. That means a session can be simple, like box breathing, or more layered, like a warmup, several breathing rounds, breath holds, recovery phases, and a closing cooldown.
+            </p>
+            <p>
+              The app is mostly designed around breathwork, but it can also be used for meditation timers, focus sessions, movement intervals, custom routines, or basically anything that needs a repeating sequence with labels, sounds, colors, and timing.
+            </p>
+            <p>
+              Create your own routines from scratch, or start with included presets and adjust them to fit your practice.
+            </p>
+            
+            <h3 class="font-semibold text-gray-900 mt-6 mb-2">Features include:</h3>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+              <li>Session, stage, and step-based routine building</li>
+              <li>Custom labels for each step, such as Inhale, Exhale, Hold, Rest, or anything else you want</li>
+              <li>Flexible durations for each step</li>
+              <li>Repeating stages and cycle-based routines</li>
+              <li>Custom colors for individual steps</li>
+              <li>Five sound options for audio cues</li>
+              <li>Included presets that can be edited and saved as your own</li>
+              <li>Real-time duration estimates while building</li>
+              <li>A clean player view with visual progress during your session</li>
+              <li>Useful for breathwork, meditation, interval training, focus timers, and other guided sequences</li>
+            </ul>
+            
+            <p class="mt-4 italic">
+              Whether you are building a simple calming routine, a more advanced pranayama-style session, a breath-hold sequence, or a custom timer that does not quite fit into any normal timer app, Breath Studio gives you the pieces and lets you arrange them your way.
+            </p>
+          </div>
+          
+          <div class="mt-8">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.ponderingsilver.breathstudio"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:bg-gray-800"
+            >
+              Get it on Google Play
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PsWinSnip -->
+      <section class="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+        <div class="flex items-center justify-between gap-4 border-b border-gray-100 pb-4">
+          <div class="flex items-center gap-3">
+            <h2 class="text-2xl font-bold text-gray-900">PsWinSnip</h2>
+            <span class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800">
+              Windows
+            </span>
+          </div>
+          <a
+            href="https://github.com/silveranstavern-gmail/PsWinSnip"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-medium text-gray-600 hover:text-gray-900"
+          >
+            View on GitHub →
+          </a>
+        </div>
+        <div class="mt-5 text-gray-700 space-y-4">
+          <p>
+            PsWinSnip is a lightweight Windows desktop snipping utility optimized for precise aspect ratio control and pixel-perfect screen cropping.
+          </p>
+          <p>
+            Unlike standard screen-capture utilities that only capture arbitrary regions, PsWinSnip is designed for developers, designers, and content creators who need to crop images to exact dimensions and aspect ratios (like 1:1, 4:5, or 3:4) without manual post-processing.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Lock capture constraints to popular aspect ratio presets</li>
+            <li>Dynamic dimension driving for fine-grained numeric precision</li>
+            <li>Global hotkey (Ctrl + Shift + S) for instant capturing</li>
+            <li>System tray integration for quick access</li>
+            <li>Auto-crops directly to your clipboard in high-quality PNG</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </article>
+</SiteLayout>
