@@ -42,6 +42,15 @@ const description = "Professional resume and work experience of Donald Clements,
     </style>
   </head>
   <body class="bg-slate-100 text-slate-900">
+    <noscript>
+      <div style="padding: 20px; background-color: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; margin: 20px; font-family: sans-serif; color: #991b1b;">
+        <p style="font-weight: bold; margin-top: 0;">JavaScript Required</p>
+        <p>This interactive resume builder requires JavaScript to run. Alternatively, you can view the <a href="/resume/llm.txt" style="text-decoration: underline; font-weight: bold; color: #b91c1c;">plain text (LLM-friendly) version of the resume here</a>.</p>
+      </div>
+    </noscript>
+    <div class="sr-only">
+      <p>Looking for a machine-readable, LLM-friendly, or plain text version of this resume? Please visit <a href="/resume/llm.txt">/resume/llm.txt</a>.</p>
+    </div>
     <Resume client:only="react" />
   </body>
 </html>

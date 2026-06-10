@@ -396,6 +396,11 @@ export const resumeData: ResumeData = {
             url: 'https://conversations-woven.vercel.app/chat',
         },
         {
+            title: 'P.S. | Breath Studio',
+            description: 'Minimalist, highly customizable breathing and meditation timer for Android built in Kotlin with Jetpack Compose. Leveraged MVVM, Coroutines, StateFlow, Android DataStore, and Google Play Billing, utilizing custom procedural DSP audio generation. Developed using AI-augmented workflows.',
+            url: 'https://play.google.com/store/apps/details?id=com.ponderingsilver.breathstudio',
+        },
+        {
             title: 'PonderingSilver.com',
             description: 'Engineering portfolio demonstrating React 19 competency within an Astro "Islands Architecture" environment. Features a complex, stateful resume builder with nested expansion logic and print-optimized UI.',
             url: 'https://ponderingsilver.com/',
