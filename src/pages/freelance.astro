@@ -1,0 +1,618 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { resumeData, experienceTotal } from '../data/resume';
+
+const title = 'Hire Donald Clements | Freelance Angular/.NET Developer';
+const description =
+  'Freelance senior Angular and .NET developer for complex workflow UIs, enterprise frontend architecture, API integration, modernization, and technical delivery support.';
+
+const contactLinks = [
+  {
+    label: 'Email',
+    value: resumeData.contact.email,
+    href: `mailto:${resumeData.contact.email}?subject=Freelance%20project%20inquiry`,
+  },
+  {
+    label: 'WhatsApp',
+    value: resumeData.contact.whatsapp,
+    href: resumeData.contact.whatsappLink.replace('frontend%20opportunity', 'freelance%20project'),
+  },
+  {
+    label: 'LinkedIn',
+    value: 'donald-duane-clements',
+    href: resumeData.contact.linkedin,
+  },
+];
+
+const proofPoints = [
+  {
+    value: experienceTotal,
+    label: 'professional engineering experience',
+  },
+  {
+    value: 'Angular 6-19',
+    label: 'enterprise frontend delivery range',
+  },
+  {
+    value: '.NET + Azure',
+    label: 'full-stack and integration support',
+  },
+];
+
+const services = [
+  {
+    title: 'Angular workflow applications',
+    summary:
+      'Architecture and delivery for dense, stateful Angular interfaces where the business process matters as much as the screen.',
+    details: [
+      'Module architecture, reactive state, forms, validation, and workflow orchestration',
+      'Dashboards, advanced search, data grids, workspaces, and internal operations tooling',
+      'Angular Signals, RxJS, TypeScript, Sass, component libraries, and design-system consistency',
+    ],
+  },
+  {
+    title: 'Frontend modernization',
+    summary:
+      'Practical modernization for teams that need better maintainability without pausing product delivery.',
+    details: [
+      'Angular version migration support, refactoring plans, and incremental adoption patterns',
+      'Performance tuning for data-heavy UIs and long-lived enterprise screens',
+      'Reusable component cleanup, code review standards, and technical documentation',
+    ],
+  },
+  {
+    title: 'Full-stack feature delivery',
+    summary:
+      'End-to-end implementation when a frontend feature needs API, data, cloud, or integration work.',
+    details: [
+      '.NET Core, C#, Web API, Entity Framework Core, Azure Functions, MongoDB, and SQL Server',
+      'REST contract coordination, backend story support, and environment-specific troubleshooting',
+      'Test coverage, Azure DevOps build support, CI/CD coordination, and release readiness',
+    ],
+  },
+  {
+    title: 'Technical discovery and delivery rescue',
+    summary:
+      'Sharp requirements analysis for projects where the hard part is untangling logic, edge cases, and stakeholder expectations.',
+    details: [
+      'Requirement gap analysis, technical blueprints, implementation plans, and risk notes',
+      'Root-cause analysis for stubborn UI, API, and integration defects',
+      'Mentorship, onboarding support, PR review, and senior engineering perspective for lean teams',
+    ],
+  },
+];
+
+const engagementModels = [
+    {
+        title: 'Scoped build',
+        detail:
+            'Best for a specific feature, internal tool, dashboard, migration slice, or integration that needs senior ownership from plan to handoff.',
+    },
+    {
+        title: 'Fractional frontend lead',
+        detail:
+            'Best for teams that need architecture direction, review discipline, mentoring, and hands-on Angular delivery without a full-time hire.',
+    },
+    {
+        title: 'Technical audit',
+        detail:
+            'Best for codebases with unclear state, performance issues, fragile workflows, or requirements that need to be turned into an executable plan.',
+    },
+    {
+        title: 'Custom Application',
+        detail:
+            'Best for founders, entrepreneurs, and businesses that have an idea they want to bring to life.',
+    },
+];
+
+const exampleEngagements = [
+  {
+    title: 'Diagnostic sprint',
+    duration: '1-2 days',
+    bestFor: 'A stuck Angular app, unclear requirements, brittle workflow, or feature that needs a senior implementation plan before money gets burned.',
+    outputs: [
+      'Focused codebase and requirements review',
+      'Root-cause notes, risks, assumptions, and tradeoffs',
+      'A prioritized implementation plan your team can act on',
+    ],
+  },
+  {
+    title: 'Feature delivery sprint',
+    duration: '1-2 weeks',
+    bestFor: 'A specific module, dashboard, workflow screen, integration slice, or modernization step that needs senior frontend ownership.',
+    outputs: [
+      'Production-ready Angular/TypeScript implementation',
+      'API contract coordination and backend support where needed',
+      'Reviewable PRs, handoff notes, and scoped follow-up recommendations',
+    ],
+  },
+  {
+    title: 'Architecture and build cycle',
+    duration: '3-4 weeks',
+    bestFor: 'A larger Angular application slice, MVP foundation, migration phase, or project rescue that needs planning, delivery, and deployment discipline.',
+    outputs: [
+      'Module structure, state strategy, workflow design, and implementation',
+      'CI/CD, hosting, auth, database, or cloud integration support when in scope',
+      'Clean source handoff with documentation and ownership preserved',
+    ],
+  },
+];
+
+const ownershipPromise = [
+  'I work in your repositories, project management systems, cloud accounts, and deployment pipeline wherever practical.',
+  'You retain source code, infrastructure ownership, billing control, credentials, and deployment access from day one.',
+  'No proprietary lock-in, no hostage code, no hidden dependency on my private tooling. Important decisions are documented.',
+];
+
+const billingPrinciples = [
+  {
+    title: 'Fixed-price milestones for known scope',
+    detail:
+      'Best when the outcome is specific: a feature, audit, migration slice, workflow screen, or deployment cycle with clear acceptance criteria.',
+  },
+  {
+    title: 'Hourly or fractional support for discovery-heavy work',
+    detail:
+      'Best when the codebase is unknown, the requirements are still moving, or the work needs ongoing architecture, review, and delivery judgment.',
+  },
+  {
+    title: 'Change requests for new work',
+    detail:
+      'If the project expands, I will call that out clearly and separate new scope from the original agreement instead of burying it in vague revisions.',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Clarify the outcome',
+    detail:
+      'We define what success looks like, what constraints matter, and which decisions need to be made before implementation starts.',
+  },
+  {
+    title: 'Map the work',
+    detail:
+      'I translate requirements into a technical plan with assumptions, dependencies, risks, and a delivery path your team can reason about.',
+  },
+  {
+    title: 'Build in tight loops',
+    detail:
+      'I ship incrementally, communicate tradeoffs early, document important decisions, and keep the work easy to review.',
+  },
+  {
+    title: 'Handoff cleanly',
+    detail:
+      'You get maintainable code, deployment notes where useful, and enough context for your team to extend the work confidently.',
+  },
+];
+
+const goodFit = [
+  'You have a serious Angular, TypeScript, or .NET system that needs calm senior ownership.',
+  'Your project involves dense workflow logic, operational screens, integrations, or business rules.',
+  'You value clear communication, low-drama delivery, and maintainable code over performative velocity.',
+  'You need someone who can work async, remote, and independently while still collaborating well with product and engineering.',
+];
+
+const projectKinds = [
+  'Internal operations tools',
+  'Enterprise dashboards',
+  'Workflow-heavy Angular apps',
+  'Angular modernization',
+  'API-backed frontend features',
+  'Technical audits',
+  'Bug hunts and RCA',
+  'Prototype-to-production hardening',
+];
+
+const primaryExperience = resumeData.experiences[0];
+const primaryRole = primaryExperience.roles[0];
+const primaryExperienceRange = '2018 - 2025';
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <BaseHead title={title} description={description} noImage={true} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      .freelance-main {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .freelance-main section[id] {
+        scroll-margin-top: 8rem;
+      }
+
+      @media print {
+        html,
+        body {
+          background: white;
+          color: #0f172a;
+        }
+
+        @page {
+          margin: 0.55in;
+          size: letter;
+        }
+
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        .print-hidden {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-950 antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
+      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <a href="/freelance/" class="text-sm font-bold uppercase tracking-[0.24em] text-slate-950">
+          Donald Clements
+        </a>
+        <nav aria-label="Freelance page navigation" class="print-hidden flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+          <a class="text-slate-600 hover:text-emerald-700" href="#services">Services</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#engagements">Engagements</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#proof">Proof</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#billing">Billing</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#process">Process</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="freelance-main">
+      <section class="border-b border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_45%,#ecfdf5_100%)]">
+        <div class="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:px-8 lg:py-16">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-700">
+              Freelance senior Angular and .NET developer
+            </p>
+            <h1 class="mt-4 text-3xl font-extrabold leading-tight tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
+              Senior Angular/.NET freelance development.
+            </h1>
+            <p class="mt-6 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
+              I help teams turn complex workflow software into clear, maintainable product through enterprise Angular/.NET delivery, requirements analysis, workflow UI architecture, API-backed features, and practical modernization.
+            </p>
+            <div class="print-hidden mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={`mailto:${resumeData.contact.email}?subject=Freelance%20project%20inquiry`}
+                class="inline-flex min-h-11 items-center justify-center rounded-md bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              >
+                Start a project conversation
+              </a>
+              <a
+                href="/resume/"
+                class="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              >
+                View full resume
+              </a>
+            </div>
+          </div>
+
+          <aside id="contact" class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <p class="text-sm font-bold uppercase tracking-[0.18em] text-slate-500">Availability</p>
+            <p class="mt-3 text-base font-semibold text-slate-950">
+              Remote freelance, contract, and fractional support
+            </p>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Based in Texas, US. Available for scoped builds, audits, modernization work, and senior delivery support.
+            </p>
+
+            <div class="mt-6 space-y-3">
+              {contactLinks.map((link) => (
+                <a
+                  href={link.href}
+                  target={link.label === 'Email' ? undefined : '_blank'}
+                  rel={link.label === 'Email' ? undefined : 'noopener noreferrer'}
+                  class="group block rounded-md border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-emerald-400 hover:bg-white"
+                >
+                  <span class="block text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{link.label}</span>
+                  <span class="mt-1 block break-words text-sm font-semibold text-slate-900 group-hover:text-emerald-700">{link.value}</span>
+                </a>
+              ))}
+            </div>
+
+            <div class="mt-6 border-t border-slate-200 pt-5 text-sm text-slate-600">
+              Preferred first step: send a short note with the project goal, timeline, stack, and what needs to change.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="border-b border-slate-200 bg-white">
+        <div class="mx-auto grid max-w-6xl gap-3 px-4 py-6 sm:grid-cols-3 sm:px-6 lg:px-8">
+          {proofPoints.map((point) => (
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-5">
+              <p class="text-2xl font-extrabold tracking-normal text-slate-950">{point.value}</p>
+              <p class="mt-1 text-sm leading-5 text-slate-600">{point.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="services" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Services</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Where I can help</h2>
+          <p class="mt-4 text-base leading-7 text-slate-700">
+            My strongest work sits at the intersection of frontend architecture, business-rule clarity, and production delivery. I am especially useful when the system is complex, the UI carries real operational weight, and the team needs someone who can own the path from ambiguity to shipped code.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-2">
+          {services.map((service) => (
+            <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 class="text-lg font-bold text-slate-950">{service.title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-700">{service.summary}</p>
+              <ul class="mt-5 space-y-3 text-sm leading-6 text-slate-700">
+                {service.details.map((detail) => (
+                  <li class="flex gap-3">
+                    <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="proof" class="border-y border-slate-200 bg-slate-100">
+        <div class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Proof of work</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Enterprise-tested, client-ready.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-700">
+              Most of my recent work has been inside a global logistics and materials-management platform for a major oilfield services client. The useful freelance takeaway: I am comfortable with large codebases, demanding workflows, distributed stakeholders, and production systems where correctness matters.
+            </p>
+          </div>
+
+          <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <p class="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">{primaryExperience.company}</p>
+            <h3 class="mt-3 text-xl font-bold text-slate-950">{primaryRole.title}</h3>
+            <p class="mt-1 text-sm text-slate-500">{primaryExperienceRange}</p>
+            <p class="mt-5 text-sm leading-6 text-slate-700">{primaryRole.snapshotFocus}</p>
+            <ul class="mt-5 space-y-3 text-sm leading-6 text-slate-700">
+              {primaryRole.standardHighlights.map((highlight) => (
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500"></span>
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="engagements" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Engagement examples</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Concrete ways to buy senior help</h2>
+          <p class="mt-4 text-base leading-7 text-slate-700">
+            These are not rigid packages. They are practical starting shapes for scoping the work, setting expectations, and deciding whether fixed-price milestones or hourly support make more sense.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 lg:grid-cols-3">
+          {exampleEngagements.map((engagement) => (
+            <article class="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between lg:flex-col lg:items-start">
+                <h3 class="text-lg font-bold text-slate-950">{engagement.title}</h3>
+                <span class="inline-flex w-fit rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-700">
+                  {engagement.duration}
+                </span>
+              </div>
+              <p class="mt-4 text-sm leading-6 text-slate-700">{engagement.bestFor}</p>
+              <div class="mt-5 border-t border-slate-200 pt-5">
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Typical outputs</p>
+                <ul class="mt-3 space-y-3 text-sm leading-6 text-slate-700">
+                  {engagement.outputs.map((output) => (
+                    <li class="flex gap-3">
+                      <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
+                      <span>{output}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Working models</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Flexible ways to work together</h2>
+            <div class="mt-8 grid gap-4">
+              {engagementModels.map((model) => (
+                <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                  <h3 class="text-base font-bold text-slate-950">{model.title}</h3>
+                  <p class="mt-2 text-sm leading-6 text-slate-700">{model.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Project fit</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">A strong match when the work is real and specific</h2>
+            <ul class="mt-8 space-y-3 text-sm leading-6 text-slate-700">
+              {goodFit.map((fit) => (
+                <li class="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                  <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+                  <span>{fit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="billing" class="border-y border-slate-200 bg-white">
+        <div class="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <article class="rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-sm sm:p-8">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">Client-first ownership</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal">Your code, your accounts, your control.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-300">
+              For new builds and deployment work, I prefer to configure the project inside your infrastructure instead of making you depend on mine.
+            </p>
+            <ul class="mt-6 space-y-4 text-sm leading-6 text-slate-200">
+              {ownershipPromise.map((promise) => (
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-300"></span>
+                  <span>{promise}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article class="rounded-lg border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Billing and scope</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Clear scope beats vague revisions.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-700">
+              I am comfortable with fixed-price work when the boundaries are clear. For unknown systems, I usually recommend discovery first so the larger estimate is grounded instead of guessed.
+            </p>
+            <div class="mt-6 grid gap-4">
+              {billingPrinciples.map((principle) => (
+                <div class="rounded-lg border border-slate-200 bg-white p-4">
+                  <h3 class="text-base font-bold text-slate-950">{principle.title}</h3>
+                  <p class="mt-2 text-sm leading-6 text-slate-700">{principle.detail}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="process" class="border-y border-slate-200 bg-white">
+        <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Process</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Clear execution without ceremony overload</h2>
+          </div>
+
+          <div class="mt-10 grid gap-4 md:grid-cols-4">
+            {processSteps.map((step, index) => (
+              <article class="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                <p class="text-sm font-extrabold text-emerald-700">{String(index + 1).padStart(2, '0')}</p>
+                <h3 class="mt-4 text-base font-bold text-slate-950">{step.title}</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-700">{step.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Capabilities</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">The practical stack I bring</h2>
+          <p class="mt-4 text-base leading-7 text-slate-700">
+            I do not need a perfect greenfield setup to be useful. I am used to mature enterprise environments, mixed frontend and backend ownership, and production constraints.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            {projectKinds.map((kind) => (
+              <span class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-700 shadow-sm">
+                {kind}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {resumeData.skills.map((category) => (
+            <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+              <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">{category.title}</h3>
+              <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                {category.items.map((item) => (
+                  <li class="flex gap-3">
+                    <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="border-y border-slate-200 bg-slate-100">
+        <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Selected projects</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Public work and product instincts</h2>
+          </div>
+
+          <div class="mt-10 grid gap-5 md:grid-cols-3">
+            {resumeData.projects.map((project) => (
+              <article class="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-950">{project.title}</h3>
+                <p class="mt-3 flex-1 text-sm leading-6 text-slate-700">{project.description}</p>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="print-hidden mt-5 inline-flex text-sm font-bold text-emerald-700 hover:text-emerald-900"
+                >
+                  Visit project
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="grid gap-8 rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-sm sm:p-8 lg:grid-cols-[1fr_24rem] lg:items-center">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">Next step</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal">Tell me what you are trying to ship, fix, or clarify.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-300">
+              A useful first message includes your stack, the business goal, the current blocker, timeline, and whether you need implementation, architecture, review, or discovery.
+            </p>
+          </div>
+          <div class="print-hidden grid gap-3">
+            <a
+              href={`mailto:${resumeData.contact.email}?subject=Freelance%20project%20inquiry`}
+              class="inline-flex min-h-11 items-center justify-center rounded-md bg-emerald-400 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              Email Donald
+            </a>
+            <a
+              href={resumeData.contact.whatsappLink.replace('frontend%20opportunity', 'freelance%20project')}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-600 px-5 py-3 text-sm font-bold text-white transition hover:border-emerald-300 hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              Message on WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-slate-600 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <p>Donald Clements - Senior Full Stack Angular/.NET Web Developer</p>
+        <div class="print-hidden flex flex-wrap gap-x-5 gap-y-2">
+          <a class="font-medium text-slate-700 hover:text-emerald-700" href="/resume/">Resume</a>
+          <a class="font-medium text-slate-700 hover:text-emerald-700" href={resumeData.resumePdfUrl} target="_blank" rel="noopener noreferrer">PDF Resume</a>
+          <a class="font-medium text-slate-700 hover:text-emerald-700" href="https://github.com/silveranstavern-gmail" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
