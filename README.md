@@ -89,7 +89,6 @@ npm run slate        # Clear node_modules and lock file
 │   ├── styles/             # Global CSS
 │   └── utils/              # Utility functions
 ├── astro.config.mjs        # Astro configuration
-├── tailwind.config.mjs     # Tailwind CSS configuration
 └── tsconfig.json           # TypeScript configuration
 ```
 
@@ -137,10 +136,11 @@ export const SITE_URL = 'https://yoursite.com';
 
 The site uses these Astro integrations:
 - `@astrojs/react` - React component support
-- `@astrojs/tailwind` - Tailwind CSS
 - `@astrojs/mdx` - MDX support
 - `@astrojs/sitemap` - Automatic sitemap generation
 - `astro-icon` - Icon component library
+
+Tailwind CSS 4 is compiled through `@tailwindcss/vite` and configured in `src/styles/global.css`.
 
 ## 📦 Deployment
 

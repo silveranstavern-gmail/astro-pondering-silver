@@ -86,9 +86,9 @@ export function PurchaseDecisionHelper() {
             key={type}
             type="button"
             onClick={() => setSortType(type)}
-            className={`rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 ${
+            className={`rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 ${
               sortType === type
-                ? 'bg-green-500 text-white shadow'
+                ? 'bg-green-500 text-white shadow-sm'
                 : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
             }`}
           >
@@ -97,7 +97,7 @@ export function PurchaseDecisionHelper() {
         ))}
       </section>
 
-      <section className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <section className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-xs">
         <table className="min-w-full table-auto divide-y divide-gray-200 text-sm">
           <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-600">
             <tr>
@@ -120,7 +120,7 @@ export function PurchaseDecisionHelper() {
                       type="text"
                       value={item.name}
                       onChange={(event) => updateItem(item.id, { name: event.target.value })}
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-100"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-purple-400 focus:outline-hidden focus:ring-3 focus:ring-purple-100"
                       placeholder="Item name"
                     />
                   </td>
@@ -137,7 +137,7 @@ export function PurchaseDecisionHelper() {
                       onChange={(event) =>
                         updateItem(item.id, { cost: Number.parseFloat(event.target.value) || 0 })
                       }
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-100"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-purple-400 focus:outline-hidden focus:ring-3 focus:ring-purple-100"
                       placeholder="0.00"
                       inputMode="decimal"
                     />
@@ -157,7 +157,7 @@ export function PurchaseDecisionHelper() {
                           desirability: Number.parseFloat(event.target.value) || 0,
                         })
                       }
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-100"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-800 focus:border-purple-400 focus:outline-hidden focus:ring-3 focus:ring-purple-100"
                       placeholder="500"
                       inputMode="numeric"
                     />
@@ -184,7 +184,7 @@ export function PurchaseDecisionHelper() {
         </table>
       </section>
 
-      <section className="rounded-2xl border border-gray-200 bg-white p-6 text-sm text-gray-600 shadow-sm">
+      <section className="rounded-2xl border border-gray-200 bg-white p-6 text-sm text-gray-600 shadow-xs">
         <h2 className="text-lg font-semibold text-gray-900">How to read the value sort</h2>
         <p className="mt-3">
           “Value ratio” compares desirability to cost so high-impact, lower-cost items surface first. Switch to cost or

@@ -258,7 +258,7 @@ const primaryExperienceRange = '2018 - 2025';
     </style>
   </head>
   <body class="bg-slate-50 text-slate-950 antialiased">
-    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-xs backdrop-blur">
       <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <a href="/freelance/" class="text-sm font-bold uppercase tracking-[0.24em] text-slate-950">
           Donald Clements
@@ -290,20 +290,20 @@ const primaryExperienceRange = '2018 - 2025';
             <div class="print-hidden mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href={`mailto:${resumeData.contact.email}?subject=Freelance%20project%20inquiry`}
-                class="inline-flex min-h-11 items-center justify-center rounded-md bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                class="inline-flex min-h-11 items-center justify-center rounded-md bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-xs transition hover:bg-slate-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
               >
                 Start a project conversation
               </a>
               <a
                 href="/resume/"
-                class="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                class="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-xs transition hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
               >
                 View technical resume
               </a>
             </div>
           </div>
 
-          <aside id="contact" class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+          <aside id="contact" class="rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
             <p class="text-sm font-bold uppercase tracking-[0.18em] text-slate-500">Availability</p>
             <p class="mt-3 text-base font-semibold text-slate-950">
               Remote freelance, contract, and fractional support
@@ -355,7 +355,7 @@ const primaryExperienceRange = '2018 - 2025';
 
         <div class="mt-10 grid gap-5 md:grid-cols-2">
           {services.map((service) => (
-            <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
               <h3 class="text-lg font-bold text-slate-950">{service.title}</h3>
               <p class="mt-3 text-sm leading-6 text-slate-700">{service.summary}</p>
               <ul class="mt-5 space-y-3 text-sm leading-6 text-slate-700">
@@ -381,7 +381,7 @@ const primaryExperienceRange = '2018 - 2025';
             </p>
           </div>
 
-          <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
             <!-- Company & Overall Range -->
             <div class="border-b border-slate-100 pb-4">
               <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">{primaryExperience.company}</p>
@@ -442,7 +442,7 @@ const primaryExperienceRange = '2018 - 2025';
 
         <div class="mt-10 grid gap-5 lg:grid-cols-3">
           {exampleEngagements.map((engagement) => (
-            <article class="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <article class="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
               <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between lg:flex-col lg:items-start">
                 <h3 class="text-lg font-bold text-slate-950">{engagement.title}</h3>
                 <span class="inline-flex w-fit rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-700">
@@ -471,7 +471,7 @@ const primaryExperienceRange = '2018 - 2025';
             <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">How we can work together</h2>
             <div class="mt-8 grid gap-4">
               {engagementModels.map((model) => (
-                <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-xs">
                   <h3 class="text-base font-bold text-slate-950">{model.title}</h3>
                   <p class="mt-2 text-sm leading-6 text-slate-700">{model.detail}</p>
                 </article>
@@ -484,7 +484,7 @@ const primaryExperienceRange = '2018 - 2025';
             <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Best fit when the work is specific and important</h2>
             <ul class="mt-8 space-y-3 text-sm leading-6 text-slate-700">
               {goodFit.map((fit) => (
-                <li class="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                <li class="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-xs">
                   <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
                   <span>{fit}</span>
                 </li>
@@ -499,7 +499,7 @@ const primaryExperienceRange = '2018 - 2025';
 
       <section id="billing" class="border-y border-slate-200 bg-white">
         <div class="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <article class="rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-sm sm:p-8">
+          <article class="rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-xs sm:p-8">
             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">Client-first ownership</p>
             <h2 class="mt-3 text-3xl font-extrabold tracking-normal">Your code, your accounts, your control.</h2>
             <p class="mt-4 text-base leading-7 text-slate-300">
@@ -515,7 +515,7 @@ const primaryExperienceRange = '2018 - 2025';
             </ul>
           </article>
 
-          <article class="rounded-lg border border-slate-200 bg-slate-50 p-6 shadow-sm sm:p-8">
+          <article class="rounded-lg border border-slate-200 bg-slate-50 p-6 shadow-xs sm:p-8">
             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Billing and scope</p>
             <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Clear scope makes projects easier to manage.</h2>
             <p class="mt-4 text-base leading-7 text-slate-700">
@@ -564,7 +564,7 @@ const primaryExperienceRange = '2018 - 2025';
           </p>
           <div class="mt-8 flex flex-wrap gap-2">
             {projectKinds.map((kind) => (
-              <span class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-700 shadow-sm">
+              <span class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-700 shadow-xs">
                 {kind}
               </span>
             ))}
@@ -573,7 +573,7 @@ const primaryExperienceRange = '2018 - 2025';
 
         <div class="grid gap-4 md:grid-cols-2">
           {resumeData.skills.map((category) => (
-            <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+            <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-xs">
               <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">{category.title}</h3>
               <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
                 {category.items.map((item) => (
@@ -597,7 +597,7 @@ const primaryExperienceRange = '2018 - 2025';
 
           <div class="mt-10 grid gap-5 md:grid-cols-3">
             {resumeData.projects.map((project) => (
-              <article class="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+              <article class="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
                 <h3 class="text-lg font-bold text-slate-950">{project.title}</h3>
                 <p class="mt-3 flex-1 text-sm leading-6 text-slate-700">{project.description}</p>
                 <a
@@ -615,7 +615,7 @@ const primaryExperienceRange = '2018 - 2025';
       </section>
 
       <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div class="grid gap-8 rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-sm sm:p-8 lg:grid-cols-[1fr_24rem] lg:items-center">
+        <div class="grid gap-8 rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-xs sm:p-8 lg:grid-cols-[1fr_24rem] lg:items-center">
           <div>
             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">Next step</p>
             <h2 class="mt-3 text-3xl font-extrabold tracking-normal">Tell me what you are trying to ship, fix, or clarify.</h2>
@@ -626,7 +626,7 @@ const primaryExperienceRange = '2018 - 2025';
           <div class="print-hidden grid gap-3">
             <a
               href={`mailto:${resumeData.contact.email}?subject=Freelance%20project%20inquiry`}
-              class="inline-flex min-h-11 items-center justify-center rounded-md bg-emerald-400 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              class="inline-flex min-h-11 items-center justify-center rounded-md bg-emerald-400 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-emerald-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               Email Donald
             </a>
@@ -634,7 +634,7 @@ const primaryExperienceRange = '2018 - 2025';
               href={resumeData.contact.whatsappLink.replace('frontend%20opportunity', 'freelance%20project')}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-600 px-5 py-3 text-sm font-bold text-white transition hover:border-emerald-300 hover:text-emerald-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              class="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-600 px-5 py-3 text-sm font-bold text-white transition hover:border-emerald-300 hover:text-emerald-200 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               Message on WhatsApp
             </a>

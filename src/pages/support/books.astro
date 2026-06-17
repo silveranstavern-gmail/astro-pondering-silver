@@ -28,7 +28,7 @@ import { books } from '../../data/support';
       {books.map((book) => {
         const descriptionParagraphs = book.description.split('\n\n');
         return (
-          <section class="grid gap-8 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm lg:grid-cols-[360px_1fr]">
+          <section class="grid gap-8 rounded-3xl border border-gray-200 bg-white p-8 shadow-xs lg:grid-cols-[360px_1fr]">
             <div class="mx-auto w-full max-w-[360px]">
               <img
                 src={book.image}

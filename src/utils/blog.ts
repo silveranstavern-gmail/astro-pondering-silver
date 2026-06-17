@@ -8,7 +8,7 @@ type BlogEntry = CollectionEntry<'blog'>;
  * Handles custom slugs and generates fallback slugs from file IDs.
  */
 export function resolvePostSlug(post: BlogEntry): string {
-	const fallbackSlug = (post.slug ?? post.id.replace(/\.(md|mdx)$/i, ''))
+	const fallbackSlug = post.id
 		.replace(/^\/+/, '')
 		.replace(/^blog\//, '');
 

@@ -284,7 +284,7 @@ export function ManifestationTracker() {
                     value={affirmation}
                     onChange={(event) => handleAffirmationChange(index, event.target.value)}
                     type="text"
-                    className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-purple-500"
                     placeholder="Enter your affirmation..."
                   />
                   <button

@@ -84,7 +84,7 @@ export function LightsOnSolver() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xs">
         <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-xl font-semibold text-gray-900">Mode</h2>
           <div className="flex flex-wrap gap-3">
@@ -93,7 +93,7 @@ export function LightsOnSolver() {
                 key={option}
                 type="button"
                 onClick={() => setMode(option)}
-                className={`rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 ${
+                className={`rounded-lg px-4 py-2 text-sm font-semibold transition focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 ${
                   mode === option
                     ? 'bg-purple-600 text-white shadow-md'
                     : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
@@ -107,7 +107,7 @@ export function LightsOnSolver() {
         <p className="mt-3 text-sm text-gray-600">{activeHelper}</p>
       </section>
 
-      <section className="flex flex-col gap-6 rounded-2xl border border-gray-200 bg-gray-900 p-6 text-white shadow-sm">
+      <section className="flex flex-col gap-6 rounded-2xl border border-gray-200 bg-gray-900 p-6 text-white shadow-xs">
         <div className="grid grid-cols-3 gap-3 self-center">
           {Array.from({ length: TOTAL_CELLS }, (_, index) => {
             const isOn = lights[index];
@@ -117,7 +117,7 @@ export function LightsOnSolver() {
                 key={index}
                 type="button"
                 onClick={() => handleCellClick(index)}
-                className={`relative flex h-16 w-16 items-center justify-center rounded-xl border text-2xl font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 ${
+                className={`relative flex h-16 w-16 items-center justify-center rounded-xl border text-2xl font-bold transition focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/80 ${
                   isOn
                     ? 'border-purple-400 bg-slate-800 text-purple-300 shadow-[0_0_18px_rgba(168,85,247,0.5)]'
                     : 'border-slate-700 bg-slate-800 text-slate-500 hover:border-purple-300'
@@ -157,14 +157,14 @@ export function LightsOnSolver() {
       </section>
 
       {solution.length ? (
-        <section className="rounded-2xl border border-purple-100 bg-purple-50 p-6 shadow-sm">
+        <section className="rounded-2xl border border-purple-100 bg-purple-50 p-6 shadow-xs">
           <h3 className="text-lg font-semibold text-purple-800">Solution Steps</h3>
           <p className="mt-1 text-sm text-purple-700">
             Click the lights in this order to turn everything on. Each step references the numbered grid above.
           </p>
           <ol className="mt-4 space-y-2 text-sm text-purple-900">
             {solution.map((step, index) => (
-              <li key={`${step}-${index}`} className="rounded-lg bg-white px-4 py-2 shadow">
+              <li key={`${step}-${index}`} className="rounded-lg bg-white px-4 py-2 shadow-sm">
                 <span className="font-semibold">Step {index + 1}:</span> Click position {step + 1}
               </li>
             ))}
@@ -178,7 +178,7 @@ export function LightsOnSolver() {
         </div>
       ) : null}
 
-      <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+      <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xs">
         <h3 className="text-lg font-semibold text-gray-900">How it works</h3>
         <p className="mt-3 text-sm text-gray-600">
           The solver uses a breadth-first search to examine every possible combination of toggles. Each move flips the selected

@@ -10,7 +10,7 @@ import {
 // --- Components ---
 
 const TenetCard = ({ tenet }: { tenet: Tenet }) => (
-    <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-6 shadow-sm ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-md">
+    <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-6 shadow-xs ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-md">
         <div className="flex items-center gap-3">
             <span className="text-2xl" aria-hidden>{tenet.icon}</span>
             <h3 className="text-sm font-bold uppercase tracking-wide text-slate-800">{tenet.title}</h3>
@@ -28,7 +28,7 @@ const RoleCard = ({
     cardDetailLevel: DetailLevel;
     onCycle: () => void;
 }) => {
-    const chipClass = 'inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 shadow-sm';
+    const chipClass = 'inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 shadow-xs';
 
     // Determine button text based on current level
     const getButtonText = () => {
@@ -38,7 +38,7 @@ const RoleCard = ({
     };
 
     return (
-        <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-5 shadow-sm print:border-slate-200 print:shadow-none">
+        <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-5 shadow-xs print:border-slate-200 print:shadow-none">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <p className="text-sm font-semibold text-slate-800">{role.title}</p>
@@ -47,7 +47,7 @@ const RoleCard = ({
                 <button
                     type="button"
                     onClick={onCycle}
-                    className="inline-flex items-center gap-1 rounded-full border border-transparent px-3 py-1 text-xs font-medium text-violet-600 transition hover:border-violet-200 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 print:hidden"
+                    className="inline-flex items-center gap-1 rounded-full border border-transparent px-3 py-1 text-xs font-medium text-violet-600 transition hover:border-violet-200 hover:bg-violet-50 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 print:hidden"
                 >
                     {getButtonText()}
                 </button>
@@ -230,11 +230,11 @@ export default function Resume() {
                 className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-violet-500/15 via-gray-100 to-transparent"
             />
 
-            <nav className="sticky top-0 z-40 border-b border-purple-100/80 bg-gray-100/95 px-4 py-3 shadow-sm backdrop-blur print:hidden">
+            <nav className="sticky top-0 z-40 border-b border-purple-100/80 bg-gray-100/95 px-4 py-3 shadow-xs backdrop-blur print:hidden">
                 <div className="mx-auto grid max-w-5xl grid-cols-[auto_auto] items-center justify-between gap-x-3 gap-y-3 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-4">
                     <a
                         href="/"
-                        className="group inline-flex min-h-10 items-center gap-3 rounded-lg px-2 text-slate-900 transition hover:bg-white/80 hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                        className="group inline-flex min-h-10 items-center gap-3 rounded-lg px-2 text-slate-900 transition hover:bg-white/80 hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
                         aria-label="Go to Pondering Silver home"
                     >
                         <span className="text-2xl font-semibold tracking-wide">
@@ -248,7 +248,7 @@ export default function Resume() {
 
                     <a
                         href="/freelance/"
-                        className="inline-flex min-h-10 shrink-0 items-center justify-center justify-self-end rounded-lg border border-purple-200 bg-white px-3 py-2 text-sm font-semibold text-purple-700 shadow-sm transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 lg:col-start-3"
+                        className="inline-flex min-h-10 shrink-0 items-center justify-center justify-self-end rounded-lg border border-purple-200 bg-white px-3 py-2 text-sm font-semibold text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 lg:col-start-3"
                     >
                         I also freelance
                     </a>
@@ -262,9 +262,9 @@ export default function Resume() {
                                     key={item.id}
                                     type="button"
                                     onClick={item.onClick}
-                                    className={`min-h-9 shrink-0 rounded-full px-3 py-1 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-1 ${
+                                    className={`min-h-9 shrink-0 rounded-full px-3 py-1 text-sm font-medium transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-1 ${
                                         isActive
-                                            ? 'bg-purple-600 text-white shadow-sm'
+                                            ? 'bg-purple-600 text-white shadow-xs'
                                             : 'border border-slate-200 bg-white/80 text-slate-600 hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800'
                                     }`}
                                     aria-current={isActive ? 'true' : undefined}
@@ -312,13 +312,13 @@ export default function Resume() {
                                 <div className="flex flex-col gap-3">
                                     <a
                                         href={resumeData.contact.whatsappLink}
-                                        className="inline-flex min-h-10 items-center justify-center rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
+                                        className="inline-flex min-h-10 items-center justify-center rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white shadow-xs transition hover:bg-emerald-600 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
                                     >
                                         Message on WhatsApp
                                     </a>
                                     <a
                                         href={`mailto:${resumeData.contact.email}`}
-                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
+                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
                                         Email {resumeData.contact.email}
                                     </a>
@@ -326,7 +326,7 @@ export default function Resume() {
                                         href={resumeData.contact.linkedin}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
+                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
                                         View LinkedIn Profile
                                     </a>
@@ -334,7 +334,7 @@ export default function Resume() {
                                         href="https://github.com/silveranstavern-gmail"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
+                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
                                         View GitHub Profile
                                     </a>
@@ -342,20 +342,20 @@ export default function Resume() {
                                         href={resumeData.resumePdfUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700 shadow-sm transition hover:border-purple-300 hover:bg-purple-100 hover:text-purple-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
+                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-100 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
                                         Download PDF Resume
                                     </a>
                                     <a
                                         href="/freelance/"
-                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-purple-200 bg-white px-4 py-2 text-sm font-medium text-purple-700 shadow-sm transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 print:hidden"
+                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-purple-200 bg-white px-4 py-2 text-sm font-medium text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 print:hidden"
                                     >
                                         I also freelance
                                     </a>
                                 </div>
                                 <p className="text-xs text-slate-500">Preferred contact: WhatsApp for quick coordination, or email for detailed notes.</p>
                                 <p className="text-xs text-slate-500">The downloadable PDF is a separate formatted resume and is not an exact mirror of this web version.</p>
-                                <div className="mt-2 rounded-lg border border-violet-100 bg-violet-50/50 p-3 shadow-sm print:hidden">
+                                <div className="mt-2 rounded-lg border border-violet-100 bg-violet-50/50 p-3 shadow-xs print:hidden">
                                     <p className="text-[0.65rem] font-bold uppercase tracking-wider text-violet-600">AI-Ready Context</p>
                                     <p className="mt-1 text-[0.7rem] leading-relaxed text-slate-600">
                                         For LLMs and RAG systems, a machine-readable Markdown version is available at{' '}
@@ -465,7 +465,7 @@ export default function Resume() {
                         {resumeData.projects.map((project) => (
                             <div
                                 key={project.title}
-                                className="rounded-xl border border-slate-200 bg-white/90 p-6 shadow-sm ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-md print:border-slate-200 print:shadow-none"
+                                className="rounded-xl border border-slate-200 bg-white/90 p-6 shadow-xs ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-md print:border-slate-200 print:shadow-none"
                             >
                                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                                     <div className="space-y-2">
@@ -476,7 +476,7 @@ export default function Resume() {
                                         href={project.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 print:hidden"
+                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 print:hidden"
                                     >
                                         Visit Project
                                     </a>
@@ -499,7 +499,7 @@ export default function Resume() {
                         {resumeData.skills.map((category) => (
                             <div
                                 key={category.title}
-                                className="space-y-4 rounded-xl border border-slate-200 bg-white/90 p-6 shadow-sm ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-md print:border-slate-200 print:shadow-none"
+                                className="space-y-4 rounded-xl border border-slate-200 bg-white/90 p-6 shadow-xs ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-md print:border-slate-200 print:shadow-none"
                             >
                                 <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">{category.title}</h3>
                                 <ul className="space-y-2 text-sm text-slate-700">
@@ -525,7 +525,7 @@ export default function Resume() {
                         {resumeData.education.map((education) => (
                             <div
                                 key={education.institution}
-                                className="rounded-xl border border-slate-200 bg-white/90 p-6 shadow-sm ring-1 ring-slate-900/5 print:border-slate-200 print:shadow-none"
+                                className="rounded-xl border border-slate-200 bg-white/90 p-6 shadow-xs ring-1 ring-slate-900/5 print:border-slate-200 print:shadow-none"
                             >
                                 <h3 className="text-lg font-semibold text-slate-900">{education.institution}</h3>
                                 <p className="text-sm font-medium uppercase tracking-wide text-emerald-500">{education.degree}</p>

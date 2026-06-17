@@ -26,7 +26,7 @@ import { bookingUrl, faqs, services } from '../data/services';
                 href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:bg-purple-700 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:bg-purple-700 hover:shadow-lg focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
               >
                 <span aria-hidden="true">📅</span>
                 <span>Schedule a Session</span>
@@ -38,7 +38,7 @@ import { bookingUrl, faqs, services } from '../data/services';
       ))}
     </section>
 
-    <section class="rounded-2xl border border-purple-100 bg-gradient-to-r from-purple-50 to-indigo-50 p-10 text-center shadow-sm">
+    <section class="rounded-2xl border border-purple-100 bg-gradient-to-r from-purple-50 to-indigo-50 p-10 text-center shadow-xs">
       <h2 class="mb-4 text-2xl font-bold text-purple-800">Ready to Work Together?</h2>
       <p class="mb-8 text-gray-700">
         Sessions are individualized and shaped around what is actually happening in your experience.
@@ -47,7 +47,7 @@ import { bookingUrl, faqs, services } from '../data/services';
         href={bookingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-8 py-4 text-base font-medium text-white shadow-md transition hover:bg-purple-700 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+        class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-8 py-4 text-base font-medium text-white shadow-md transition hover:bg-purple-700 hover:shadow-lg focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
       >
         <span aria-hidden="true">✨</span>
         <span>Book Your Session</span>
@@ -58,7 +58,7 @@ import { bookingUrl, faqs, services } from '../data/services';
       <h2 class="text-center text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
       <div class="space-y-4">
         {faqs.map((faq) => (
-          <details class="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+          <details class="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left text-lg font-medium text-gray-800 transition-colors duration-200 group-open:bg-gray-50">
               <span class="flex-1">{faq.question}</span>
               <span class="flex h-8 w-8 items-center justify-center rounded-full bg-purple-100 text-purple-600" aria-hidden="true">

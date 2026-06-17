@@ -65,7 +65,7 @@ function SortableItem({
     <div
       ref={setNodeRef}
       style={style}
-      className={`group rounded-lg border border-transparent bg-white p-4 shadow-sm transition ${
+      className={`group rounded-lg border border-transparent bg-white p-4 shadow-xs transition ${
         isDragging ? 'z-10 border-purple-300 shadow-lg' : 'hover:border-gray-200'
       }`}
       {...attributes}
@@ -82,7 +82,7 @@ function SortableItem({
               if (event.key === 'Escape') onEditCancel();
             }}
             autoFocus
-            className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-purple-500"
             placeholder="Edit item"
           />
         ) : (
@@ -181,7 +181,7 @@ function TrackerListColumn({
                 if (event.key === 'Enter') onAddItem();
               }}
               placeholder="New item"
-              className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-purple-500"
             />
             <button
               type="button"
@@ -418,7 +418,7 @@ export function ListTracker() {
               if (event.key === 'Enter') addList();
             }}
             placeholder="New list name"
-            className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-purple-500"
           />
           <button
             type="button"
