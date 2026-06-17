@@ -4,21 +4,32 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 type BlogEntry = CollectionEntry<'blog'>;
 
 /**
- * Resolves the canonical URL path for a blog post.
+ * Resolves the route slug for a blog post.
  * Handles custom slugs and generates fallback slugs from file IDs.
  */
-export function resolvePostLink(post: BlogEntry): string {
+export function resolvePostSlug(post: BlogEntry): string {
 	const fallbackSlug = (post.slug ?? post.id.replace(/\.(md|mdx)$/i, ''))
 		.replace(/^\/+/, '')
 		.replace(/^blog\//, '');
 
-	if (post.data.slug) {
-		// If slug starts with /blog/, use it as-is, otherwise add /blog/ prefix
-		return post.data.slug.startsWith('/blog/')
-			? post.data.slug
-			: `/blog/${post.data.slug}`;
-	}
-	return `/blog/${fallbackSlug}`;
+	return (post.data.slug ?? fallbackSlug)
+		.replace(/^\/+/, '')
+		.replace(/^blog\//, '')
+		.replace(/\/$/, '');
+}
+
+/**
+ * Resolves the canonical URL path for a blog post.
+ */
+export function resolvePostLink(post: BlogEntry): string {
+	return `/blog/${resolvePostSlug(post)}`;
+}
+
+/**
+ * Resolves the clean text representation URL path for a blog post.
+ */
+export function resolvePostLlmTextLink(post: BlogEntry): string {
+	return `${resolvePostLink(post)}/llm.txt`;
 }
 
 /**

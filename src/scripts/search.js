@@ -17,6 +17,10 @@ function initializeSearch(container) {
   container.dataset.searchInitialized = 'true';
 
   const normalize = (value) => value.trim().toLowerCase();
+  const getInitialQuery = () => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('tag') ?? params.get('q') ?? '';
+  };
 
   const update = () => {
     const query = normalize(input.value);
@@ -46,15 +50,38 @@ function initializeSearch(container) {
     if (tagText) {
       input.value = tagText;
       input.focus();
+      const params = new URLSearchParams(window.location.search);
+      params.set('tag', tagText);
+      window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
       update();
     }
   };
 
-  const handleExpandTags = (event) => {
+  const initialQuery = getInitialQuery();
+  if (initialQuery && !input.value) {
+    input.value = initialQuery;
+  }
+
+  input.addEventListener('input', update);
+  tags.forEach((tag) => tag.addEventListener('click', handleTagClick));
+
+  update();
+}
+
+function initializeExpandableTags(tagsContainer) {
+  if (tagsContainer.dataset.tagsInitialized === 'true') {
+    return;
+  }
+
+  const button = tagsContainer.querySelector('[data-expand-tags]');
+  if (!(button instanceof HTMLElement)) {
+    return;
+  }
+
+  tagsContainer.dataset.tagsInitialized = 'true';
+
+  button.addEventListener('click', (event) => {
     event.preventDefault();
-    const button = event.currentTarget;
-    const tagsContainer = button.closest('[data-tags-container]');
-    if (!tagsContainer) return;
 
     const hiddenTags = tagsContainer.querySelectorAll('[data-hidden-tag]');
     const expandText = button.querySelector('[data-expand-text]');
@@ -72,21 +99,19 @@ function initializeSearch(container) {
     }
 
     button.title = isExpanded ? 'Show all tags' : 'Show fewer tags';
-  };
-
-  const expandButtons = container.querySelectorAll('[data-expand-tags]');
-
-  input.addEventListener('input', update);
-  tags.forEach((tag) => tag.addEventListener('click', handleTagClick));
-  expandButtons.forEach((btn) => btn.addEventListener('click', handleExpandTags));
-
-  update();
+  });
 }
 
 const setupSearch = () => {
   document.querySelectorAll('[data-search-container]').forEach((section) => {
     if (section instanceof HTMLElement) {
       initializeSearch(section);
+    }
+  });
+
+  document.querySelectorAll('[data-tags-container]').forEach((section) => {
+    if (section instanceof HTMLElement) {
+      initializeExpandableTags(section);
     }
   });
 };

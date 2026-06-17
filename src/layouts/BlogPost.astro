@@ -11,6 +11,8 @@ const { title, description, date, updatedDate, keywords = [], heroImage, author 
 const formattedTitle = `${title} | Pondering Silver`;
 const extraKeywords = keywords.length > 4 ? keywords.length - 4 : 0;
 const displayKeywords = keywords.slice(0, 4);
+const hiddenKeywords = keywords.slice(4);
+const getTagSearchLink = (keyword: string) => `/blog/?tag=${encodeURIComponent(keyword)}`;
 // Only show updated date if it differs from the original date (same-day updates are hidden)
 const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== date.toDateString());
 ---
@@ -29,14 +31,36 @@ const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== da
           {author && <span class="text-gray-500">by {author}</span>}
         </div>
         {keywords.length > 0 && (
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2" data-tags-container>
             {displayKeywords.map((keyword) => (
-              <span class="rounded-full bg-purple-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700">
+              <a
+                href={getTagSearchLink(keyword)}
+                class="rounded-full bg-purple-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700 transition hover:bg-purple-100 hover:text-purple-800"
+                title={`Search posts tagged ${keyword}`}
+              >
                 {keyword}
-              </span>
+              </a>
+            ))}
+            {hiddenKeywords.map((keyword) => (
+              <a
+                href={getTagSearchLink(keyword)}
+                data-hidden-tag
+                class="hidden rounded-full bg-purple-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700 transition hover:bg-purple-100 hover:text-purple-800"
+                title={`Search posts tagged ${keyword}`}
+              >
+                {keyword}
+              </a>
             ))}
             {extraKeywords > 0 && (
-              <span class="text-xs text-gray-400">+{extraKeywords} more</span>
+              <button
+                type="button"
+                data-expand-tags
+                class="text-xs text-gray-400 transition hover:text-gray-600 hover:underline"
+                title="Show all tags"
+              >
+                <span data-expand-text>+{extraKeywords} more</span>
+                <span data-collapse-text class="hidden">show less</span>
+              </button>
             )}
           </div>
         )}
@@ -69,4 +93,7 @@ const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== da
       </a>
     </div>
   </article>
+  <script>
+    import '../scripts/search.js';
+  </script>
 </SiteLayout>

@@ -17,6 +17,12 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, noImage = fal
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
 const effectiveImage = noImage ? undefined : (image ?? FallbackImage);
 const ogImageURL = effectiveImage ? new URL(effectiveImage.src, Astro.site ?? Astro.url) : undefined;
+const normalizedPathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const llmTextHref = normalizedPathname === '/resume/'
+	? '/resume/llm.txt'
+	: normalizedPathname.startsWith('/blog/') && normalizedPathname !== '/blog/'
+		? `${normalizedPathname}llm.txt`
+		: undefined;
 ---
 
 <!-- Global Metadata -->
@@ -32,9 +38,7 @@ const ogImageURL = effectiveImage ? new URL(effectiveImage.src, Astro.site ?? As
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-{Astro.url.pathname.includes('/resume') && (
-	<link rel="alternate" type="text/plain" title="LLM-Ready Resume" href="/resume/llm.txt" />
-)}
+{llmTextHref && <link rel="alternate" type="text/plain" title="LLM-ready text" href={llmTextHref} />}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>

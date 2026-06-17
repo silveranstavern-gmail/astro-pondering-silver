@@ -1,19 +1,16 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { resolvePostSlug } from '../../utils/blog';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts
 		.filter((post) => post.data.deploy !== false)
-		.map((post) => {
-			let slug = post.data.slug ?? post.slug;
-			slug = slug.replace(/^\/blog\//, '').replace(/\/$/, '');
-			return {
-				params: { slug },
-				props: post,
-			};
-		});
+		.map((post) => ({
+			params: { slug: resolvePostSlug(post) },
+			props: post,
+		}));
 }
 type Props = CollectionEntry<'blog'>;
 

@@ -1,12 +1,16 @@
 import type { APIRoute } from 'astro';
 import { resumeData, experienceTotal } from '../../data/resume';
+import { createHumanPageNotice, getHumanPageUrlForLlmText } from '../../utils/llm';
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ site, url }) => {
+    const humanPageUrl = getHumanPageUrlForLlmText({ site, url });
     const markdown = `
 # LLM Resume: ${resumeData.name}
 > ${resumeData.title}
 > Location: ${resumeData.location} | Citizenship: ${resumeData.citizenship}
 > Availability: ${resumeData.availability}
+
+${createHumanPageNotice(humanPageUrl)}
 
 ## Executive Summary
 ${resumeData.summary}
@@ -69,7 +73,7 @@ ${e.distinction ? `*${e.distinction}*` : ''}
 - LinkedIn: ${resumeData.contact.linkedin}
 - WhatsApp: ${resumeData.contact.whatsapp}
 - GitHub: https://github.com/silveranstavern-gmail
-- Live Resume: https://ponderingsilver.com/resume/
+- Live Resume: ${humanPageUrl}
 - Source Code: https://github.com/silveranstavern-gmail/astro-pondering-silver
     `.trim();
 
