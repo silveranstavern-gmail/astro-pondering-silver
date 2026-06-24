@@ -1,55 +1,153 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { bookingUrl, faqs, services } from '../data/services';
+import { Icon } from 'astro-icon/components';
+import { bookingUrl, faqs, servicePaths, services } from '../data/services';
 ---
 
 <SiteLayout
-  title="Services & Offerings | Pondering Silver"
-  description="1:1 sessions for pattern clarity, manifestation, inner resonance, and ongoing reflective work."
+  title="Soul Clarity & Spiritual Companionship | Pondering Silver"
+  description="1:1 sessions for honest reflection, pattern recognition, spiritual companionship, and reconnection with inner guidance."
 >
-  <article class="mx-auto flex max-w-4xl flex-col gap-12">
-    <header class="text-center">
-      <h1 class="mb-6 text-4xl font-bold text-gray-900">Services &amp; Offerings</h1>
-      <p class="text-lg text-gray-600">
-        Different ways of engaging in the same core process: seeing clearly, recognizing patterns, and allowing your experience to shift from that clarity.
+  <article class="mx-auto flex max-w-3xl flex-col gap-14 pr-16 sm:pr-0 2xl:max-w-4xl">
+    <header class="space-y-6 text-center">
+      <span class="inline-flex items-center justify-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700">
+        1:1 reflective work
+      </span>
+      <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">Soul Clarity &amp; Spiritual Companionship</h1>
+      <p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
+        A judgment-free space for honest reflection, pattern recognition, and reconnection with your own inner guidance.
       </p>
     </header>
 
-    <section class="space-y-10">
-      {services.map((service) => (
-        <div class="relative overflow-hidden rounded-2xl border border-gray-200 border-l-4 border-l-purple-600 bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl">
-          <div class="p-8">
-            <h2 class="mb-4 text-2xl font-bold text-purple-700">{service.title}</h2>
-            <p class="leading-relaxed text-gray-600">{service.description}</p>
-            <div class="mt-8">
-              <a
-                href={bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white shadow-md transition hover:bg-purple-700 hover:shadow-lg focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
-              >
-                <span aria-hidden="true">📅</span>
-                <span>Schedule a Session</span>
-              </a>
-            </div>
-          </div>
-          <div class="absolute -right-4 -top-4 h-20 w-20 -rotate-12 rounded-lg bg-purple-100/80"></div>
-        </div>
-      ))}
+    <section class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="space-y-5 text-base leading-relaxed text-gray-700">
+        <p>
+          You do not need to arrive with a clear question or a polished explanation. You can bring the part of your life
+          that feels tangled, painful, repetitive, uncertain, contradictory, or difficult to speak about. We begin with
+          what is actually present.
+        </p>
+        <p>
+          As you speak, I listen not only to the events you describe, but to the patterns beneath them: where attention
+          keeps returning, where something tightens, what remains unsaid, which beliefs are shaping your experience, and
+          where you may already know something that you have not yet allowed yourself to trust.
+        </p>
+        <p>
+          I may ask questions, reflect patterns, challenge an interpretation, offer another way of seeing, or simply stay
+          with you while something becomes clearer. The work is collaborative and responsive, not a fixed method or
+          script.
+        </p>
+      </div>
+
+      <aside class="rounded-lg border border-purple-100 bg-white p-6 shadow-xs">
+        <h2 class="text-lg font-semibold text-purple-800">The center of the work</h2>
+        <p class="mt-4 leading-relaxed text-gray-700">
+          My intention is not to tell you who to become, impose my spiritual beliefs, or make your decisions for you. It
+          is to help create the conditions in which you can hear yourself more clearly and reconnect with the deeper
+          intelligence, integrity, and inner Light already present within you.
+        </p>
+      </aside>
     </section>
 
-    <section class="rounded-2xl border border-purple-100 bg-gradient-to-r from-purple-50 to-indigo-50 p-10 text-center shadow-xs">
-      <h2 class="mb-4 text-2xl font-bold text-purple-800">Ready to Work Together?</h2>
-      <p class="mb-8 text-gray-700">
-        Sessions are individualized and shaped around what is actually happening in your experience.
+    <section class="space-y-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-gray-900">Choose the Shape</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-gray-600">
+          The work is one living conversation. These are the two simplest ways to enter it.
+        </p>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2">
+        {servicePaths.map((path) => (
+          <div class="flex h-full flex-col rounded-lg border border-gray-200 bg-white p-6 shadow-xs transition hover:border-purple-200 hover:shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-wide text-purple-700">{path.rhythm}</p>
+            <h3 class="mt-3 text-xl font-bold text-gray-900">{path.title}</h3>
+            <p class="mt-4 flex-1 leading-relaxed text-gray-600">{path.description}</p>
+            <a
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex items-center gap-2 self-start rounded-lg bg-purple-600 px-5 py-3 text-sm font-medium text-white shadow-xs transition hover:bg-purple-700 hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+            >
+              <Icon name="heroicons:calendar-days" class="h-4 w-4" aria-hidden="true" />
+              <span>Schedule a Session</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-gray-900">What May Arise</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-gray-600">
+          You do not have to choose the perfect doorway. These are common threads that may appear inside a session or
+          over ongoing work.
+        </p>
+      </div>
+
+      <div class="grid gap-4">
+        {services.map((service) => (
+          <div class="rounded-lg border border-gray-200 border-l-4 border-l-purple-500 bg-white p-6 shadow-xs">
+            <h3 class="text-lg font-semibold text-purple-800">{service.title}</h3>
+            <p class="mt-3 leading-relaxed text-gray-600">{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="grid gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-xs sm:grid-cols-2">
+      <div class="flex gap-3">
+        <Icon name="heroicons:heart" class="mt-1 h-5 w-5 shrink-0 text-purple-600" aria-hidden="true" />
+        <div>
+          <h2 class="font-semibold text-gray-900">Warmth without collusion</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">
+            You will be met with care, but not with automatic agreement if a familiar story seems to be keeping you
+            trapped.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <Icon name="heroicons:sparkles" class="mt-1 h-5 w-5 shrink-0 text-purple-600" aria-hidden="true" />
+        <div>
+          <h2 class="font-semibold text-gray-900">Spiritual when it is natural</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">
+            Meditation, prayer, energy, and mystical language can enter the work when they are useful and welcome.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <Icon name="heroicons:chat-bubble-left-right" class="mt-1 h-5 w-5 shrink-0 text-purple-600" aria-hidden="true" />
+        <div>
+          <h2 class="font-semibold text-gray-900">Organic conversation</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">
+            There is no script to perform. We follow the living thread of what is happening in you now.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <Icon name="heroicons:light-bulb" class="mt-1 h-5 w-5 shrink-0 text-purple-600" aria-hidden="true" />
+        <div>
+          <h2 class="font-semibold text-gray-900">Your knowing stays central</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">
+            The aim is not dependency on my insight, but clearer contact with your own discernment and inner Light.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rounded-lg border border-purple-100 bg-purple-50 p-8 text-center shadow-xs">
+      <h2 class="mb-4 text-2xl font-bold text-purple-900">Ready to Work Together?</h2>
+      <p class="mx-auto mb-8 max-w-2xl text-gray-700">
+        Sessions are individualized around what is actually happening in your experience, with room for honesty,
+        tenderness, challenge, silence, and clarity.
       </p>
       <a
         href={bookingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-8 py-4 text-base font-medium text-white shadow-md transition hover:bg-purple-700 hover:shadow-lg focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+        class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-8 py-4 text-base font-medium text-white shadow-xs transition hover:bg-purple-700 hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
       >
-        <span aria-hidden="true">✨</span>
+        <Icon name="heroicons:arrow-right" class="h-5 w-5" aria-hidden="true" />
         <span>Book Your Session</span>
       </a>
     </section>
