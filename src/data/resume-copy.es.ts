@@ -15,7 +15,6 @@ export const resumeCopyEs: ResumeCopy = {
     technologies: 'Tecnologías',
     keyHighlights: 'Aspectos destacados',
     keyContributions: 'Contribuciones clave y experiencia técnica',
-    homeAriaLabel: 'Ir al inicio de Pondering Silver en español',
     freelanceLabel: 'También trabajo como freelance',
     alternateLanguageLabel: 'EN',
     sectionsAriaLabel: 'Secciones de la hoja de vida',
@@ -45,7 +44,6 @@ export const resumeCopyEs: ResumeCopy = {
 };
 
 export const resumeRoutesEs: ResumeRoutes = {
-    home: '/es',
     freelance: '/freelance-es',
     alternateLanguage: '/resume',
     alternateLanguageCode: 'en',

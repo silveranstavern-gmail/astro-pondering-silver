@@ -15,7 +15,6 @@ export interface ResumeCopy {
     technologies: string;
     keyHighlights: string;
     keyContributions: string;
-    homeAriaLabel: string;
     freelanceLabel: string;
     alternateLanguageLabel: string;
     sectionsAriaLabel: string;
@@ -45,7 +44,6 @@ export interface ResumeCopy {
 }
 
 export interface ResumeRoutes {
-    home: string;
     freelance: string;
     alternateLanguage: string;
     alternateLanguageCode: 'en' | 'es';
@@ -73,7 +71,6 @@ export const defaultResumeCopy: ResumeCopy = {
     technologies: 'Technologies',
     keyHighlights: 'Key highlights',
     keyContributions: 'Key contributions & technical experience',
-    homeAriaLabel: 'Go to Pondering Silver home',
     freelanceLabel: 'I also freelance',
     alternateLanguageLabel: 'Español',
     sectionsAriaLabel: 'Resume sections',
@@ -103,7 +100,6 @@ export const defaultResumeCopy: ResumeCopy = {
 };
 
 export const defaultResumeRoutes: ResumeRoutes = {
-    home: '/',
     freelance: '/freelance/',
     alternateLanguage: '/resume-es',
     alternateLanguageCode: 'es',
@@ -332,22 +328,8 @@ export default function Resume({
             />
 
             <nav className="sticky top-0 z-40 border-b border-purple-100/80 bg-gray-100/95 px-4 py-3 shadow-xs backdrop-blur print:hidden">
-                <div className="mx-auto grid max-w-5xl grid-cols-[auto_auto] items-center justify-between gap-x-3 gap-y-3 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-4">
-                    <a
-                        href={routes.home}
-                        className="group inline-flex min-h-10 items-center gap-3 rounded-lg px-2 text-slate-900 transition hover:bg-white/80 hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
-                        aria-label={copy.homeAriaLabel}
-                    >
-                        <span className="text-2xl font-semibold tracking-wide">
-                            <span className="inline-block pr-1 -translate-y-[0.2em]">P</span>
-                            <span className="inline-block">s</span>
-                        </span>
-                        <span className="hidden text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 transition group-hover:text-purple-700 sm:inline">
-                            Pondering Silver
-                        </span>
-                    </a>
-
-                    <div className="flex items-center justify-self-end gap-2 lg:col-start-3">
+                <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-x-4 gap-y-3 lg:grid-cols-[minmax(0,1fr)_auto]">
+                    <div className="flex items-center justify-self-end gap-2 lg:col-start-2">
                         <a
                             href={routes.alternateLanguage}
                             className="inline-flex min-h-10 items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-white/80 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
@@ -364,7 +346,7 @@ export default function Resume({
                         </a>
                     </div>
 
-                    <div className="col-span-2 flex gap-2 overflow-x-auto pb-1 hide-scrollbar lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:justify-center lg:overflow-visible lg:pb-0" aria-label={copy.sectionsAriaLabel}>
+                    <div className="row-start-2 flex min-w-0 gap-2 overflow-x-auto pb-1 hide-scrollbar lg:col-start-1 lg:row-start-1 lg:justify-center lg:pb-0" aria-label={copy.sectionsAriaLabel}>
                         {quickNav.map((item) => {
                             const isActive = item.id === activeSectionId;
 
