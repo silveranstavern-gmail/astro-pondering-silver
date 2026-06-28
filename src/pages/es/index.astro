@@ -39,32 +39,8 @@ const featuredPosts = posts.filter((post) => featuredIds.has(post.data.contentId
     </div>
   </header>
 
-  <section class="mt-14 grid gap-5 md:grid-cols-3">
-    <a href="/es/services" class="rounded-2xl border border-purple-100 bg-white p-6 shadow-xs transition hover:border-purple-300 hover:shadow-md">
-      <p class="text-xs font-semibold uppercase tracking-wide text-purple-700">Servicios</p>
-      <h2 class="mt-3 text-xl font-semibold text-gray-900">Claridad del Alma</h2>
-      <p class="mt-3 text-sm leading-relaxed text-gray-600">
-        Un espacio individual para hablar con honestidad, reconocer patrones y volver a escuchar tu propia guía.
-      </p>
-    </a>
-    <a href="/resume-es" class="rounded-2xl border border-purple-100 bg-white p-6 shadow-xs transition hover:border-purple-300 hover:shadow-md">
-      <p class="text-xs font-semibold uppercase tracking-wide text-purple-700">Trayectoria profesional</p>
-      <h2 class="mt-3 text-xl font-semibold text-gray-900">Currículum técnico</h2>
-      <p class="mt-3 text-sm leading-relaxed text-gray-600">
-        Experiencia como desarrollador sénior full-stack con Angular, .NET y Azure.
-      </p>
-    </a>
-    <a href="/freelance-es" class="rounded-2xl border border-purple-100 bg-white p-6 shadow-xs transition hover:border-purple-300 hover:shadow-md">
-      <p class="text-xs font-semibold uppercase tracking-wide text-purple-700">Trabajo independiente</p>
-      <h2 class="mt-3 text-xl font-semibold text-gray-900">Desarrollo freelance</h2>
-      <p class="mt-3 text-sm leading-relaxed text-gray-600">
-        Apoyo sénior para aplicaciones web complejas, modernización frontend y entregas full-stack.
-      </p>
-    </a>
-  </section>
-
   {featuredPosts.length > 0 && (
-    <section class="mt-16 space-y-6">
+    <section class="mt-14 space-y-6">
       <div class="flex flex-col items-center gap-2 text-center">
         <h2 class="text-2xl font-semibold text-gray-900">Reflexiones para comenzar</h2>
         <p class="max-w-2xl text-sm leading-relaxed text-gray-600">
@@ -85,5 +61,47 @@ const featuredPosts = posts.filter((post) => featuredIds.has(post.data.contentId
       </div>
     </section>
   )}
-</SiteLayout>
 
+  <section class="mt-16 space-y-6" data-search-container>
+    <div class="flex flex-col items-center gap-4 text-center">
+      <h2 class="text-2xl font-semibold text-gray-900">Buscar en el archivo</h2>
+      <p class="max-w-2xl text-sm text-gray-600">
+        Busca un tema, una palabra clave o un momento que recuerdes: todo está indexado para encontrarlo rápidamente.
+      </p>
+      <label class="relative flex w-full max-w-xl">
+        <span class="sr-only">Buscar publicaciones del blog</span>
+        <input
+          type="search"
+          placeholder="Busca por título, descripción o palabra clave..."
+          class="w-full rounded-2xl border border-gray-300 bg-white py-3 pl-4 pr-11 text-sm text-gray-700 shadow-xs transition focus:border-purple-400 focus:outline-hidden focus:ring-3 focus:ring-purple-100"
+          data-search-input
+        />
+        <svg class="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </label>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2" data-search-results>
+      {posts.map((post) => <BlogPostCard post={post} locale="es" />)}
+    </div>
+    <p class="text-center text-sm text-gray-500" data-empty-state hidden>
+      Ninguna publicación coincide con esa búsqueda. Prueba otra palabra o explora todo el archivo.
+    </p>
+
+    <div class="text-center">
+      <a
+        href="/es/blog"
+        class="inline-flex items-center gap-2 rounded-full border border-purple-300 bg-purple-50 px-4 py-2 text-sm font-semibold text-purple-700 transition hover:border-purple-400 hover:bg-purple-100"
+      >
+        Ver todas las publicaciones
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <script>
+    import '../../scripts/search.js';
+  </script>
+</SiteLayout>

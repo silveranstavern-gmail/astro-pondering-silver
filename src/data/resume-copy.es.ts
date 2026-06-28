@@ -44,8 +44,8 @@ export const resumeCopyEs: ResumeCopy = {
 };
 
 export const resumeRoutesEs: ResumeRoutes = {
-    freelance: '/freelance-es',
-    alternateLanguage: '/resume',
+    freelance: '/freelance-es/',
+    alternateLanguage: '/resume/',
     alternateLanguageCode: 'en',
     llmText: '/resume-es/llm.txt',
 };

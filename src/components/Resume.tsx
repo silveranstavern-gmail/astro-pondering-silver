@@ -101,7 +101,7 @@ export const defaultResumeCopy: ResumeCopy = {
 
 export const defaultResumeRoutes: ResumeRoutes = {
     freelance: '/freelance/',
-    alternateLanguage: '/resume-es',
+    alternateLanguage: '/resume-es/',
     alternateLanguageCode: 'es',
     llmText: '/resume/llm.txt',
 };

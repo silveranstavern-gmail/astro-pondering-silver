@@ -13,7 +13,7 @@ const year = new Date().getFullYear();
 	<div class="mx-auto flex w-full max-w-5xl flex-col gap-5 px-4 py-5 text-center sm:px-6">
 		<div class="flex flex-col items-center gap-3 sm:flex-row sm:justify-between sm:text-left">
 			<p class="text-sm sm:text-base">
-			&copy; {year} Pondering Silver. {copy.lead} <a href={locale === 'es' ? '/resume-es' : '/resume'} class="font-medium text-gray-200 transition-colors hover:text-white">DDC</a>, {copy.tail}
+			&copy; {year} Pondering Silver. {copy.lead} <a href={locale === 'es' ? '/resume-es/' : '/resume/'} class="font-medium text-gray-200 transition-colors hover:text-white">DDC</a>, {copy.tail}
 			</p>
 			{locale === 'en' && (
 				<a href="/privacy" class="text-sm font-medium text-gray-400 transition-colors hover:text-gray-200">{copy.privacy}</a>
