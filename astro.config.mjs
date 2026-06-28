@@ -69,6 +69,14 @@ function findBlogLlmTextPages(directory = blogDir) {
 		if (data && typeof data === 'object' && data.deploy === false) {
 			continue;
 		}
+		if (
+			data &&
+			typeof data === 'object' &&
+			data.locale !== 'en' &&
+			data.locale !== 'es'
+		) {
+			continue;
+		}
 
 		const fallbackSlug = relative(blogDir, entryPath)
 			.split(sep)
@@ -79,7 +87,10 @@ function findBlogLlmTextPages(directory = blogDir) {
 			: fallbackSlug;
 		const slug = rawSlug.replace(/^\/+/, '').replace(/^blog\//, '').replace(/\/$/, '');
 
-		pages.push(new URL(`/blog/${slug}/llm.txt`, site).href);
+		const blogPrefix = data && typeof data === 'object' && data.locale === 'es'
+			? '/es/blog'
+			: '/blog';
+		pages.push(new URL(`${blogPrefix}/${slug}/llm.txt`, site).href);
 	}
 
 	return pages.sort();

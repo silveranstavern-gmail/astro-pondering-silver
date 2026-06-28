@@ -63,6 +63,8 @@ npm run dev          # Start development server
 npm run build        # Build for production
 npm run preview      # Preview production build
 npm run clean        # Clear build cache
+npm run content:organize       # Dry-run blog locale/year organization
+npm run content:translations -- status --locale es
 npm run slate        # Clear node_modules and lock file
 ```
 
@@ -81,7 +83,7 @@ npm run slate        # Clear node_modules and lock file
 │   │   ├── Sidebar.astro
 │   │   └── ...
 │   ├── content/
-│   │   └── blog/           # Markdown blog posts
+│   │   └── blog/           # Markdown posts under <locale>/<year>/
 │   ├── data/               # Structured data for services, tools, resources
 │   ├── layouts/            # Page layouts
 │   ├── pages/              # Route pages
@@ -96,19 +98,32 @@ npm run slate        # Clear node_modules and lock file
 
 ### Adding Blog Posts
 
-Create a new `.md` or `.mdx` file in `src/content/blog/`:
+Create a new `.md` or `.mdx` file in `src/content/blog/<locale>/<year>/`. Use the stable `contentId` as the filename:
 
 ```markdown
 ---
+contentId: your-post-title
+locale: en
 title: "Your Post Title"
 description: "Brief description"
 date: 2025-01-20
 keywords: ["spirituality", "reflection"]
+slug: "your-post-title"
 deploy: true
 ---
 
 Your content here...
 ```
+
+To opt a post into Spanish translation and create a safe unpublished scaffold:
+
+```bash
+npm run content:translations -- request your-post-title --locale es
+npm run content:translations -- scaffold your-post-title --locale es
+npm run content:translations -- status --locale es --json
+```
+
+After translating the scaffold, use `stamp` to record the current source hash. See `content-org-design.md` for the complete synchronization workflow.
 
 ### Creating New Tools
 

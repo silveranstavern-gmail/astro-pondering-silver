@@ -5,30 +5,64 @@ import { Icon } from 'astro-icon/components';
 import FormattedDate from '../components/FormattedDate.astro';
 import SiteLayout from './SiteLayout.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+  alternateUrl?: string;
+};
 
-const { title, description, date, updatedDate, keywords = [], heroImage, author } = Astro.props as Props;
+const {
+  title,
+  description,
+  date,
+  updatedDate,
+  keywords = [],
+  heroImage,
+  author,
+  locale,
+  alternateUrl,
+} = Astro.props as Props;
 const formattedTitle = `${title} | Pondering Silver`;
 const extraKeywords = keywords.length > 4 ? keywords.length - 4 : 0;
 const displayKeywords = keywords.slice(0, 4);
 const hiddenKeywords = keywords.slice(4);
-const getTagSearchLink = (keyword: string) => `/blog/?tag=${encodeURIComponent(keyword)}`;
+const blogPath = locale === 'es' ? '/es/blog' : '/blog';
+const getTagSearchLink = (keyword: string) => `${blogPath}/?tag=${encodeURIComponent(keyword)}`;
 // Only show updated date if it differs from the original date (same-day updates are hidden)
 const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== date.toDateString());
+const labels = locale === 'es'
+  ? {
+      updated: 'Actualizado',
+      by: 'por',
+      searchTagged: 'Buscar artículos con la etiqueta',
+      showAllTags: 'Mostrar todas las etiquetas',
+      showFewerTags: 'Mostrar menos etiquetas',
+      more: 'más',
+      showLess: 'mostrar menos',
+      discord: 'Conversemos en Discord',
+    }
+  : {
+      updated: 'Updated',
+      by: 'by',
+      searchTagged: 'Search posts tagged',
+      showAllTags: 'Show all tags',
+      showFewerTags: 'Show fewer tags',
+      more: 'more',
+      showLess: 'show less',
+      discord: 'Talk about it on Discord',
+    };
 ---
 
-<SiteLayout title={formattedTitle} description={description}>
+<SiteLayout title={formattedTitle} description={description} locale={locale} alternateUrl={alternateUrl}>
   <article class="mx-auto flex max-w-3xl flex-col gap-12">
     <header class="space-y-5">
       <div class="space-y-2 text-sm text-gray-500">
         <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
-          <FormattedDate date={date} />
+          <FormattedDate date={date} locale={locale} />
           {showUpdatedDate && (
             <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
-              Updated <FormattedDate date={updatedDate} />
+              {labels.updated} <FormattedDate date={updatedDate} locale={locale} />
             </span>
           )}
-          {author && <span class="text-gray-500">by {author}</span>}
+          {author && <span class="text-gray-500">{labels.by} {author}</span>}
         </div>
         {keywords.length > 0 && (
           <div class="flex flex-wrap gap-2" data-tags-container>
@@ -36,7 +70,7 @@ const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== da
               <a
                 href={getTagSearchLink(keyword)}
                 class="rounded-full bg-purple-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700 transition hover:bg-purple-100 hover:text-purple-800"
-                title={`Search posts tagged ${keyword}`}
+                title={`${labels.searchTagged} ${keyword}`}
               >
                 {keyword}
               </a>
@@ -46,7 +80,7 @@ const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== da
                 href={getTagSearchLink(keyword)}
                 data-hidden-tag
                 class="hidden rounded-full bg-purple-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700 transition hover:bg-purple-100 hover:text-purple-800"
-                title={`Search posts tagged ${keyword}`}
+                title={`${labels.searchTagged} ${keyword}`}
               >
                 {keyword}
               </a>
@@ -55,11 +89,13 @@ const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== da
               <button
                 type="button"
                 data-expand-tags
+                data-expand-title={labels.showAllTags}
+                data-collapse-title={labels.showFewerTags}
                 class="text-xs text-gray-400 transition hover:text-gray-600 hover:underline"
-                title="Show all tags"
+                title={labels.showAllTags}
               >
-                <span data-expand-text>+{extraKeywords} more</span>
-                <span data-collapse-text class="hidden">show less</span>
+                <span data-expand-text>+{extraKeywords} {labels.more}</span>
+                <span data-collapse-text class="hidden">{labels.showLess}</span>
               </button>
             )}
           </div>
@@ -89,7 +125,7 @@ const showUpdatedDate = Boolean(updatedDate && updatedDate.toDateString() !== da
         class="inline-flex items-center gap-2 rounded-lg border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs transition hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         <Icon name="simple-icons:discord" class="h-5 w-5" />
-        Talk about it on Discord
+        {labels.discord}
       </a>
     </div>
   </article>

@@ -1,0 +1,738 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import { resumeData, experienceTotal } from '../../data/resume';
+
+const title = 'Desarrollador freelance sénior de Angular y .NET | Donald Clements';
+const description =
+  'Desarrollador freelance sénior de Angular y .NET para aplicaciones web complejas. Desarrollo interfaces con flujos de trabajo exigentes, modernizo frontends empresariales y conecto aplicaciones Angular con backends bien estructurados en .NET y Azure.';
+
+const experienceTotalEs = experienceTotal
+  .replace(' yrs ', ' años ')
+  .replace(' yr ', ' año ')
+  .replace(' mos', ' meses')
+  .replace(' mo', ' mes');
+
+const emailSubject = 'Consulta sobre proyecto freelance';
+const contactLinks = [
+  {
+    label: 'Correo electrónico',
+    value: resumeData.contact.email,
+    href: `mailto:${resumeData.contact.email}?subject=${encodeURIComponent(emailSubject)}`,
+  },
+  {
+    label: 'WhatsApp',
+    value: resumeData.contact.whatsapp,
+    href: 'https://wa.me/17069102470?text=Hola%20Donald%2C%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20proyecto%20freelance.',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'donald-duane-clements',
+    href: resumeData.contact.linkedin,
+  },
+];
+
+const proofPoints = [
+  {
+    value: experienceTotalEs,
+    label: 'de experiencia desarrollando software en producción',
+  },
+  {
+    value: 'Angular 6–19',
+    label: 'versiones de Angular entregadas en producción',
+  },
+  {
+    value: '.NET + Azure',
+    label: 'entrega full stack y en la nube',
+  },
+];
+
+const services = [
+  {
+    title: 'Flujos de trabajo complejos en Angular',
+    summary:
+      'Diseño y desarrollo interfaces en Angular con reglas de negocio complejas, manteniéndolas claras y fáciles de usar para las personas que dependen de ellas.',
+    details: [
+      'Manejo de estado reactivo, validación de formularios y orquestación de flujos de trabajo de varios pasos',
+      'Dashboards, búsquedas avanzadas, grillas de datos personalizadas, espacios de trabajo y herramientas de operaciones internas',
+      'Angular Signals, RxJS, TypeScript, Sass, bibliotecas de componentes y alineación con sistemas de diseño',
+    ],
+  },
+  {
+    title: 'Modernización incremental del frontend',
+    summary:
+      'Modernizo frontends antiguos en Angular y ordeno código difícil de mantener sin imponer una reescritura ni frenar a tu equipo.',
+    details: [
+      'Actualizaciones de versión de Angular, planes de refactorización por etapas y adopción gradual de patrones modernos',
+      'Mejoras de rendimiento para dashboards lentos, pantallas con muchos datos y vistas empresariales de larga duración',
+      'Depuración de componentes, estándares para revisión de código y documentación que tu equipo realmente usará',
+    ],
+  },
+  {
+    title: 'Entrega full stack con .NET y Azure',
+    summary:
+      'Desarrollo full stack cuando tu interfaz en Angular necesita APIs, datos, infraestructura en la nube o apoyo del backend.',
+    details: [
+      '.NET Core, C#, Web API, Entity Framework Core, Azure Functions, SQL Server y MongoDB',
+      'Diseño de APIs REST, desarrollo de funcionalidades del backend, esquemas de bases de datos y diagnóstico de entornos',
+      'Cobertura de pruebas, pipelines de Azure DevOps, configuración de CI/CD y apoyo durante los lanzamientos',
+    ],
+  },
+  {
+    title: 'Descubrimiento técnico y rescate de proyectos',
+    summary:
+      'Para proyectos donde lo más difícil es desenredar la lógica de negocio, los casos límite, los errores heredados y las expectativas poco claras.',
+    details: [
+      'Análisis de vacíos en requisitos, planeación de arquitectura, planes de implementación y detección temprana de riesgos',
+      'Diagnóstico de causa raíz para problemas persistentes de interfaz, estado, APIs e integraciones',
+      'Mentoría, apoyo de incorporación, revisión de PRs y perspectiva de ingeniería sénior para equipos pequeños',
+    ],
+  },
+];
+
+const engagementModels = [
+  {
+    title: 'Desarrollo con alcance definido',
+    detail:
+      'Ideal cuando tienes una funcionalidad, dashboard, herramienta interna, migración o integración claramente delimitada que necesita liderazgo sénior desde la planeación hasta la entrega.',
+  },
+  {
+    title: 'Liderazgo frontend fraccional',
+    detail:
+      'Ideal para equipos que necesitan orientación de arquitectura Angular, revisión constante de código, mentoría y desarrollo práctico sin contratar a tiempo completo.',
+  },
+  {
+    title: 'Auditoría técnica',
+    detail:
+      'Ideal cuando tu base de código tiene un estado frágil, problemas de rendimiento, APIs poco claras o requisitos que deben convertirse en un plan ejecutable.',
+  },
+  {
+    title: 'Aplicación a la medida',
+    detail:
+      'Ideal para emprendedores y empresas que necesitan convertir una idea o un prototipo en una aplicación lista para producción.',
+  },
+];
+
+const exampleEngagements = [
+  {
+    title: 'Sprint de diagnóstico',
+    duration: '1–2 días',
+    bestFor:
+      'Cuando tu aplicación Angular está estancada, los requisitos no están claros o necesitas un plan de un ingeniero sénior antes de invertir un presupuesto considerable en desarrollo.',
+    outputs: [
+      'Revisión enfocada de tu base de código, manejo de estado y requisitos',
+      'Conclusiones claras sobre causas raíz, deuda técnica, riesgos, supuestos y decisiones',
+      'Un plan de implementación priorizado que tu equipo puede empezar a usar de inmediato',
+    ],
+  },
+  {
+    title: 'Sprint de entrega de funcionalidades',
+    duration: '1–2 semanas',
+    bestFor:
+      'Un módulo, dashboard, pantalla de flujo de trabajo, parte de una integración o etapa de modernización que requiere liderazgo frontend sénior.',
+    outputs: [
+      'Implementación en Angular y TypeScript lista para producción',
+      'Coordinación de contratos de API y apoyo del backend cuando sea necesario',
+      'PRs fáciles de revisar, notas de entrega y recomendaciones concretas para los siguientes pasos',
+    ],
+  },
+  {
+    title: 'Ciclo de arquitectura y desarrollo',
+    duration: '3–4 semanas',
+    bestFor:
+      'Una parte grande de una aplicación Angular, la base de un MVP, una etapa de migración o el rescate de un proyecto que requiere planeación, desarrollo y disciplina de despliegue.',
+    outputs: [
+      'Estructura de módulos, estrategia de estado, diseño de flujos de trabajo e implementación',
+      'Apoyo con CI/CD, hosting, autenticación, bases de datos o integración con la nube cuando haga parte del alcance',
+      'Entrega limpia del código fuente, con documentación y plena propiedad en manos de tu equipo',
+    ],
+  },
+];
+
+const ownershipPromise = [
+  'Siempre que sea práctico, trabajo en tus repositorios, sistemas de gestión de proyectos, cuentas en la nube y pipeline de despliegue.',
+  'Desde el primer día, tú conservas la propiedad del código fuente y la infraestructura, además del control de la facturación, las credenciales y el acceso al despliegue.',
+  'Sin dependencia de herramientas privadas, sin bloqueos propietarios y sin ambigüedad sobre la propiedad. Las decisiones importantes quedan documentadas para que tu equipo no dependa de conocimiento informal.',
+];
+
+const billingPrinciples = [
+  {
+    title: 'Hitos de precio fijo para alcances conocidos',
+    detail:
+      'Ideal cuando el resultado es específico: una funcionalidad, auditoría, etapa de migración, pantalla de flujo de trabajo o ciclo de despliegue con criterios de aceptación claros.',
+  },
+  {
+    title: 'Apoyo por horas o fraccional para trabajo exploratorio',
+    detail:
+      'Ideal cuando la base de código es desconocida, los requisitos siguen cambiando o el trabajo requiere criterio continuo de arquitectura, revisión y entrega.',
+  },
+  {
+    title: 'El alcance nuevo se presenta por separado',
+    detail:
+      'Si el proyecto crece, lo señalaré claramente y separaré el alcance nuevo del acuerdo original, en vez de esconderlo entre revisiones ambiguas.',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Aclarar el resultado',
+    detail:
+      'Definimos cómo se ve el éxito, qué restricciones importan y cuáles decisiones deben tomarse antes de iniciar la implementación.',
+  },
+  {
+    title: 'Trazar el trabajo',
+    detail:
+      'Convierto los requisitos en un plan técnico con supuestos, dependencias, riesgos y una ruta de entrega que tu equipo pueda evaluar.',
+  },
+  {
+    title: 'Desarrollar en iteraciones pequeñas',
+    detail:
+      'Entrego de forma incremental, comunico las decisiones importantes con anticipación, documento lo necesario y mantengo el trabajo fácil de revisar.',
+  },
+  {
+    title: 'Hacer una entrega limpia',
+    detail:
+      'Recibes código mantenible, notas de despliegue cuando son útiles y suficiente contexto para que tu equipo pueda extender el trabajo con confianza.',
+  },
+];
+
+const goodFit = [
+  'Tienes un sistema serio en Angular, TypeScript o .NET que necesita liderazgo sénior sereno y responsable.',
+  'Tu proyecto incluye lógica densa de flujos de trabajo, pantallas operativas, integraciones o reglas de negocio.',
+  'Valoras la comunicación clara, una entrega sin dramas y el código mantenible por encima de correr solo para aparentar velocidad.',
+  'Necesitas a alguien que trabaje de forma remota, asíncrona e independiente, sin dejar de colaborar bien con producto e ingeniería.',
+];
+
+const projectKinds = [
+  'Herramientas de operaciones internas',
+  'Dashboards empresariales',
+  'Aplicaciones Angular con flujos complejos',
+  'Modernización de Angular',
+  'Funcionalidades frontend respaldadas por APIs',
+  'Auditorías técnicas',
+  'Búsqueda de errores y RCA',
+  'Fortalecimiento de prototipos para producción',
+];
+
+const experienceProgression = [
+  {
+    title: 'Arquitectura frontend, liderazgo de funcionalidades y liderazgo compartido',
+    period: 'mar. 2022 – dic. 2025',
+    color: 'emerald',
+    description:
+      'Lideré junto con otros la modernización de la interfaz de una plataforma logística global (Angular 11–19). Diseñé espacios de trabajo reactivos centrales, validaciones dinámicas de formularios y patrones de estado con Signals, coordinando al mismo tiempo equipos de entrega distribuidos.',
+  },
+  {
+    title: 'Middleware inteligente e integración SRE',
+    period: 'ene. 2021 – feb. 2022',
+    color: 'sky',
+    description:
+      'Diseñé microservicios de backend y Azure Functions autorrecuperables para conectar sistemas heredados y modernos. Establecí patrones de observabilidad SRE —incluidas alertas KQL— para automatizar la detección de fallas.',
+  },
+  {
+    title: 'Modernización logística empresarial — etapa inicial',
+    period: 'sep. 2018 – dic. 2020',
+    color: 'slate',
+    description:
+      'Ayudé a migrar flujos heredados a una plataforma logística web. Desarrollé APIs de backend en .NET Framework y .NET Core, además de los primeros módulos frontend en Angular 6+.',
+  },
+];
+
+const skills = [
+  {
+    title: 'Liderazgo y análisis',
+    items: [
+      'Análisis de requisitos técnicos',
+      'Comunicación entre negocio y desarrollo',
+      'Mentoría e incorporación de desarrolladores',
+      'Estándares de revisión de código y retroalimentación en PRs',
+      'Análisis de causa raíz (RCA)',
+      'Documentación técnica detallada',
+      'Identificación proactiva de vacíos',
+    ],
+  },
+  {
+    title: 'Frontend e interfaz',
+    items: [
+      'Angular (6–19)',
+      'TypeScript / JavaScript',
+      'RxJS y arquitectura reactiva',
+      'Angular Signals',
+      'Sistemas de diseño y consistencia de interfaz',
+      'Optimización de rendimiento para interfaces con grandes volúmenes de datos',
+      'Interfaces adaptables y accesibles',
+    ],
+  },
+  {
+    title: 'Plataforma y operaciones',
+    items: [
+      '.NET Core / .NET 6 / Web API',
+      'Diseño de APIs REST y coordinación de contratos',
+      'Azure Functions y servicios en la nube',
+      'MongoDB y SQL Server',
+      'Microservicios y middleware de integración',
+      'CI/CD y flujos de despliegue (Azure DevOps, Jenkins)',
+      'Observabilidad (Dynatrace, KQL)',
+    ],
+  },
+];
+
+const projects = [
+  {
+    title: 'Conversations Woven',
+    description:
+      'Diseñé un espacio de trabajo local-first para LLMs, enfocado en la privacidad. Implementé seguridad Zero Trust mediante Web Crypto API (PBKDF2 + AES-GCM) para cifrar las claves API en el cliente y persistencia local-first con IndexedDB (Dexie.js). Desarrollado con Angular 19 y detección de cambios sin Zone.js.',
+    url: 'https://conversations-woven.vercel.app/chat',
+  },
+  {
+    title: 'P.S. | Breath Studio',
+    description:
+      'Temporizador minimalista y altamente personalizable para respiración y meditación en Android, desarrollado en Kotlin con Jetpack Compose. Utiliza MVVM, Coroutines, StateFlow, Android DataStore y Google Play Billing, además de generación procedural de audio DSP a la medida. Desarrollado con flujos de trabajo potenciados por IA.',
+    url: 'https://play.google.com/store/apps/details?id=com.ponderingsilver.breathstudio',
+  },
+  {
+    title: 'PonderingSilver.com',
+    description:
+      'Portafolio de ingeniería que demuestra dominio de React 19 dentro de un entorno Astro con “arquitectura de islas”. Incluye un generador de hoja de vida complejo y con estado, lógica de expansión anidada e interfaz optimizada para impresión.',
+    url: 'https://ponderingsilver.com/',
+  },
+];
+
+const primaryExperienceRange = '2018–2025';
+const emailHref = `mailto:${resumeData.contact.email}?subject=${encodeURIComponent(emailSubject)}`;
+const whatsappHref =
+  'https://wa.me/17069102470?text=Hola%20Donald%2C%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20proyecto%20freelance.';
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      noImage={true}
+      locale="es"
+      alternateUrl="/freelance/"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      .freelance-main {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .freelance-main [id] {
+        scroll-margin-top: 8rem;
+      }
+
+      @media print {
+        html,
+        body {
+          background: white;
+          color: #0f172a;
+        }
+
+        @page {
+          margin: 0.55in;
+          size: letter;
+        }
+
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        .print-hidden {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-950 antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-xs backdrop-blur">
+      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <a href="/es/" class="text-sm font-bold uppercase tracking-[0.24em] text-slate-950">
+          Pondering Silver
+        </a>
+        <nav aria-label="Navegación de la página de servicios freelance" class="print-hidden flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+          <a class="text-slate-600 hover:text-emerald-700" href="#servicios">Servicios</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#experiencia">Experiencia</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#modalidades">Modalidades</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#facturacion">Facturación</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#proceso">Proceso</a>
+          <a class="text-slate-600 hover:text-emerald-700" href="#contacto">Contacto</a>
+          <a class="font-bold text-emerald-700 hover:text-emerald-900" href="/freelance/" lang="en" hreflang="en">EN</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="freelance-main">
+      <section class="border-b border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_45%,#ecfdf5_100%)]">
+        <div class="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:px-8 lg:py-16">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-700">
+              Desarrollador freelance sénior de Angular y .NET
+            </p>
+            <h1 class="mt-4 text-3xl font-extrabold leading-tight tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
+              Desarrollo sénior en Angular y .NET para aplicaciones web complejas.
+            </h1>
+            <p class="mt-6 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
+              Ayudo a equipos de producto e ingeniería a desarrollar y mejorar aplicaciones en Angular y .NET con flujos de trabajo complejos, funcionalidades respaldadas por APIs y reglas de negocio que deben manejarse con cuidado. Me desenvuelvo con soltura entre el frontend, el backend y los detalles prácticos que hacen que el software responda bien en producción.
+            </p>
+            <div class="print-hidden mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={emailHref}
+                class="inline-flex min-h-11 items-center justify-center rounded-md bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-xs transition hover:bg-slate-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              >
+                Conversemos sobre tu proyecto
+              </a>
+              <a
+                href="/resume-es/"
+                class="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-xs transition hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              >
+                Ver hoja de vida técnica
+              </a>
+            </div>
+          </div>
+
+          <aside id="contacto" class="rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
+            <p class="text-sm font-bold uppercase tracking-[0.18em] text-slate-500">Disponibilidad</p>
+            <p class="mt-3 text-base font-semibold text-slate-950">
+              Apoyo remoto freelance, por contrato y fraccional
+            </p>
+            <p class="mt-2 text-sm leading-6 text-slate-600">
+              Radicado en Texas, Estados Unidos. Disponible para funcionalidades con alcance definido, auditorías técnicas, modernización de frontend y apoyo de medio tiempo para equipos que necesitan experiencia en Angular y .NET.
+            </p>
+
+            <div class="mt-6 space-y-3">
+              {contactLinks.map((link) => (
+                <a
+                  href={link.href}
+                  target={link.label === 'Correo electrónico' ? undefined : '_blank'}
+                  rel={link.label === 'Correo electrónico' ? undefined : 'noopener noreferrer'}
+                  class="group block rounded-md border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-emerald-400 hover:bg-white"
+                >
+                  <span class="block text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{link.label}</span>
+                  <span class="mt-1 block break-words text-sm font-semibold text-slate-900 group-hover:text-emerald-700">{link.value}</span>
+                </a>
+              ))}
+            </div>
+
+            <div class="mt-6 border-t border-slate-200 pt-5 text-sm text-slate-600">
+              El mejor primer paso es enviarme una nota breve con el objetivo del proyecto, los tiempos, el stack y lo que debe cambiar. Normalmente respondo en un día hábil.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="border-b border-slate-200 bg-white">
+        <div class="mx-auto grid max-w-6xl gap-3 px-4 py-6 sm:grid-cols-3 sm:px-6 lg:px-8">
+          {proofPoints.map((point) => (
+            <div class="rounded-lg border border-slate-200 bg-slate-50 p-5">
+              <p class="text-2xl font-extrabold tracking-normal text-slate-950">{point.value}</p>
+              <p class="mt-1 text-sm leading-5 text-slate-600">{point.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="servicios" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Servicios</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Dónde puedo ayudarte</h2>
+          <p class="mt-4 text-base leading-7 text-slate-700">
+            Soy especialmente útil en proyectos de Angular y .NET donde lo difícil no es solo escribir código, sino comprender las reglas, los flujos de trabajo y las restricciones de producción que hay detrás. Puedo ayudarte a aclarar qué debe construirse, mejorar la estructura del frontend y entregar trabajo que tu equipo pueda mantener después de recibirlo.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-2">
+          {services.map((service) => (
+            <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
+              <h3 class="text-lg font-bold text-slate-950">{service.title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-700">{service.summary}</p>
+              <ul class="mt-5 space-y-3 text-sm leading-6 text-slate-700">
+                {service.details.map((detail) => (
+                  <li class="flex gap-3">
+                    <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="experiencia" class="border-y border-slate-200 bg-slate-100">
+        <div class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Experiencia reciente</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Experiencia con sistemas empresariales de gran escala.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-700">
+              La mayor parte de mi trabajo reciente ha sido dentro de una plataforma global de logística y gestión de materiales para un importante cliente del sector de servicios petroleros. Ese trabajo incluyó bases de código grandes, monorepos, flujos de trabajo exigentes, equipos y partes interesadas distribuidas, y sistemas de producción donde la precisión era esencial.
+            </p>
+          </div>
+
+          <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
+            <div class="border-b border-slate-100 pb-4">
+              <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Infosys – importante cliente de servicios petroleros</p>
+              <h3 class="mt-1.5 text-lg font-bold text-slate-950">Trayectoria full stack de 7 años</h3>
+              <p class="text-sm font-semibold text-emerald-700">{primaryExperienceRange}</p>
+            </div>
+
+            <div class="relative ml-2 mt-6 space-y-6 border-l-2 border-slate-100 pl-4">
+              {experienceProgression.map((phase) => (
+                <div class="relative">
+                  <span class:list={[
+                    'absolute -left-[23px] top-1 h-3 w-3 rounded-full border-2 border-white ring-4',
+                    phase.color === 'emerald' && 'bg-emerald-500 ring-emerald-50',
+                    phase.color === 'sky' && 'bg-sky-500 ring-sky-50',
+                    phase.color === 'slate' && 'bg-slate-300 ring-slate-50',
+                  ]}></span>
+                  <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                    <h4 class="text-sm font-bold text-slate-950">{phase.title}</h4>
+                    <span class="whitespace-nowrap text-xs font-semibold text-slate-500">{phase.period}</span>
+                  </div>
+                  <p class="mt-2 text-xs leading-5 text-slate-600">{phase.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="modalidades" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Ejemplos de colaboración</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Formas prácticas de sumar apoyo sénior</h2>
+          <p class="mt-4 text-base leading-7 text-slate-700">
+            Son puntos de partida, no paquetes rígidos. Ayudan a definir el trabajo, alinear expectativas y decidir si convienen más los hitos de precio fijo o el apoyo por horas.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 lg:grid-cols-3">
+          {exampleEngagements.map((engagement) => (
+            <article class="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between lg:flex-col lg:items-start">
+                <h3 class="text-lg font-bold text-slate-950">{engagement.title}</h3>
+                <span class="inline-flex w-fit rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-700">
+                  {engagement.duration}
+                </span>
+              </div>
+              <p class="mt-4 text-sm leading-6 text-slate-700">{engagement.bestFor}</p>
+              <div class="mt-5 border-t border-slate-200 pt-5">
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Entregables habituales</p>
+                <ul class="mt-3 space-y-3 text-sm leading-6 text-slate-700">
+                  {engagement.outputs.map((output) => (
+                    <li class="flex gap-3">
+                      <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
+                      <span>{output}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-10 grid gap-10 lg:grid-cols-2">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Modalidades de trabajo</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Cómo podemos trabajar juntos</h2>
+            <div class="mt-8 grid gap-4">
+              {engagementModels.map((model) => (
+                <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-xs">
+                  <h3 class="text-base font-bold text-slate-950">{model.title}</h3>
+                  <p class="mt-2 text-sm leading-6 text-slate-700">{model.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Compatibilidad del proyecto</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">La mejor combinación cuando el trabajo es específico e importante</h2>
+            <ul class="mt-8 space-y-3 text-sm leading-6 text-slate-700">
+              {goodFit.map((fit) => (
+                <li class="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-xs">
+                  <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+                  <span>{fit}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="mt-6 text-sm leading-6 text-slate-500">
+              Menos adecuado para sitios sencillos de mercadeo, aplicaciones móviles nativas o proyectos que necesitan más un diseñador dedicado que ingeniería sénior de aplicaciones.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="facturacion" class="border-y border-slate-200 bg-white">
+        <div class="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <article class="rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-xs sm:p-8">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">Propiedad en manos del cliente</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal">Tu código, tus cuentas, tu control.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-300">
+              Para nuevos desarrollos y trabajo de despliegue, prefiero configurar el proyecto dentro de tu infraestructura en lugar de hacerte depender de la mía.
+            </p>
+            <ul class="mt-6 space-y-4 text-sm leading-6 text-slate-200">
+              {ownershipPromise.map((promise) => (
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-300"></span>
+                  <span>{promise}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article class="rounded-lg border border-slate-200 bg-slate-50 p-6 shadow-xs sm:p-8">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Facturación y alcance</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Un alcance claro hace que los proyectos sean más fáciles de manejar.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-700">
+              Trabajo con precio fijo cuando los límites están claros. Para sistemas desconocidos, normalmente recomiendo comenzar con una etapa de descubrimiento, de modo que la estimación mayor tenga bases reales y no sea una conjetura.
+            </p>
+            <div class="mt-6 grid gap-4">
+              {billingPrinciples.map((principle) => (
+                <div class="rounded-lg border border-slate-200 bg-white p-4">
+                  <h3 class="text-base font-bold text-slate-950">{principle.title}</h3>
+                  <p class="mt-2 text-sm leading-6 text-slate-700">{principle.detail}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="proceso" class="border-y border-slate-200 bg-white">
+        <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Proceso</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Un proceso sencillo y una comunicación clara</h2>
+          </div>
+
+          <div class="mt-10 grid gap-4 md:grid-cols-4">
+            {processSteps.map((step, index) => (
+              <article class="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                <p class="text-sm font-extrabold text-emerald-700">{String(index + 1).padStart(2, '0')}</p>
+                <h3 class="mt-4 text-base font-bold text-slate-950">{step.title}</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-700">{step.detail}</p>
+              </article>
+            ))}
+          </div>
+          <p class="mt-6 max-w-3xl text-sm leading-6 text-slate-700">
+            Comparto actualizaciones periódicas de avance a través de los canales que prefiera tu equipo, ya sea Slack, Teams, correo electrónico, GitHub, Azure DevOps o las herramientas que ya usen.
+          </p>
+        </div>
+      </section>
+
+      <section class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Capacidades</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Las tecnologías con las que trabajo</h2>
+          <p class="mt-4 text-base leading-7 text-slate-700">
+            No necesito un entorno greenfield perfecto para aportar valor. Estoy acostumbrado a entornos empresariales maduros, responsabilidades compartidas entre frontend y backend, y restricciones reales de producción.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            {projectKinds.map((kind) => (
+              <span class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-700 shadow-xs">
+                {kind}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {skills.map((category) => (
+            <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-xs">
+              <h3 class="text-sm font-bold uppercase tracking-[0.16em] text-slate-500">{category.title}</h3>
+              <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                {category.items.map((item) => (
+                  <li class="flex gap-3">
+                    <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="border-y border-slate-200 bg-slate-100">
+        <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Proyectos seleccionados</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-slate-950">Una muestra de proyectos públicos</h2>
+          </div>
+
+          <div class="mt-10 grid gap-5 md:grid-cols-3">
+            {projects.map((project) => (
+              <article class="flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-xs">
+                <h3 class="text-lg font-bold text-slate-950">{project.title}</h3>
+                <p class="mt-3 flex-1 text-sm leading-6 text-slate-700">{project.description}</p>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="print-hidden mt-5 inline-flex text-sm font-bold text-emerald-700 hover:text-emerald-900"
+                >
+                  Visitar proyecto
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="grid gap-8 rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-xs sm:p-8 lg:grid-cols-[1fr_24rem] lg:items-center">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">Siguiente paso</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal">Cuéntame qué estás tratando de lanzar, corregir o aclarar.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-300">
+              Un buen primer mensaje incluye tu stack, el objetivo de negocio, el bloqueo actual, los tiempos y si necesitas implementación, arquitectura, revisión o descubrimiento.
+            </p>
+          </div>
+          <div class="print-hidden grid gap-3">
+            <a
+              href={emailHref}
+              class="inline-flex min-h-11 items-center justify-center rounded-md bg-emerald-400 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-emerald-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              Escribirle a Donald
+            </a>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-600 px-5 py-3 text-sm font-bold text-white transition hover:border-emerald-300 hover:text-emerald-200 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            >
+              Escribir por WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-slate-600 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <p>Donald Clements – Desarrollador web full stack sénior de Angular y .NET</p>
+        <div class="print-hidden flex flex-wrap gap-x-5 gap-y-2">
+          <a class="font-medium text-slate-700 hover:text-emerald-700" href="/resume-es/">Hoja de vida</a>
+          <a class="font-medium text-slate-700 hover:text-emerald-700" href="/es/">Pondering Silver</a>
+          <a class="font-medium text-slate-700 hover:text-emerald-700" href="https://github.com/silveranstavern-gmail" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="font-medium text-slate-700 hover:text-emerald-700" href="/freelance/" lang="en" hreflang="en">Inglés</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

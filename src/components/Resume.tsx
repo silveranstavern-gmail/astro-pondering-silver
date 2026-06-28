@@ -1,11 +1,114 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
     resumeData,
-    experienceTotal,
     type DetailLevel,
     type ExperienceRole,
-    type Tenet
+    type ResumeData,
+    type Tenet,
 } from '../data/resume';
+
+export interface ResumeCopy {
+    sections: Array<{ id: string; label: string }>;
+    more: string;
+    evenMore: string;
+    less: string;
+    technologies: string;
+    keyHighlights: string;
+    keyContributions: string;
+    homeAriaLabel: string;
+    freelanceLabel: string;
+    alternateLanguageLabel: string;
+    sectionsAriaLabel: string;
+    citizenship: string;
+    contact: string;
+    whatsapp: string;
+    email: string;
+    linkedin: string;
+    github: string;
+    downloadPdf: string;
+    preferredContact: string;
+    pdfNote: string;
+    aiReadyTitle: string;
+    aiReadyText: string;
+    snapshot: string;
+    tenetsTitle: string;
+    tenetsDescription: string;
+    experienceTitle: string;
+    experienceDescription: string;
+    projectsTitle: string;
+    projectsDescription: string;
+    visitProject: string;
+    skillsTitle: string;
+    skillsDescription: string;
+    educationTitle: string;
+    educationDescription: string;
+}
+
+export interface ResumeRoutes {
+    home: string;
+    freelance: string;
+    alternateLanguage: string;
+    alternateLanguageCode: 'en' | 'es';
+    llmText: string;
+}
+
+export interface ResumeProps {
+    data?: ResumeData;
+    copy?: ResumeCopy;
+    routes?: ResumeRoutes;
+}
+
+export const defaultResumeCopy: ResumeCopy = {
+    sections: [
+        { id: 'overview', label: 'Overview' },
+        { id: 'tenets', label: 'Tenets' },
+        { id: 'experience', label: 'Experience' },
+        { id: 'projects', label: 'Projects' },
+        { id: 'skills', label: 'Skills' },
+        { id: 'education', label: 'Education' },
+    ],
+    more: 'more',
+    evenMore: 'even more',
+    less: 'less',
+    technologies: 'Technologies',
+    keyHighlights: 'Key highlights',
+    keyContributions: 'Key contributions & technical experience',
+    homeAriaLabel: 'Go to Pondering Silver home',
+    freelanceLabel: 'I also freelance',
+    alternateLanguageLabel: 'Español',
+    sectionsAriaLabel: 'Resume sections',
+    citizenship: 'Citizenship',
+    contact: 'Contact',
+    whatsapp: 'Message on WhatsApp',
+    email: 'Email',
+    linkedin: 'View LinkedIn Profile',
+    github: 'View GitHub Profile',
+    downloadPdf: 'Download PDF Resume',
+    preferredContact: 'Preferred contact: WhatsApp for quick coordination, or email for detailed notes.',
+    pdfNote: 'The downloadable PDF is a separate formatted resume and is not an exact mirror of this web version.',
+    aiReadyTitle: 'AI-Ready Context',
+    aiReadyText: 'For LLMs and RAG systems, a machine-readable Markdown version is available at',
+    snapshot: 'Snapshot',
+    tenetsTitle: 'Professional Tenets',
+    tenetsDescription: 'The principles that guide my approach to engineering and collaboration.',
+    experienceTitle: 'Experience',
+    experienceDescription: 'Layered for rapid scanning: skim summaries in seconds, or expand any role for granular delivery specifics and deeper technical context.',
+    projectsTitle: 'Projects',
+    projectsDescription: 'Personal projects and side work demonstrating technical capabilities and creative problem-solving.',
+    visitProject: 'Visit Project',
+    skillsTitle: 'Skills & Focus Areas',
+    skillsDescription: 'Curated to reflect how I operate day-to-day – frontend leadership grounded in strong platform awareness and collaborative habits.',
+    educationTitle: 'Education',
+    educationDescription: 'Academic foundation underpinning systems thinking and applied technology leadership.',
+};
+
+export const defaultResumeRoutes: ResumeRoutes = {
+    home: '/',
+    freelance: '/freelance/',
+    alternateLanguage: '/resume-es',
+    alternateLanguageCode: 'es',
+    llmText: '/resume/llm.txt',
+};
 
 // --- Components ---
 
@@ -23,18 +126,20 @@ const RoleCard = ({
                       role,
                       cardDetailLevel,
                       onCycle,
+                      copy,
                   }: {
     role: ExperienceRole;
     cardDetailLevel: DetailLevel;
     onCycle: () => void;
+    copy: ResumeCopy;
 }) => {
     const chipClass = 'inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 shadow-xs';
 
     // Determine button text based on current level
     const getButtonText = () => {
-        if (cardDetailLevel === 'snapshot') return 'more';
-        if (cardDetailLevel === 'standard') return 'even more';
-        return 'less';
+        if (cardDetailLevel === 'snapshot') return copy.more;
+        if (cardDetailLevel === 'standard') return copy.evenMore;
+        return copy.less;
     };
 
     return (
@@ -58,7 +163,7 @@ const RoleCard = ({
                 <>
                     <p className="mt-3 text-sm leading-relaxed text-slate-700">{role.snapshotFocus}</p>
                     <div className="mt-5">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Technologies</p>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{copy.technologies}</p>
                         <div className="mt-2 flex flex-wrap gap-2">
                             {role.techStack.map((tech) => (
                                 <span key={tech} className={chipClass}>
@@ -75,7 +180,7 @@ const RoleCard = ({
                 <>
                     <p className="mt-3 text-sm leading-relaxed text-slate-700">{role.snapshotFocus}</p>
                     <div className="mt-4 space-y-2">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Key highlights</p>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{copy.keyHighlights}</p>
                         <ul className="space-y-2 text-sm text-slate-700">
                             {role.standardHighlights.map((highlight, highlightIndex) => (
                                 <li key={`highlight-${highlightIndex}`} className="flex items-start gap-3">
@@ -86,7 +191,7 @@ const RoleCard = ({
                         </ul>
                     </div>
                     <div className="mt-5">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Technologies</p>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{copy.technologies}</p>
                         <div className="mt-2 flex flex-wrap gap-2">
                             {role.techStack.map((tech) => (
                                 <span key={tech} className={chipClass}>
@@ -108,7 +213,7 @@ const RoleCard = ({
                     </div>
 
                     <div className="mt-5 space-y-2">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Key contributions & technical experience</p>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{copy.keyContributions}</p>
                         <ul className="space-y-2 text-sm leading-relaxed text-slate-700">
                             {role.deepAchievements.map((achievement, achievementIndex) => (
                                 <li key={`achievement-${achievementIndex}`} className="flex gap-3">
@@ -120,7 +225,7 @@ const RoleCard = ({
                     </div>
 
                     <div className="mt-5">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Technologies</p>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{copy.technologies}</p>
                         <div className="mt-2 flex flex-wrap gap-2">
                             {role.techStack.map((tech) => (
                                 <span key={tech} className={chipClass}>
@@ -135,16 +240,12 @@ const RoleCard = ({
     );
 };
 
-const sections = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'tenets', label: 'Tenets' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'education', label: 'Education' },
-];
-
-export default function Resume() {
+export default function Resume({
+    data = resumeData,
+    copy = defaultResumeCopy,
+    routes = defaultResumeRoutes,
+}: ResumeProps) {
+    const sections = copy.sections;
     const [expandedRoles, setExpandedRoles] = useState<Record<string, DetailLevel>>({});
     const [activeSectionId, setActiveSectionId] = useState(sections[0].id);
 
@@ -188,7 +289,7 @@ export default function Resume() {
                 window.cancelAnimationFrame(frameId);
             }
         };
-    }, []);
+    }, [sections]);
 
     const cycleDepth = (id: string) => {
         setExpandedRoles((prev) => {
@@ -220,7 +321,7 @@ export default function Resume() {
                     }
                 },
             })),
-        [],
+        [sections],
     );
 
     return (
@@ -233,9 +334,9 @@ export default function Resume() {
             <nav className="sticky top-0 z-40 border-b border-purple-100/80 bg-gray-100/95 px-4 py-3 shadow-xs backdrop-blur print:hidden">
                 <div className="mx-auto grid max-w-5xl grid-cols-[auto_auto] items-center justify-between gap-x-3 gap-y-3 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-4">
                     <a
-                        href="/"
+                        href={routes.home}
                         className="group inline-flex min-h-10 items-center gap-3 rounded-lg px-2 text-slate-900 transition hover:bg-white/80 hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
-                        aria-label="Go to Pondering Silver home"
+                        aria-label={copy.homeAriaLabel}
                     >
                         <span className="text-2xl font-semibold tracking-wide">
                             <span className="inline-block pr-1 -translate-y-[0.2em]">P</span>
@@ -246,14 +347,24 @@ export default function Resume() {
                         </span>
                     </a>
 
-                    <a
-                        href="/freelance/"
-                        className="inline-flex min-h-10 shrink-0 items-center justify-center justify-self-end rounded-lg border border-purple-200 bg-white px-3 py-2 text-sm font-semibold text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 lg:col-start-3"
-                    >
-                        I also freelance
-                    </a>
+                    <div className="flex items-center justify-self-end gap-2 lg:col-start-3">
+                        <a
+                            href={routes.alternateLanguage}
+                            className="inline-flex min-h-10 items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-white/80 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                            lang={routes.alternateLanguageCode}
+                            hrefLang={routes.alternateLanguageCode}
+                        >
+                            {copy.alternateLanguageLabel}
+                        </a>
+                        <a
+                            href={routes.freelance}
+                            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-white px-3 py-2 text-sm font-semibold text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                        >
+                            {copy.freelanceLabel}
+                        </a>
+                    </div>
 
-                    <div className="col-span-2 flex gap-2 overflow-x-auto pb-1 hide-scrollbar lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:justify-center lg:overflow-visible lg:pb-0" aria-label="Resume sections">
+                    <div className="col-span-2 flex gap-2 overflow-x-auto pb-1 hide-scrollbar lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:justify-center lg:overflow-visible lg:pb-0" aria-label={copy.sectionsAriaLabel}>
                         {quickNav.map((item) => {
                             const isActive = item.id === activeSectionId;
 
@@ -283,17 +394,17 @@ export default function Resume() {
                     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
                         <div className="space-y-5 rounded-2xl border border-purple-100/80 bg-white/90 p-6 shadow-lg ring-1 ring-slate-900/5 backdrop-blur print:border-slate-200 print:bg-white print:shadow-none print:ring-0 sm:p-8">
                             <div>
-                                <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{resumeData.name}</h1>
-                                <p className="mt-2 text-lg font-medium text-slate-600">{resumeData.title}</p>
-                                <p className="text-sm uppercase tracking-[0.3em] text-emerald-500">{resumeData.location}</p>
-                                <p className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">Citizenship: {resumeData.citizenship}</p>
-                                <p className="mt-2 text-sm text-slate-500">{resumeData.availability}</p>
+                                <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{data.name}</h1>
+                                <p className="mt-2 text-lg font-medium text-slate-600">{data.title}</p>
+                                <p className="text-sm uppercase tracking-[0.3em] text-emerald-500">{data.location}</p>
+                                <p className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">{copy.citizenship}: {data.citizenship}</p>
+                                <p className="mt-2 text-sm text-slate-500">{data.availability}</p>
                             </div>
 
-                            <p className="text-base leading-relaxed text-slate-700">{resumeData.summary}</p>
+                            <p className="text-base leading-relaxed text-slate-700">{data.summary}</p>
 
                             <div className="space-y-3">
-                                {resumeData.highlights.map((highlight) => (
+                                {data.highlights.map((highlight) => (
                                     <div key={highlight.title} className="flex items-start gap-3">
                                         <span aria-hidden className="mt-1 h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
                                         <div className="min-w-0 flex-1">
@@ -308,27 +419,27 @@ export default function Resume() {
                         {/* Contact & Metrics Sidebar */}
                         <aside className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg ring-1 ring-slate-900/5 print:border-slate-200 print:shadow-none print:ring-0">
                             <div className="space-y-3">
-                                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Contact</p>
+                                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">{copy.contact}</p>
                                 <div className="flex flex-col gap-3">
                                     <a
-                                        href={resumeData.contact.whatsappLink}
+                                        href={data.contact.whatsappLink}
                                         className="inline-flex min-h-10 items-center justify-center rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white shadow-xs transition hover:bg-emerald-600 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
                                     >
-                                        Message on WhatsApp
+                                        {copy.whatsapp}
                                     </a>
                                     <a
-                                        href={`mailto:${resumeData.contact.email}`}
+                                        href={`mailto:${data.contact.email}`}
                                         className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
-                                        Email {resumeData.contact.email}
+                                        {copy.email} {data.contact.email}
                                     </a>
                                     <a
-                                        href={resumeData.contact.linkedin}
+                                        href={data.contact.linkedin}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
-                                        View LinkedIn Profile
+                                        {copy.linkedin}
                                     </a>
                                     <a
                                         href="https://github.com/silveranstavern-gmail"
@@ -336,40 +447,40 @@ export default function Resume() {
                                         rel="noopener noreferrer"
                                         className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
-                                        View GitHub Profile
+                                        {copy.github}
                                     </a>
                                     <a
-                                        href={resumeData.resumePdfUrl}
+                                        href={data.resumePdfUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex min-h-10 items-center justify-center rounded-lg border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-medium text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-100 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
-                                        Download PDF Resume
+                                        {copy.downloadPdf}
                                     </a>
                                     <a
-                                        href="/freelance/"
+                                        href={routes.freelance}
                                         className="inline-flex min-h-10 items-center justify-center rounded-lg border border-purple-200 bg-white px-4 py-2 text-sm font-medium text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 print:hidden"
                                     >
-                                        I also freelance
+                                        {copy.freelanceLabel}
                                     </a>
                                 </div>
-                                <p className="text-xs text-slate-500">Preferred contact: WhatsApp for quick coordination, or email for detailed notes.</p>
-                                <p className="text-xs text-slate-500">The downloadable PDF is a separate formatted resume and is not an exact mirror of this web version.</p>
+                                <p className="text-xs text-slate-500">{copy.preferredContact}</p>
+                                <p className="text-xs text-slate-500">{copy.pdfNote}</p>
                                 <div className="mt-2 rounded-lg border border-violet-100 bg-violet-50/50 p-3 shadow-xs print:hidden">
-                                    <p className="text-[0.65rem] font-bold uppercase tracking-wider text-violet-600">AI-Ready Context</p>
+                                    <p className="text-[0.65rem] font-bold uppercase tracking-wider text-violet-600">{copy.aiReadyTitle}</p>
                                     <p className="mt-1 text-[0.7rem] leading-relaxed text-slate-600">
-                                        For LLMs and RAG systems, a machine-readable Markdown version is available at{' '}
-                                        <a href="/resume/llm.txt" className="font-medium text-violet-700 underline underline-offset-2 hover:text-violet-900">
-                                            /resume/llm.txt
+                                        {copy.aiReadyText}{' '}
+                                        <a href={routes.llmText} className="font-medium text-violet-700 underline underline-offset-2 hover:text-violet-900">
+                                            {routes.llmText}
                                         </a>
                                     </p>
                                 </div>
                             </div>
 
                             <div className="space-y-4 border-t border-slate-200 pt-4">
-                                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Snapshot</p>
+                                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">{copy.snapshot}</p>
                                 <ul className="space-y-3 text-sm text-slate-600">
-                                    {resumeData.metrics.map((metric) => (
+                                    {data.metrics.map((metric) => (
                                         <li key={metric.label} className="flex flex-col">
                                             <span className="text-[0.8rem] font-semibold leading-snug text-slate-800">{metric.value}</span>
                                             <span className="mt-0.5 text-[0.65rem] uppercase tracking-wider text-slate-500">{metric.label}</span>
@@ -385,13 +496,13 @@ export default function Resume() {
                 {/* --- Core Tenets --- */}
                 <section id="tenets" className="space-y-6">
                     <header className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Professional Tenets</h2>
+                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{copy.tenetsTitle}</h2>
                         <p className="text-sm text-slate-600">
-                            The principles that guide my approach to engineering and collaboration.
+                            {copy.tenetsDescription}
                         </p>
                     </header>
                     <div className="grid gap-6 md:grid-cols-2">
-                        {resumeData.tenets.map((tenet) => (
+                        {data.tenets.map((tenet) => (
                             <TenetCard key={tenet.title} tenet={tenet} />
                         ))}
                     </div>
@@ -400,14 +511,14 @@ export default function Resume() {
                 {/* --- Experience Section --- */}
                 <section id="experience" className="space-y-8">
                     <header className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Experience</h2>
+                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{copy.experienceTitle}</h2>
                         <p className="text-sm text-slate-600">
-                            Layered for rapid scanning: skim summaries in seconds, or expand any role for granular delivery specifics and deeper technical context.
+                            {copy.experienceDescription}
                         </p>
                     </header>
 
                     <div className="space-y-8">
-                        {resumeData.experiences.map((experience, experienceIndex) => (
+                        {data.experiences.map((experience, experienceIndex) => (
                             <article
                                 key={`${experience.company}-${experienceIndex}`}
                                 className="space-y-6 rounded-2xl border border-slate-200 bg-white/90 p-6 shadow-md ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-lg print:border-slate-200 print:shadow-none sm:p-8"
@@ -443,6 +554,7 @@ export default function Resume() {
                                                 role={role}
                                                 cardDetailLevel={cardDetailLevel}
                                                 onCycle={() => cycleDepth(key)}
+                                                copy={copy}
                                             />
                                         );
                                     })}
@@ -455,14 +567,14 @@ export default function Resume() {
                 {/* --- Projects Section --- */}
                 <section id="projects" className="space-y-6">
                     <header className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Projects</h2>
+                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{copy.projectsTitle}</h2>
                         <p className="text-sm text-slate-600">
-                            Personal projects and side work demonstrating technical capabilities and creative problem-solving.
+                            {copy.projectsDescription}
                         </p>
                     </header>
 
                     <div className="grid gap-6">
-                        {resumeData.projects.map((project) => (
+                        {data.projects.map((project) => (
                             <div
                                 key={project.title}
                                 className="rounded-xl border border-slate-200 bg-white/90 p-6 shadow-xs ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-md print:border-slate-200 print:shadow-none"
@@ -478,7 +590,7 @@ export default function Resume() {
                                         rel="noopener noreferrer"
                                         className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 print:hidden"
                                     >
-                                        Visit Project
+                                        {copy.visitProject}
                                     </a>
                                 </div>
                             </div>
@@ -489,14 +601,14 @@ export default function Resume() {
                 {/* SKILLS: Always visible regardless of detail level */}
                 <section id="skills" className="space-y-6">
                     <header className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Skills & Focus Areas</h2>
+                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{copy.skillsTitle}</h2>
                         <p className="text-sm text-slate-600">
-                            Curated to reflect how I operate day-to-day – frontend leadership grounded in strong platform awareness and collaborative habits.
+                            {copy.skillsDescription}
                         </p>
                     </header>
 
                     <div className="grid gap-6 md:grid-cols-2">
-                        {resumeData.skills.map((category) => (
+                        {data.skills.map((category) => (
                             <div
                                 key={category.title}
                                 className="space-y-4 rounded-xl border border-slate-200 bg-white/90 p-6 shadow-xs ring-1 ring-slate-900/5 transition hover:border-purple-100 hover:shadow-md print:border-slate-200 print:shadow-none"
@@ -517,12 +629,12 @@ export default function Resume() {
 
                 <section id="education" className="space-y-6">
                     <header className="space-y-2">
-                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Education</h2>
-                        <p className="text-sm text-slate-600">Academic foundation underpinning systems thinking and applied technology leadership.</p>
+                        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{copy.educationTitle}</h2>
+                        <p className="text-sm text-slate-600">{copy.educationDescription}</p>
                     </header>
 
                     <div className="grid gap-6">
-                        {resumeData.education.map((education) => (
+                        {data.education.map((education) => (
                             <div
                                 key={education.institution}
                                 className="rounded-xl border border-slate-200 bg-white/90 p-6 shadow-xs ring-1 ring-slate-900/5 print:border-slate-200 print:shadow-none"

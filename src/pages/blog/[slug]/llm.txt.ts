@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog');
 
   return posts
-    .filter((post) => post.data.deploy !== false)
+    .filter((post) => post.data.locale === 'en' && post.data.deploy !== false)
     .map((post) => ({
       params: { slug: resolvePostSlug(post) },
       props: { post },

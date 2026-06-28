@@ -1,0 +1,183 @@
+---
+import { Icon } from 'astro-icon/components';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { bookingUrl } from '../../data/services';
+import { faqsEs, servicePathsEs, servicesEs } from '../../data/services.es';
+---
+
+<SiteLayout
+  locale="es"
+  alternateUrl="/services"
+  title="Claridad del Alma y Acompañamiento Espiritual | Pondering Silver"
+  description="Sesiones individuales para la reflexión honesta, el reconocimiento de patrones, el acompañamiento espiritual y la reconexión con tu guía interior."
+>
+  <article class="mx-auto flex max-w-3xl flex-col gap-14 pr-16 sm:pr-0 2xl:max-w-4xl">
+    <header class="space-y-6 text-center">
+      <span class="inline-flex items-center justify-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700">
+        Trabajo reflexivo individual
+      </span>
+      <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">Claridad del Alma y Acompañamiento Espiritual</h1>
+      <p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600">
+        Un espacio libre de juicios para la reflexión honesta, el reconocimiento de patrones y la reconexión con tu
+        propia guía interior.
+      </p>
+    </header>
+
+    <section class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="space-y-5 text-base leading-relaxed text-gray-700">
+        <p>
+          No necesitas llegar con una pregunta clara ni con una explicación perfectamente organizada. Puedes traer esa
+          parte de tu vida que se siente enredada, dolorosa, repetitiva, incierta, contradictoria o difícil de expresar.
+          Comenzamos con lo que realmente está presente.
+        </p>
+        <p>
+          Mientras hablas, no escucho solamente los acontecimientos que describes, sino también los patrones que se
+          mueven debajo: dónde vuelve una y otra vez tu atención, dónde algo se tensa, qué permanece sin decir, qué
+          creencias están moldeando tu experiencia y dónde quizá ya sabes algo que aún no te has permitido confiar.
+        </p>
+        <p>
+          Puedo hacer preguntas, reflejar patrones, cuestionar una interpretación, ofrecer otra manera de ver o
+          sencillamente permanecer contigo mientras algo se aclara. El trabajo es colaborativo y responde a lo que está
+          vivo en el momento; no sigue un método ni un guion fijo.
+        </p>
+      </div>
+
+      <aside class="rounded-lg border border-purple-100 bg-white p-6 shadow-xs">
+        <h2 class="text-lg font-semibold text-purple-800">El centro del trabajo</h2>
+        <p class="mt-4 leading-relaxed text-gray-700">
+          Mi intención no es decirte en quién debes convertirte, imponerte mis creencias espirituales ni tomar
+          decisiones por ti. Es ayudar a crear las condiciones para que puedas escucharte con mayor claridad y volver a
+          conectar con la inteligencia profunda, la integridad y la Luz interior que ya viven en ti.
+        </p>
+      </aside>
+    </section>
+
+    <section class="space-y-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-gray-900">Elige la forma</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-gray-600">
+          El trabajo es una sola conversación viva. Estas son las dos maneras más sencillas de entrar en ella.
+        </p>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2">
+        {servicePathsEs.map((path) => (
+          <div class="flex h-full flex-col rounded-lg border border-gray-200 bg-white p-6 shadow-xs transition hover:border-purple-200 hover:shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-wide text-purple-700">{path.rhythm}</p>
+            <h3 class="mt-3 text-xl font-bold text-gray-900">{path.title}</h3>
+            <p class="mt-4 flex-1 leading-relaxed text-gray-600">{path.description}</p>
+            <a
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex items-center gap-2 self-start rounded-lg bg-purple-600 px-5 py-3 text-sm font-medium text-white shadow-xs transition hover:bg-purple-700 hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+            >
+              <Icon name="heroicons:calendar-days" class="h-4 w-4" aria-hidden="true" />
+              <span>Reservar una sesión</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-gray-900">Lo que puede surgir</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-gray-600">
+          No tienes que elegir la puerta perfecta. Estos son algunos hilos comunes que pueden aparecer dentro de una
+          sesión o a lo largo de un proceso continuo.
+        </p>
+      </div>
+
+      <div class="grid gap-4">
+        {servicesEs.map((service) => (
+          <div class="rounded-lg border border-gray-200 border-l-4 border-l-purple-500 bg-white p-6 shadow-xs">
+            <h3 class="text-lg font-semibold text-purple-800">{service.title}</h3>
+            <p class="mt-3 leading-relaxed text-gray-600">{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="grid gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-xs sm:grid-cols-2">
+      <div class="flex gap-3">
+        <Icon name="heroicons:heart" class="mt-1 h-5 w-5 shrink-0 text-purple-600" aria-hidden="true" />
+        <div>
+          <h2 class="font-semibold text-gray-900">Calidez sin complacencia</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">
+            Serás recibido con cuidado, pero no con aprobación automática si una historia conocida parece mantenerte
+            atrapado.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <Icon name="heroicons:sparkles" class="mt-1 h-5 w-5 shrink-0 text-purple-600" aria-hidden="true" />
+        <div>
+          <h2 class="font-semibold text-gray-900">Espiritual cuando surge naturalmente</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">
+            La meditación, la oración, la energía y el lenguaje místico pueden entrar en el trabajo cuando sean útiles y
+            bienvenidos.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <Icon name="heroicons:chat-bubble-left-right" class="mt-1 h-5 w-5 shrink-0 text-purple-600" aria-hidden="true" />
+        <div>
+          <h2 class="font-semibold text-gray-900">Conversación orgánica</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">
+            No hay ningún guion que representar. Seguimos el hilo vivo de lo que está ocurriendo en ti ahora.
+          </p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <Icon name="heroicons:light-bulb" class="mt-1 h-5 w-5 shrink-0 text-purple-600" aria-hidden="true" />
+        <div>
+          <h2 class="font-semibold text-gray-900">Tu saber interior permanece en el centro</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600">
+            El propósito no es que dependas de mis comprensiones, sino que entres en un contacto más claro con tu propio
+            discernimiento y tu Luz interior.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rounded-lg border border-purple-100 bg-purple-50 p-8 text-center shadow-xs">
+      <h2 class="mb-4 text-2xl font-bold text-purple-900">¿Sientes que es momento de trabajar juntos?</h2>
+      <p class="mx-auto mb-8 max-w-2xl text-gray-700">
+        Cada sesión se adapta a lo que realmente está ocurriendo en tu experiencia, con espacio para la honestidad, la
+        ternura, el desafío, el silencio y la claridad.
+      </p>
+      <a
+        href={bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-8 py-4 text-base font-medium text-white shadow-xs transition hover:bg-purple-700 hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+      >
+        <Icon name="heroicons:arrow-right" class="h-5 w-5" aria-hidden="true" />
+        <span>Reservar una sesión</span>
+      </a>
+    </section>
+
+    <section class="space-y-6">
+      <h2 class="text-center text-2xl font-bold text-gray-900">Preguntas frecuentes</h2>
+      <div class="space-y-4">
+        {faqsEs.map((faq) => (
+          <details class="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left text-lg font-medium text-gray-800 transition-colors duration-200 group-open:bg-gray-50">
+              <span class="flex-1">{faq.question}</span>
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-purple-100 text-purple-600" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 group-open:hidden">
+                  <path d="M12 4a1 1 0 011 1v6h6a1 1 0 110 2h-6v6a1 1 0 11-2 0v-6H5a1 1 0 011-1z" />
+                </svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" class="hidden h-5 w-5 group-open:block">
+                  <path d="M5 11a1 1 0 100 2h14a1 1 0 100-2H5z" />
+                </svg>
+              </span>
+            </summary>
+            <div class="border-t border-gray-100 px-6 py-4 text-gray-600">{faq.answer}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+  </article>
+</SiteLayout>

@@ -98,7 +98,9 @@ function initializeExpandableTags(tagsContainer) {
       collapseText.classList.toggle('hidden', isExpanded);
     }
 
-    button.title = isExpanded ? 'Show all tags' : 'Show fewer tags';
+    button.title = isExpanded
+      ? (button.dataset.expandTitle ?? 'Show all tags')
+      : (button.dataset.collapseTitle ?? 'Show fewer tags');
   });
 }
 

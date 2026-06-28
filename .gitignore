@@ -104,3 +104,4 @@ tmp/
 # Explicit exceptions to allow tracking
 !.gitignore
 !.gitattributes
+!src/content/blog/**/.gitkeep

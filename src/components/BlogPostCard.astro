@@ -1,19 +1,37 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
-import { resolvePostLink } from '../utils/blog';
+import { resolvePostLink, type BlogLocale } from '../utils/blog';
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  locale?: BlogLocale;
 }
 
-const { post } = Astro.props;
+const { post, locale = post.data.locale } = Astro.props;
 const link = resolvePostLink(post);
 const keywords = post.data.keywords ?? [];
 const previewKeywords = keywords.slice(0, 3);
 const hiddenKeywords = keywords.slice(3);
 const extraKeywords = hiddenKeywords.length;
 const searchText = [post.data.title, post.data.description, keywords.join(' ')].join(' ').toLowerCase();
+const labels = locale === 'es'
+  ? {
+      filterBy: 'Filtrar por',
+      showAllTags: 'Mostrar todas las etiquetas',
+      showFewerTags: 'Mostrar menos etiquetas',
+      more: 'más',
+      showLess: 'mostrar menos',
+      read: 'Leer',
+    }
+  : {
+      filterBy: 'Filter by',
+      showAllTags: 'Show all tags',
+      showFewerTags: 'Show fewer tags',
+      more: 'more',
+      showLess: 'show less',
+      read: 'Read',
+    };
 ---
 
 <article
@@ -34,7 +52,7 @@ const searchText = [post.data.title, post.data.description, keywords.join(' ')].
           type="button"
           data-search-tag={keyword}
           class="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700 transition hover:bg-gray-200 hover:text-gray-900"
-          title={`Filter by ${keyword}`}
+          title={`${labels.filterBy} ${keyword}`}
         >
           {keyword}
         </button>
@@ -45,7 +63,7 @@ const searchText = [post.data.title, post.data.description, keywords.join(' ')].
           data-search-tag={keyword}
           data-hidden-tag
           class="hidden rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700 transition hover:bg-gray-200 hover:text-gray-900"
-          title={`Filter by ${keyword}`}
+          title={`${labels.filterBy} ${keyword}`}
         >
           {keyword}
         </button>
@@ -54,18 +72,20 @@ const searchText = [post.data.title, post.data.description, keywords.join(' ')].
         <button
           type="button"
           data-expand-tags
+          data-expand-title={labels.showAllTags}
+          data-collapse-title={labels.showFewerTags}
           class="text-xs text-gray-400 transition hover:text-gray-600 hover:underline"
-          title="Show all tags"
+          title={labels.showAllTags}
         >
-          <span data-expand-text>+{extraKeywords} more</span>
-          <span data-collapse-text class="hidden">show less</span>
+          <span data-expand-text>+{extraKeywords} {labels.more}</span>
+          <span data-collapse-text class="hidden">{labels.showLess}</span>
         </button>
       )}
     </div>
     <div class="flex items-center justify-between text-xs text-gray-500">
-      <FormattedDate date={post.data.date} />
+      <FormattedDate date={post.data.date} locale={locale} />
       <a href={link} class="inline-flex items-center gap-1 text-purple-600 transition-colors duration-200 hover:text-purple-800">
-        Read
+        {labels.read}
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 18l6-6-6-6"></path>
         </svg>

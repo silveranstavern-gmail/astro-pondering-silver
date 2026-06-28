@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "clean": "node ./scripts/clean.mjs",
+    "content:organize": "node ./scripts/organize-blog-content.mjs",
+    "content:translations": "node ./scripts/content-translations.mjs",
     "slate": "npm run clean --silent && node ./scripts/slate.mjs",
     "preview": "astro preview",
     "astro": "astro",

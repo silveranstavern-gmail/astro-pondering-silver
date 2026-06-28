@@ -1,0 +1,64 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Resume from '../components/Resume';
+import { resumeCopyEs, resumeRoutesEs } from '../data/resume-copy.es';
+import { resumeDataEs } from '../data/resume.es';
+
+const title = 'Hoja de vida de Donald Clements';
+const description = 'Experiencia profesional de Donald Clements, desarrollador web sénior full stack Angular/.NET';
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      noImage={true}
+      locale="es"
+      alternateUrl="/resume"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      @media print {
+        html,
+        body {
+          background: white;
+          color: #0f172a;
+        }
+
+        @page {
+          margin: 0.5in;
+          size: letter;
+        }
+
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-100 text-slate-900">
+    <noscript>
+      <div style="padding: 20px; background-color: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; margin: 20px; font-family: sans-serif; color: #991b1b;">
+        <p style="font-weight: bold; margin-top: 0;">Se necesita JavaScript</p>
+        <p>Esta hoja de vida interactiva necesita JavaScript para funcionar. También puedes consultar <a href="/resume-es/llm.txt" style="text-decoration: underline; font-weight: bold; color: #b91c1c;">la versión en texto plano, preparada para LLM</a>.</p>
+      </div>
+    </noscript>
+    <div class="sr-only">
+      <p>¿Buscas una versión de esta hoja de vida legible por máquinas, preparada para LLM o en texto plano? Visita <a href="/resume-es/llm.txt">/resume-es/llm.txt</a>.</p>
+    </div>
+    <Resume client:only="react" data={resumeDataEs} copy={resumeCopyEs} routes={resumeRoutesEs} />
+  </body>
+</html>

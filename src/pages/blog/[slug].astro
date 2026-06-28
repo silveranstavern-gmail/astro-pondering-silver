@@ -1,23 +1,32 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
-import { resolvePostSlug } from '../../utils/blog';
+import { findPublishedCounterpart, resolvePostLink, resolvePostSlug } from '../../utils/blog';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts
-		.filter((post) => post.data.deploy !== false)
+		.filter((post) => post.data.locale === 'en' && post.data.deploy !== false)
 		.map((post) => ({
 			params: { slug: resolvePostSlug(post) },
-			props: post,
+			props: {
+				post,
+				alternateUrl: (() => {
+					const counterpart = findPublishedCounterpart(post, posts);
+					return counterpart ? resolvePostLink(counterpart) : undefined;
+				})(),
+			},
 		}));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = {
+	post: CollectionEntry<'blog'>;
+	alternateUrl?: string;
+};
 
-const post = Astro.props;
+const { post, alternateUrl } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} alternateUrl={alternateUrl}>
 	<Content />
 </BlogPost>

@@ -17,12 +17,12 @@ export const experienceTotal = calculateExperience(EXPERIENCE_START_DATE, EXPERI
 
 export type DetailLevel = 'snapshot' | 'standard' | 'deep';
 
-interface Highlight {
+export interface Highlight {
     title: string;
     description: string;
 }
 
-interface Metric {
+export interface Metric {
     label: string;
     value: string;
     helper?: string;
@@ -38,7 +38,7 @@ export interface ExperienceRole {
     techStack: string[];
 }
 
-interface Experience {
+export interface Experience {
     company: string;
     location: string;
     employmentType: string;
@@ -47,25 +47,25 @@ interface Experience {
     roles: ExperienceRole[];
 }
 
-interface EducationItem {
+export interface EducationItem {
     institution: string;
     degree: string;
     period: string;
     distinction?: string;
 }
 
-interface SkillCategory {
+export interface SkillCategory {
     title: string;
     items: string[];
 }
 
-interface Project {
+export interface Project {
     title: string;
     description: string;
     url: string;
 }
 
-interface ContactInfo {
+export interface ContactInfo {
     email: string;
     whatsapp: string;
     whatsappLink: string;
@@ -78,7 +78,7 @@ export interface Tenet {
     icon: string;
 }
 
-interface ResumeData {
+export interface ResumeData {
     name: string;
     title: string;
     location: string;

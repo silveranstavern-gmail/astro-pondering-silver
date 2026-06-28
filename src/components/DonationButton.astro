@@ -1,5 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { siteUi, type SiteLocale } from '../i18n/site';
+
+interface Props {
+  locale?: SiteLocale;
+}
+
+const { locale = 'en' } = Astro.props as Props;
 ---
 
 <button
@@ -15,7 +22,7 @@ import { Icon } from 'astro-icon/components';
       <Icon name="heroicons:heart-solid" class="h-6 w-6" aria-hidden="true" />
     </div>
   </div>
-  <span class="mt-1 text-xs font-medium text-gray-700 sm:mt-2 sm:text-sm">Donate</span>
+  <span class="mt-1 text-xs font-medium text-gray-700 sm:mt-2 sm:text-sm">{siteUi[locale].actions.donate}</span>
 </button>
 
 <style>

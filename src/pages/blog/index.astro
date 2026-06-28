@@ -13,7 +13,12 @@ const featuredSlugs = new Set([
 const featuredPosts = posts.filter((post) => featuredSlugs.has(resolvePostLink(post)));
 ---
 
-<SiteLayout title="Blog | Pondering Silver" description="Recent writings, reflections, and transmissions from the Pondering Silver archive.">
+<SiteLayout
+  title="Blog | Pondering Silver"
+  description="Recent writings, reflections, and transmissions from the Pondering Silver archive."
+  locale="en"
+  alternateUrl="/es/blog"
+>
   <header class="space-y-4">
     <span class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-purple-700">
       Blog

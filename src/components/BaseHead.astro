@@ -5,22 +5,40 @@ import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/default.jpg';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import type { SiteLocale } from '../i18n/site';
 
 interface Props {
 	title?: string;
 	description?: string;
 	image?: ImageMetadata;
 	noImage?: boolean;
+	locale?: SiteLocale;
+	alternateUrl?: string;
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, noImage = false } = Astro.props as Props;
+const {
+	title = SITE_TITLE,
+	description = SITE_DESCRIPTION,
+	image,
+	noImage = false,
+	locale = 'en',
+	alternateUrl,
+} = Astro.props as Props;
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+const alternateURL = alternateUrl
+	? new URL(alternateUrl, Astro.site ?? Astro.url)
+	: undefined;
 const effectiveImage = noImage ? undefined : (image ?? FallbackImage);
 const ogImageURL = effectiveImage ? new URL(effectiveImage.src, Astro.site ?? Astro.url) : undefined;
 const normalizedPathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const llmTextHref = normalizedPathname === '/resume/'
 	? '/resume/llm.txt'
-	: normalizedPathname.startsWith('/blog/') && normalizedPathname !== '/blog/'
+	: normalizedPathname === '/resume-es/'
+		? '/resume-es/llm.txt'
+		: (
+			(normalizedPathname.startsWith('/blog/') && normalizedPathname !== '/blog/') ||
+			(normalizedPathname.startsWith('/es/blog/') && normalizedPathname !== '/es/blog/')
+		)
 		? `${normalizedPathname}llm.txt`
 		: undefined;
 ---
@@ -31,12 +49,32 @@ const llmTextHref = normalizedPathname === '/resume/'
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 {Astro.site && (
-	<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('rss.xml', Astro.site)} />
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		title={locale === 'es' ? `${SITE_TITLE} en español` : SITE_TITLE}
+		href={new URL(locale === 'es' ? 'es/rss.xml' : 'rss.xml', Astro.site)}
+	/>
 )}
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+{alternateURL && (
+	<>
+		<link rel="alternate" hreflang={locale === 'en' ? 'es' : 'en'} href={alternateURL} />
+		<link
+			rel="alternate"
+			hreflang={locale}
+			href={canonicalURL}
+		/>
+		<link
+			rel="alternate"
+			hreflang="x-default"
+			href={locale === 'en' ? canonicalURL : alternateURL}
+		/>
+	</>
+)}
 
 {llmTextHref && <link rel="alternate" type="text/plain" title="LLM-ready text" href={llmTextHref} />}
 
@@ -50,6 +88,8 @@ const llmTextHref = normalizedPathname === '/resume/'
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
+<meta property="og:locale" content={locale === 'es' ? 'es_CO' : 'en_US'} />
+{alternateURL && <meta property="og:locale:alternate" content={locale === 'es' ? 'en_US' : 'es_CO'} />}
 {ogImageURL && <meta property="og:image" content={ogImageURL} />}
 
 <!-- Twitter -->
@@ -61,4 +101,3 @@ const llmTextHref = normalizedPathname === '/resume/'
 
 <!-- Analytics -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="6ee9553a-9eb0-4a62-a3b7-f9c9bca6bf8e"></script>
-

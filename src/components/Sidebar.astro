@@ -1,67 +1,33 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { siteUi, type SiteLocale } from '../i18n/site';
 
-interface NavItem {
-  href: string;
-  label: string;
-  ariaLabel?: string;
-  icon: string;
+interface Props {
+  locale?: SiteLocale;
 }
 
-const navItems: NavItem[] = [
-  {
-    href: '/',
-    label: 'Home',
-    ariaLabel: 'Navigate to Home page',
-    icon: 'heroicons:home',
-  },
-  {
-    href: '/services',
-    label: 'Services',
-    ariaLabel: 'Navigate to Services page',
-    icon: 'heroicons:sparkles',
-  },
-  {
-    href: '/resources',
-    label: 'Resources',
-    ariaLabel: 'Navigate to Resources page',
-    icon: 'heroicons:book-open',
-  },
-  {
-    href: '/tools',
-    label: 'Tools',
-    ariaLabel: 'Navigate to Tools page',
-    icon: 'heroicons:wrench-screwdriver',
-  },
-  {
-    href: '/blog',
-    label: 'Blog',
-    ariaLabel: 'Navigate to Blog page',
-    icon: 'heroicons:pencil-square',
-  },
-  {
-    href: '/support',
-    label: 'Support',
-    ariaLabel: 'Navigate to Support page',
-    icon: 'heroicons:heart',
-  },
-];
+const { locale = 'en' } = Astro.props as Props;
+const copy = siteUi[locale];
+const navItems = copy.navItems;
 
 const pathname = Astro.url.pathname;
 
 const isActive = (href: string) => {
-  if (href === '/') return pathname === '/';
-  return pathname === href || pathname.startsWith(`${href}/`);
+  const normalizedPathname = pathname.replace(/\/+$/, '') || '/';
+  const normalizedHref = href.replace(/\/+$/, '') || '/';
+  if (normalizedHref === '/' || normalizedHref === '/es') {
+    return normalizedPathname === normalizedHref;
+  }
+  return normalizedPathname === normalizedHref || normalizedPathname.startsWith(`${normalizedHref}/`);
 };
 ---
 
 <aside
   id="site-sidebar"
-  transition:persist="sidebar"
   data-state="open"
   class="fixed lg:sticky top-16 h-[calc(100vh-4rem)] z-30 flex flex-col overflow-y-auto border-r border-gray-100 bg-white p-4 shadow-lg transition-all duration-300 hydration-transition data-[state=closed]:-translate-x-full"
   role="navigation"
-  aria-label="Main navigation"
+  aria-label={copy.navigationLabel}
 >
   <nav class="space-y-2" role="menu">
     {navItems.map((item) => {
