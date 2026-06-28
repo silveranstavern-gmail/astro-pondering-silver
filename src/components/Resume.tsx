@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
     resumeData,
     type DetailLevel,
@@ -244,6 +244,8 @@ export default function Resume({
     const sections = copy.sections;
     const [expandedRoles, setExpandedRoles] = useState<Record<string, DetailLevel>>({});
     const [activeSectionId, setActiveSectionId] = useState(sections[0].id);
+    const quickNavRef = useRef<HTMLDivElement>(null);
+    const quickNavItemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -263,6 +265,13 @@ export default function Resume({
                 if (element && element.getBoundingClientRect().top <= stickyOffset) {
                     currentSectionId = section.id;
                 }
+            }
+
+            const isAtPageEnd =
+                window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
+            if (isAtPageEnd) {
+                currentSectionId = sections[sections.length - 1].id;
             }
 
             setActiveSectionId((previous) => (previous === currentSectionId ? previous : currentSectionId));
@@ -286,6 +295,22 @@ export default function Resume({
             }
         };
     }, [sections]);
+
+    useEffect(() => {
+        const scroller = quickNavRef.current;
+        const activeItem = quickNavItemRefs.current[activeSectionId];
+
+        if (!scroller || !activeItem) return;
+
+        const centeredPosition =
+            activeItem.offsetLeft - (scroller.clientWidth - activeItem.offsetWidth) / 2;
+        const maxScrollPosition = scroller.scrollWidth - scroller.clientWidth;
+
+        scroller.scrollTo({
+            left: Math.min(Math.max(centeredPosition, 0), maxScrollPosition),
+            behavior: 'smooth',
+        });
+    }, [activeSectionId]);
 
     const cycleDepth = (id: string) => {
         setExpandedRoles((prev) => {
@@ -329,10 +354,10 @@ export default function Resume({
 
             <nav className="sticky top-0 z-40 border-b border-purple-100/80 bg-gray-100/95 px-4 py-3 shadow-xs backdrop-blur print:hidden">
                 <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-x-4 gap-y-3 lg:grid-cols-[minmax(0,1fr)_auto]">
-                    <div className="flex items-center justify-self-end gap-2 lg:col-start-2">
+                    <div className="flex w-full items-center justify-between gap-1 justify-self-end sm:w-auto sm:justify-end sm:gap-2 lg:col-start-2">
                         <a
                             href={routes.alternateLanguage}
-                            className="inline-flex min-h-10 items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-white/80 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                            className="inline-flex min-h-10 items-center justify-center rounded-lg px-2 py-2 text-xs font-semibold text-slate-600 transition hover:bg-white/80 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 sm:px-3 sm:text-sm"
                             lang={routes.alternateLanguageCode}
                             hrefLang={routes.alternateLanguageCode}
                         >
@@ -340,13 +365,17 @@ export default function Resume({
                         </a>
                         <a
                             href={routes.freelance}
-                            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-white px-3 py-2 text-sm font-semibold text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                            className="inline-flex min-h-10 min-w-0 items-center justify-center rounded-lg border border-purple-200 bg-white px-2 py-2 text-center text-xs font-semibold leading-tight text-purple-700 shadow-xs transition hover:border-purple-300 hover:bg-purple-50 hover:text-purple-900 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 sm:px-3 sm:text-sm"
                         >
                             {copy.freelanceLabel}
                         </a>
                     </div>
 
-                    <div className="row-start-2 flex min-w-0 gap-2 overflow-x-auto pb-1 hide-scrollbar lg:col-start-1 lg:row-start-1 lg:justify-center lg:pb-0" aria-label={copy.sectionsAriaLabel}>
+                    <div
+                        ref={quickNavRef}
+                        className="row-start-2 flex min-w-0 snap-x snap-mandatory gap-2 overflow-x-auto pb-1 scroll-smooth hide-scrollbar lg:col-start-1 lg:row-start-1 lg:justify-center lg:pb-0"
+                        aria-label={copy.sectionsAriaLabel}
+                    >
                         {quickNav.map((item) => {
                             const isActive = item.id === activeSectionId;
 
@@ -355,7 +384,10 @@ export default function Resume({
                                     key={item.id}
                                     type="button"
                                     onClick={item.onClick}
-                                    className={`min-h-9 shrink-0 rounded-full px-3 py-1 text-sm font-medium transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-1 ${
+                                    ref={(element) => {
+                                        quickNavItemRefs.current[item.id] = element;
+                                    }}
+                                    className={`min-h-9 shrink-0 snap-center rounded-full px-3 py-1 text-sm font-medium transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-1 ${
                                         isActive
                                             ? 'bg-purple-600 text-white shadow-xs'
                                             : 'border border-slate-200 bg-white/80 text-slate-600 hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800'
@@ -374,7 +406,7 @@ export default function Resume({
                 {/* --- Header --- */}
                 <header id="overview" className="space-y-6">
                     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
-                        <div className="space-y-5 rounded-2xl border border-purple-100/80 bg-white/90 p-6 shadow-lg ring-1 ring-slate-900/5 backdrop-blur print:border-slate-200 print:bg-white print:shadow-none print:ring-0 sm:p-8">
+                        <div className="min-w-0 space-y-5 rounded-2xl border border-purple-100/80 bg-white/90 p-6 shadow-lg ring-1 ring-slate-900/5 backdrop-blur print:border-slate-200 print:bg-white print:shadow-none print:ring-0 sm:p-8">
                             <div>
                                 <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{data.name}</h1>
                                 <p className="mt-2 text-lg font-medium text-slate-600">{data.title}</p>
@@ -399,7 +431,7 @@ export default function Resume({
                         </div>
 
                         {/* Contact & Metrics Sidebar */}
-                        <aside className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg ring-1 ring-slate-900/5 print:border-slate-200 print:shadow-none print:ring-0">
+                        <aside className="min-w-0 space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg ring-1 ring-slate-900/5 print:border-slate-200 print:shadow-none print:ring-0">
                             <div className="space-y-3">
                                 <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">{copy.contact}</p>
                                 <div className="flex flex-col gap-3">
@@ -411,7 +443,7 @@ export default function Resume({
                                     </a>
                                     <a
                                         href={`mailto:${data.contact.email}`}
-                                        className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
+                                        className="inline-flex min-h-10 min-w-0 items-center justify-center break-all rounded-lg border border-slate-200 bg-white px-4 py-2 text-center text-sm font-medium text-slate-700 shadow-xs transition hover:border-purple-200 hover:bg-purple-50 hover:text-purple-800 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                                     >
                                         {copy.email} {data.contact.email}
                                     </a>
