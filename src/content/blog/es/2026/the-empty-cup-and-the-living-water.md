@@ -44,7 +44,7 @@ Déjame mostrarte exactamente a qué me refiero.
 
 ## 🎵 El sitar que no puede tocar la nueva canción
 
-Imagina que tomas un sitar —un instrumento clásico indio de cuerdas— que ha sido afinado cuidadosamente para tocar una melodía particular. Cada cuerda tiene la tensión precisa para hacer que esa única melodía cante con belleza. Ahora, sin afinarlo de nuevo, intentas tocar una melodía completamente diferente, una que necesita notas e intervalos distintos.
+Imagina que tomas un sitar – un instrumento clásico indio de cuerdas – que ha sido afinado cuidadosamente para tocar una melodía particular. Cada cuerda tiene la tensión precisa para hacer que esa única melodía cante con belleza. Ahora, sin afinarlo de nuevo, intentas tocar una melodía completamente diferente, una que necesita notas e intervalos distintos.
 
 ¿Qué obtienes? No la nueva melodía. Ya ni siquiera la antigua. Obtienes *ruido*: un choque desagradable que no pertenece a ninguna de las dos canciones y que no sirve a música alguna.
 
@@ -77,7 +77,7 @@ O, desde la dirección opuesta:
 
 Estas no son meras opiniones casuales. Son **programas activos** que se ejecutan en segundo plano y moldean la manera en que procesas cada experiencia antes de que siquiera tengas la oportunidad de saborearla directamente. Son el lente a través del cual todo se filtra.
 
-En la tradición a la que estamos entrando —la tradición del shaivismo de Cachemira, la gran corriente de práctica que el maestro Abhinavagupta sistematizó hace más de mil años—, estos programas de fondo se llaman *vikalpas*. Esa es sencillamente una palabra en sánscrito que significa **constructos mentales**: los marcos, etiquetas y suposiciones que tu mente utiliza para ordenar la realidad dentro de cajas pulcras.
+En la tradición a la que estamos entrando – la tradición del shaivismo de Cachemira, la gran corriente de práctica que el maestro Abhinavagupta sistematizó hace más de mil años – , estos programas de fondo se llaman *vikalpas*. Esa es sencillamente una palabra en sánscrito que significa **constructos mentales**: los marcos, etiquetas y suposiciones que tu mente utiliza para ordenar la realidad dentro de cajas pulcras.
 
 Los vikalpas no son malos. Los necesitas para funcionar. Necesitas el constructo «la luz roja significa detenerse» para conducir un carro. Necesitas el constructo «el fuego quema» para mantener tu mano a salvo.
 
@@ -95,7 +95,7 @@ Pero esto es lo que llevas a la sala de práctica, muchas veces sin darte cuenta
 
 *«La conciencia es apenas algo que hace el cerebro. El cuerpo es una máquina biológica. Cuando se daña, las luces se apagan. No existe ninguna “energía” más allá de lo que describe la física. Cualquier cosa que suene mística probablemente sea una ilusión nacida del deseo»*.
 
-Ahora te pido que hagas algo sencillo: siéntate en silencio, lleva tu atención al centro del pecho y siente —no pienses en ello, sino *siente*— un calor allí, una vitalidad sutil, una pulsación que no tiene nada que ver con el latido físico de tu corazón.
+Ahora te pido que hagas algo sencillo: siéntate en silencio, lleva tu atención al centro del pecho y siente – no pienses en ello, sino *siente* – un calor allí, una vitalidad sutil, una pulsación que no tiene nada que ver con el latido físico de tu corazón.
 
 ¿Qué sucede?
 
@@ -113,9 +113,9 @@ Tan solo tienes que hacer lo que hace cualquier *buen* científico al entrar en 
 
 Un verdadero científico no entra al laboratorio después de haber escrito los resultados. Lleva cuadernos vacíos. Lleva consigo la disposición a dejarse sorprender por datos que no coincidan con sus predicciones.
 
-Eso es todo lo que te pido. Mientras dure esta práctica —treinta minutos, una hora, lo que sea—, dejas a un lado la maquinaria interpretativa. No la reprimes; solo dices con suavidad: *«Ahora no. Déjame recopilar primero los datos. Déjame ver qué sucede realmente cuando hago esto con toda mi atención, entera e indivisa, sin decidir de antemano qué significa»*.
+Eso es todo lo que te pido. Mientras dure esta práctica – treinta minutos, una hora, lo que sea – , dejas a un lado la maquinaria interpretativa. No la reprimes; solo dices con suavidad: *«Ahora no. Déjame recopilar primero los datos. Déjame ver qué sucede realmente cuando hago esto con toda mi atención, entera e indivisa, sin decidir de antemano qué significa»*.
 
-Ese pequeño cambio —esa diminuta relajación temporal del agarre— es suficiente. El sitar puede volver a afinarse. La nueva canción se vuelve posible.
+Ese pequeño cambio – esa diminuta relajación temporal del agarre – es suficiente. El sitar puede volver a afinarse. La nueva canción se vuelve posible.
 
 ---
 
@@ -149,7 +149,7 @@ Y este es precisamente el punto: **ese miedo a caer es en sí mismo la jaula**. 
 
 Ahora, para ser justos, volvamos el filo hacia la tradición que estamos practicando.
 
-¿Qué sucede cuando alguien inmerso en la práctica tántrica —alguien a quien se le ha enseñado que *todo es divino, los sentidos son puertas, el deseo es combustible, el mundo es sagrado*— se encuentra con una tradición que pide el retiro, la quietud, permitir que todo se disuelva en un silencio sin forma?
+¿Qué sucede cuando alguien inmerso en la práctica tántrica – alguien a quien se le ha enseñado que *todo es divino, los sentidos son puertas, el deseo es combustible, el mundo es sagrado* – se encuentra con una tradición que pide el retiro, la quietud, permitir que todo se disuelva en un silencio sin forma?
 
 Sucede lo mismo, solo que al revés.
 
@@ -157,7 +157,7 @@ La taza del practicante tántrico se desborda: *«¿Pero por qué habría de ret
 
 Y ahora es *él* quien tiene los brazos cruzados. Es *él* quien reproduce comentarios en vez de practicar. Es *él* quien tiene el sitar afinado para una canción mientras el maestro le pide otra.
 
-Cuando la práctica le pide dejar que la forma se disuelva en lo informe —soltar, descansar, dejar de aferrarse a la riqueza de la experiencia—, su condicionamiento continúa buscando más textura, más sensación, más intensidad. Sigue intentando encontrar lo divino *dentro* de lo que surge, cuando la práctica le pide descubrir qué permanece cuando todo surgimiento cesa.
+Cuando la práctica le pide dejar que la forma se disuelva en lo informe – soltar, descansar, dejar de aferrarse a la riqueza de la experiencia – , su condicionamiento continúa buscando más textura, más sensación, más intensidad. Sigue intentando encontrar lo divino *dentro* de lo que surge, cuando la práctica le pide descubrir qué permanece cuando todo surgimiento cesa.
 
 **La Mente de Principiante no es algo que solo necesiten los demás. Es algo que todos necesitamos cada vez que entramos en territorio desconocido, incluidos aquellos de nosotros que creemos haber encontrado ya la verdad.**
 
@@ -182,9 +182,9 @@ Esta es, en muchos sentidos, la taza más difícil de vaciar, porque quien la so
 
 Cuando le pido a este practicante que se siente, que respire de una manera específica, que se comprometa con una práctica diaria exigente, su taza habla de inmediato: *«¿Por qué habría de practicar? La práctica implica un practicante y no existe ningún practicante. ¿Por qué habría de buscar? Buscar implica separación y yo ya soy Eso»*.
 
-Es como un estudiante de medicina que lee la última página del libro de texto —*«El paciente se recuperó»*— y luego se niega a estudiar anatomía, diagnóstico o tratamiento porque ya conoce el final.
+Es como un estudiante de medicina que lee la última página del libro de texto – *«El paciente se recuperó»* – y luego se niega a estudiar anatomía, diagnóstico o tratamiento porque ya conoce el final.
 
-Esto es lo que realmente sucede cuando esta persona se sienta a practicar: siente el primer temblor tenue de algo verdaderamente desconocido —un movimiento, una apertura, una vibración que no encaja en sus categorías existentes— y **el sistema inmunitario de su filosofía lo ataca antes de que pueda echar raíces**. Abre los ojos después de dos minutos y dice: *«La conciencia ya está presente, así que la práctica es redundante»*.
+Esto es lo que realmente sucede cuando esta persona se sienta a practicar: siente el primer temblor tenue de algo verdaderamente desconocido – un movimiento, una apertura, una vibración que no encaja en sus categorías existentes – y **el sistema inmunitario de su filosofía lo ataca antes de que pueda echar raíces**. Abre los ojos después de dos minutos y dice: *«La conciencia ya está presente, así que la práctica es redundante»*.
 
 Lo que ha hecho es utilizar una *conclusión* para impedir el *viaje* que volvería real la conclusión. Se ha memorizado el remate y ha decidido que no necesita escuchar el chiste.
 
@@ -226,7 +226,7 @@ Este es un ejercicio sencillo que puedes hacer cada vez que te sientes a practic
 
 **2. Déjalas junto a la puerta.** Dite con sinceridad: *«Mientras dure esta práctica, dejo todo esto a un lado. No porque esté equivocado, sino porque quiero escuchar lo que esta práctica tiene para decir con su propia voz, sin que mis traducciones hablen por encima de ella»*.
 
-**3. Sorprende a los traductores en el acto.** Durante la práctica, cuando notes que estás interpretando tu experiencia mediante un marco antiguo —*«esto es solamente X», «esto no es más que Y», «ya sé qué es esto»*—, observa con suavidad: *«Esa es mi traducción, no el texto original»*. Luego regresa a la experiencia directa, a aquello que estaba sucediendo *antes* de que llegara la etiqueta.
+**3. Sorprende a los traductores en el acto.** Durante la práctica, cuando notes que estás interpretando tu experiencia mediante un marco antiguo – *«esto es solamente X», «esto no es más que Y», «ya sé qué es esto»* – , observa con suavidad: *«Esa es mi traducción, no el texto original»*. Luego regresa a la experiencia directa, a aquello que estaba sucediendo *antes* de que llegara la etiqueta.
 
 **4. Vuelve a recoger tus zapatos al terminar.** Después de la práctica, ponte de nuevo tu marco. Pero ahora compara: ¿la experiencia que acabas de vivir encaja perfectamente en tus antiguas categorías? ¿O hace que las costuras se abulten? ¿Queda algún residuo, algo que el marco no logra digerir del todo, algo que no cabe en las viejas cajas?
 
@@ -236,11 +236,11 @@ Este es un ejercicio sencillo que puedes hacer cada vez que te sientes a practic
 
 ## 🌊 La verdad más profunda
 
-Y ahora, como estamos en la tradición de Abhinavagupta —una tradición que jamás te permite descansar en una conclusión cómoda—, debemos sostener la paradoja:
+Y ahora, como estamos en la tradición de Abhinavagupta – una tradición que jamás te permite descansar en una conclusión cómoda – , debemos sostener la paradoja:
 
 **La Mente de Principiante definitiva no consiste en vaciar la taza. Consiste en reconocer que, para comenzar, la taza jamás fue sólida.**
 
-Cada perspectiva, cada marco, cada constructo mental —incluido todo cuanto acabo de enseñarte— es en sí mismo una ondulación momentánea sobre la superficie de algo incomprensiblemente vasto. La perspectiva del escéptico es la Conciencia jugando a ser materia. La perspectiva de quien niega el mundo es la Conciencia jugando a disolver el mundo. La perspectiva tántrica es la Conciencia jugando a abrazar el mundo. La perspectiva del «ya iluminado» es la Conciencia jugando a haber llegado ya.
+Cada perspectiva, cada marco, cada constructo mental – incluido todo cuanto acabo de enseñarte – es en sí mismo una ondulación momentánea sobre la superficie de algo incomprensiblemente vasto. La perspectiva del escéptico es la Conciencia jugando a ser materia. La perspectiva de quien niega el mundo es la Conciencia jugando a disolver el mundo. La perspectiva tántrica es la Conciencia jugando a abrazar el mundo. La perspectiva del «ya iluminado» es la Conciencia jugando a haber llegado ya.
 
 ¿Y la Mente de Principiante? La Mente de Principiante es la Conciencia, bajo la forma de *ti*, jugando a no saber, para que el saber pueda ocurrir de nuevo, pueda ocurrir *ahora*, pueda ocurrir como **reconocimiento** en vez de como recuerdo.
 

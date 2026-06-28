@@ -64,7 +64,7 @@ Tu cuerpo es el templo definitivo.
 Tu conciencia es el mandala definitivo.  
 Tu respiración es la ofrenda definitiva.
 
-Hay un fuego ardiendo en el centro de tu pecho. Es el Fuego de la Conciencia Pura. Ahora mismo, sin necesidad de cambiar tu postura ni cantar una sola sílaba en voz alta, toma todo lo que se sienta pesado —tus dudas, tus juicios, tus miedos, tus identidades rígidas, tu pasado, tu futuro— y arrójalo a este fuego interior.
+Hay un fuego ardiendo en el centro de tu pecho. Es el Fuego de la Conciencia Pura. Ahora mismo, sin necesidad de cambiar tu postura ni cantar una sola sílaba en voz alta, toma todo lo que se sienta pesado – tus dudas, tus juicios, tus miedos, tus identidades rígidas, tu pasado, tu futuro – y arrójalo a este fuego interior.
 
 Obsérvalo arder. Obsérvalo convertirse en ceniza de Luz pura y blanca.
 

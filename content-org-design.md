@@ -455,7 +455,7 @@ The current substring behavior means a tag query may also match the same phrase 
 
 At thousands of posts, a query-string filter cannot find posts that were not rendered into the current paginated HTML page. At that point, build the same `keywords` values into the locale-specific search index. Dedicated static routes such as `/blog/tag/non-duality` are an optional enhancement for permanent browsable archives and SEO, not a replacement for the current search integration.
 
-If cross-language equivalence later matters—for example, treating English `non-duality` and Spanish `no-dualidad` as the same conceptual filter—add a small alias/taxonomy layer that maps those display values to a stable concept ID. The visible and searchable `keywords` arrays can remain intact.
+If cross-language equivalence later matters – for example, treating English `non-duality` and Spanish `no-dualidad` as the same conceptual filter – add a small alias/taxonomy layer that maps those display values to a stable concept ID. The visible and searchable `keywords` arrays can remain intact.
 
 ### Year archives
 

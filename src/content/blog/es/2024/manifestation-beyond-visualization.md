@@ -31,13 +31,13 @@ Si alguna vez has pensado: «¿Y si no puedo visualizar? ¿Y si no logro proyect
 
 ### No se trata de perfección
 
-La manifestación está al alcance de todos, sin importar desde dónde comiences. Ya sean tus visualizaciones perfectamente claras o apenas impresiones difusas, lo que de verdad importa es tu compromiso con el proceso. La energía que sostiene tu intención, respaldada por acciones alineadas con ella, tiene mucho más peso que el grado de nitidez con el que puedas imaginar tus deseos. Cada paso que das —por pequeño que sea— cuenta.
+La manifestación está al alcance de todos, sin importar desde dónde comiences. Ya sean tus visualizaciones perfectamente claras o apenas impresiones difusas, lo que de verdad importa es tu compromiso con el proceso. La energía que sostiene tu intención, respaldada por acciones alineadas con ella, tiene mucho más peso que el grado de nitidez con el que puedas imaginar tus deseos. Cada paso que das – por pequeño que sea – cuenta.
 
 En mi caso, no sé si tengo afantasía en toda regla, pero sí sé que a mi ojo interior le cuesta ver las cosas con claridad. En el mejor de los casos, mis imágenes mentales son vagas, casi impresionistas. Los detalles ricos y vívidos no surgen de manera natural para mí. Quizás tenga que ver con traumas del pasado o con mis tendencias analíticas. Sea como sea, he aprendido que mi dificultad para visualizar no me impide manifestar aquello que deseo.
 
 ### Más allá de la visualización
 
-Manifestar implica mucho más que ver una imagen en tu mente. Tiene que ver con las creencias y con la intención. Las enseñanzas de Bashar —según las cuales tus creencias moldean tu realidad— resuenan profundamente en mí. Si crees que tus limitaciones te definen, esas mismas creencias harán aparecer cada vez más pruebas de su aparente «verdad». Pero lo contrario también es cierto: cuando transformas tus creencias, transformas tu realidad.
+Manifestar implica mucho más que ver una imagen en tu mente. Tiene que ver con las creencias y con la intención. Las enseñanzas de Bashar – según las cuales tus creencias moldean tu realidad – resuenan profundamente en mí. Si crees que tus limitaciones te definen, esas mismas creencias harán aparecer cada vez más pruebas de su aparente «verdad». Pero lo contrario también es cierto: cuando transformas tus creencias, transformas tu realidad.
 
 Puedes comenzar por aquí:
 1. **Cree en la posibilidad**: Esto es fundamental. Incluso si todavía te cuesta creer plenamente en ti, cree al menos en la posibilidad de cambiar.

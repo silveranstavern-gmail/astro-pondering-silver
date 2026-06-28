@@ -88,14 +88,14 @@ export const resumeDataEs: ResumeData = {
                         'Brindé mentoría y retroalimentación detallada en PR para mantener los estándares de arquitectura y la calidad del código en todo el equipo.',
                     ],
                     deepContext: [
-                        'Regresé a este proyecto —al que me había unido originalmente en 2018— con un enfoque casi exclusivo en frontend y mayores responsabilidades de coordinación técnica.',
+                        'Regresé a este proyecto – al que me había unido originalmente en 2018 – con un enfoque casi exclusivo en frontend y mayores responsabilidades de coordinación técnica.',
                         'Las áreas de enfoque incluyeron desarrollo avanzado en Angular, diseño de módulos y conexión entre las especificaciones de negocio y la implementación técnica.',
                         'Fui un referente técnico principal para product owners, analistas de negocio y desarrolladores; convertí requisitos de negocio en tareas ejecutables y comuniqué restricciones técnicas a las partes interesadas.',
                     ],
                     deepAchievements: [
                         'Diseñé e implementé módulos completos de Angular, desde el concepto de diseño hasta el despliegue en producción.',
                         'Introduje un orquestador de flujos personalizado para gestionar estados y transiciones, simplificando lógicas complejas de validación entre múltiples formularios.',
-                        'Construí sistemas dinámicos de validación de reglas —por ejemplo, validación de Pre-Alert basada en MoT— con lógica centralizada de formularios reactivos.',
+                        'Construí sistemas dinámicos de validación de reglas – por ejemplo, validación de Pre-Alert basada en MoT – con lógica centralizada de formularios reactivos.',
                         'Fui pionero en integrar Angular Signals en la arquitectura existente de componentes para mejorar la previsibilidad del estado.',
                         'Fortalecí bibliotecas de componentes reutilizables, asegurando consistencia de diseño y reduciendo duplicaciones en el monorepo.',
                         'Lideré la incorporación y mentoría de nuevos desarrolladores frontend, con acompañamiento continuo sobre estándares de código e integración de funcionalidades.',
@@ -131,7 +131,7 @@ export const resumeDataEs: ResumeData = {
                         'Diseñé microservicios backend para conectar sistemas heredados y modernos, a la vez que establecía patrones de observabilidad orientados a la confiabilidad.',
                     standardHighlights: [
                         'Mejoré la consistencia de datos entre seis sistemas empresariales al identificar y automatizar flujos de autorrecuperación para fallas de sincronización.',
-                        'Establecí patrones de observabilidad SRE —tableros y alertas KQL— adoptados por servicios internos para reducir el tiempo de detección de anomalías.',
+                        'Establecí patrones de observabilidad SRE – tableros y alertas KQL – adoptados por servicios internos para reducir el tiempo de detección de anomalías.',
                         'Desarrollé patrones de monitoreo y alertas que permitieron detectar con mayor rapidez problemas de latencia y sincronización en microservicios distribuidos.',
                         'Implementé gestión dinámica de configuración para permitir cambios de parámetros en tiempo de ejecución sin volver a desplegar los servicios.',
                     ],
@@ -167,7 +167,7 @@ export const resumeDataEs: ResumeData = {
                         'Desarrollo desde cero de una plataforma logística, con énfasis en el diseño de API, la sincronización de datos y la lógica de interfaz.',
                     standardHighlights: [
                         'Contribuí a la evolución de la plataforma, desde un prototipo inicial hasta una aplicación empresarial lista para producción.',
-                        'Desarrollé API backend —de .NET Framework a .NET Core— y funcionalidades Angular, con énfasis en la precisión y en límites claros entre servicios.',
+                        'Desarrollé API backend – de .NET Framework a .NET Core – y funcionalidades Angular, con énfasis en la precisión y en límites claros entre servicios.',
                         'Fortalecí los flujos logísticos fundamentales al identificar y resolver vacíos de lógica en funciones tempranas de automatización.',
                     ],
                     deepContext: [
@@ -224,7 +224,7 @@ export const resumeDataEs: ResumeData = {
                     deepAchievements: [
                         'Desarrollé y desplegué aplicaciones web full stack con C#, ASP.NET MVC y ASP.NET Web API.',
                         'Construí API RESTful que exponían lógica de negocio y se integraban con múltiples clientes frontend.',
-                        'Usé Entity Framework —Code First y Database First— para el mapeo ORM con SQL Server.',
+                        'Usé Entity Framework – Code First y Database First – para el mapeo ORM con SQL Server.',
                         'Usé los patrones LINQ, Repository y Unit of Work para implementar capas de acceso a datos.',
                         'Integré componentes Angular para construir aplicaciones de página única (SPA).',
                         'Implementé contenedores Docker para modularizar los componentes de las aplicaciones.',
