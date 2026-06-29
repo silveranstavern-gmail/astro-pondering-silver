@@ -1,8 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { bookingUrl } from '../../data/services';
-import { faqsEs, servicePathsEs, servicesEs } from '../../data/services.es';
+import { bookingUrlEs, faqsEs, servicePathsEs, servicesEs } from '../../data/services.es';
 ---
 
 <SiteLayout
@@ -67,7 +66,7 @@ import { faqsEs, servicePathsEs, servicesEs } from '../../data/services.es';
             <h3 class="mt-3 text-xl font-bold text-gray-900">{path.title}</h3>
             <p class="mt-4 flex-1 leading-relaxed text-gray-600">{path.description}</p>
             <a
-              href={bookingUrl}
+              href={bookingUrlEs}
               target="_blank"
               rel="noopener noreferrer"
               class="mt-6 inline-flex items-center gap-2 self-start rounded-lg bg-purple-600 px-5 py-3 text-sm font-medium text-white shadow-xs transition hover:bg-purple-700 hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
@@ -148,7 +147,7 @@ import { faqsEs, servicePathsEs, servicesEs } from '../../data/services.es';
         ternura, el desafío, el silencio y la claridad.
       </p>
       <a
-        href={bookingUrl}
+        href={bookingUrlEs}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-8 py-4 text-base font-medium text-white shadow-xs transition hover:bg-purple-700 hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"

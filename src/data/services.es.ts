@@ -1,5 +1,7 @@
 import type { ServiceFaq, ServiceOffering, ServicePath } from './services';
 
+export const bookingUrlEs = 'https://cal.com/ponderingsilver/60-es';
+
 export const servicePathsEs: ServicePath[] = [
   {
     title: 'Sesión individual de Claridad del Alma',
