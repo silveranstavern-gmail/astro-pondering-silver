@@ -52,7 +52,7 @@ export const faqsEs: ServiceFaq[] = [
   {
     question: '¿Cómo nos reunimos?',
     answer:
-      'Las sesiones se realizan en línea mediante videollamada. Después de reservar, recibirás el enlace y los detalles.',
+      'Para los clientes de habla hispana, las sesiones se realizan en línea a través de mensajes de texto en WhatsApp para poder aprovechar los servicios de traducción al comunicarnos. Varios clientes de habla hispana han atestiguado que este formato funciona y les resulta valioso.',
   },
   {
     question: '¿Qué debo preparar antes de nuestra sesión?',
