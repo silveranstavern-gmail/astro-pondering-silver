@@ -6,8 +6,7 @@ import { getSortedAndFilteredPosts } from '../../utils/blog';
 const posts = await getSortedAndFilteredPosts(true, 'es');
 const featuredIds = new Set([
   'surrender-to-the-light-of-your-own-being',
-  'the-empty-cup-and-the-living-water',
-  'the-light-does-not-need-all-colors-to-become-one',
+  'reflections-in-a-mirror-2025-03-15',
 ]);
 const featuredPosts = posts.filter((post) => featuredIds.has(post.data.contentId));
 ---
@@ -44,7 +43,7 @@ const featuredPosts = posts.filter((post) => featuredIds.has(post.data.contentId
       <div class="flex flex-col items-center gap-2 text-center">
         <h2 class="text-2xl font-semibold text-gray-900">Reflexiones para comenzar</h2>
         <p class="max-w-2xl text-sm leading-relaxed text-gray-600">
-          Tres entradas que ofrecen distintos caminos hacia el corazón de Pondering Silver.
+          Entradas destacadas que ofrecen distintos caminos hacia el corazón de Pondering Silver.
         </p>
       </div>
       <div class="grid gap-6 md:grid-cols-2">
