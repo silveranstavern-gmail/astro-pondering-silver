@@ -23,10 +23,10 @@ translationTargets:
   - es
 ---
 
-> Author's Note:
-> *Some words are written to someone.*
-> *Others simply arrive through someone.*
-> *This feels like the latter.*
+> Author's Note:  
+> Some words are written to someone.  
+> Others simply arrive through someone.  
+> This feels like the latter.  
 
 I was up far too late last night writing...
 
