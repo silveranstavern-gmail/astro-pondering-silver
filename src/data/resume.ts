@@ -99,9 +99,9 @@ export interface ResumeData {
 export const resumeData: ResumeData = {
     name: 'Donald Clements',
     title: 'Senior Full Stack Angular/.NET Web Developer',
-    location: 'Remote (Global)',
+    location: 'Del City, Oklahoma',
     citizenship: 'United States (Texas)',
-    availability: 'Open to Senior/Staff Full Stack or Frontend leadership roles · Remote only',
+    availability: 'Open to Senior/Staff Full Stack or Frontend leadership roles · Willing to work remote',
     summary:
         'Senior Software Engineer and frontend lead with 7+ years delivering enterprise Angular/.NET systems for global oilfield services. I specialize in the analysis and translation of business requirements into technical blueprints – identifying gaps, clarifying complex logic, and turning that clarity into maintainable, production-ready frontend architecture.',
     resumePdfUrl: 'https://drive.google.com/uc?export=download&id=1R4WsWJiwOpMLcbKAfy6hZ1P3EWw3sen0',

@@ -3,9 +3,9 @@ import type { ResumeData } from './resume';
 export const resumeDataEs: ResumeData = {
     name: 'Donald Clements',
     title: 'Desarrollador web sénior full stack Angular/.NET',
-    location: 'Remoto (global)',
+    location: 'Del City, Oklahoma',
     citizenship: 'Estados Unidos (Texas)',
-    availability: 'Disponible para cargos sénior/staff full stack o de liderazgo frontend · Solo remoto',
+    availability: 'Disponible para cargos sénior/staff full stack o de liderazgo frontend · Dispuesto a trabajar de forma remota',
     summary:
         'Ingeniero de software sénior y líder frontend con más de 7 años de experiencia desarrollando sistemas empresariales Angular/.NET para servicios petroleros globales. Me especializo en analizar y traducir requisitos de negocio en planos técnicos: identifico vacíos, aclaro lógicas complejas y convierto esa claridad en arquitecturas frontend mantenibles y listas para producción.',
     resumePdfUrl: 'https://drive.google.com/uc?export=download&id=1R4WsWJiwOpMLcbKAfy6hZ1P3EWw3sen0',
